@@ -1,5 +1,6 @@
-window.TypeItDefaults = {
+export default {
   strings: [],
+  queue: null,
   speed: 100,
   deleteSpeed: null,
   lifeLike: true,
@@ -13,7 +14,7 @@ window.TypeItDefaults = {
   loop: false,
   loopDelay: false,
   html: true,
-  autoStart: true,
+  waitUntilVisible: false,
   callback: false,
   beforeString: false,
   afterString: false,

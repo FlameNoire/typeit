@@ -171,7 +171,7 @@ You may use these functions to generate a queue of typing events immediately upo
 new TypeIt('.type-it', {
 speed: 900,
 lifeLike: false,
-autoStart: false
+waitUntilVisibile: true
 })
 .type('I am typing slowly,')
 .options({speed: 100})
@@ -233,51 +233,12 @@ myInstance.init(); //-- Now it's initialized!
 ```
 
 ### Check for Instance States
-There are several properties attached to each instance of TypeIt that reveal current states.
+There are several properties attached to each instance of TypeIt that reveal current states. To check any of them pass them to the `instance.is(STATE)` method.
 
-#### Is my instance complete?
-Use the `isComplete` property:
-
-```js
-var instance = new TypeIt('#element', { /* options... */ });
-
-if(instance.isComplete) {
-    //-- Do something.
-}
-```
-
-#### Has my instance been destroyed?
-Use the `hasBeenDestroyed` property:
-
-```js
-var instance = new TypeIt('#element', { /* options... */ });
-
-if(instance.hasBeenDestroyed) {
-    //-- Do something.
-}
-```
-
-#### Is my instance frozen?
-Use the `isFrozen` property:
-
-```js
-var instance = new TypeIt('#element', { /* options... */ });
-
-if(instance.isFrozen) {
-    //-- Do something.
-}
-```
-
-#### Has my instance started?
-Use the `hasStarted` property.
-
-```js
-var instance = new TypeIt('#element', { /* options... */ }, false);
-
-if(!instance.hasStarted) {
-    //-- Do something.
-}
-```
+| State        | Example   |
+| ------------- | ------------- |
+| `frozen` | instance.is('frozen')
+| `complete` | instance.is('complete')
 
 ## Options
 You can modify the options for the plugin by passing in JSON upon instantiation. It'll look something like this:
@@ -300,24 +261,12 @@ new TypeIt('#element', {
 | cursorChar    | (string) The character used for the cursor. HTML works too! | pipe |
 | breakLines    | (boolean) Choose whether you want multiple strings to be printed on top of each other (`breakLines: true`), or if you want each string to be deleted and replaced by the next one (`breakLines: false`).  | true  |
 | nextStringDelay    | (number in milliseconds or array) The amount of time (milliseconds) between typing strings when multiple are defined. You may either pass a number in milliseconds, or an array of values. The first value will be used as the delay before a new string starts, and the second value will be used as the delay after a string has just ended. For example, passing `[1000, 2000]` will tell TypeIt to pause 1000ms before typing a new string, and wait 2000ms after a string has just completed. This would be equivalent to `instance.type('String 1').pause(2000).delete().pause(1000).type('String 2')`. If a number is passed, that value will be halved. | 750 |
-| autoStart    | (boolean) Determines if the instance will typing automatically on page load, or only when the target element becomes visible in the viewport. If you don't want instances far down on the page to begin until they're visible, set this option to `false.` | true  |
+| waitUntilVisibile    | (boolean) Determines if the instance will typing automatically on page load, or only when the target element becomes visible in the viewport. If you don't want instances far down on the page to begin until they're visible, set this option to `true.` | false |
 | startDelete    | (boolean) Whether to begin instance by deleting strings inside element, and then typing what strings are defined via JSON or companion functions. | false  |
 | startDelay    | (number in milliseconds) The amount of time before the plugin begins typing after initalizing.  | 250  |
 | loop    | (boolean) Have your string or strings continuously loop after completing.  | false  |
 | loopDelay    | (number in milliseconds or array) The amount of time between looping over a string or set of strings again. This option behaves identically to `nextStringDelay`. If an array is passed, the first value will be the time before typing begins again (after the set of strings has been deleted), and the second value will be the time immediately after the set of strings has finished typing, before they're deleted to restart. If left undefined, the `nextStringDelay` option will be used. | false |
 | html    | (boolean) Handle strings as HTML, which will process tags and HTML entities. If 'false,' strings will be typed literally.  | true  |
-
-#### Changing Option Defaults
-If you're creating several instances of TypeIt on a page, and don't wish to repeatedly set an option of the same value for each of them, you can redefine the default options beforehand. Change the default value(s) before creating any instances, and you'll be set.
-
-```js
-window.TypeItDefaults.speed = 50;
-
-//-- This and all following instances will now have a default speed of 50.
-new TypeIt('#id', {
-  strings: 'A string!'
-});
-```
 
 ## Callback Methods
 Along all of these options, there are several callback method options you may use to trigger JavaScript at different points in time.

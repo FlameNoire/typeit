@@ -1,0 +1,257 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`insertSplitPause() Inserts split pause around first item. 1`] = `
+Array [
+  Array [
+    [Function],
+    375,
+  ],
+  "a",
+  Array [
+    [Function],
+    375,
+  ],
+  "b",
+  "c",
+  "d",
+  "e",
+]
+`;
+
+exports[`insertSplitPause() Inserts split pause around last item. 1`] = `
+Array [
+  "a",
+  "b",
+  "c",
+  "d",
+  Array [
+    [Function],
+    375,
+  ],
+  "e",
+  Array [
+    [Function],
+    375,
+  ],
+]
+`;
+
+exports[`insertSplitPause() Inserts split pause around one item. 1`] = `
+Array [
+  "a",
+  "b",
+  Array [
+    [Function],
+    375,
+  ],
+  "c",
+  Array [
+    [Function],
+    375,
+  ],
+  "d",
+  "e",
+]
+`;
+
+exports[`insertSplitPause() Inserts split pause around one item. 2`] = `
+Array [
+  "a",
+  "b",
+  Array [
+    [Function],
+    375,
+  ],
+  "c",
+  "d",
+  Array [
+    [Function],
+    375,
+  ],
+  "e",
+]
+`;
+
+exports[`queueDeletions() Queues correct length when HTML is passed. 1`] = `
+Array [
+  Array [
+    [Function],
+    1,
+  ],
+  Array [
+    [Function],
+    1,
+  ],
+  Array [
+    [Function],
+    1,
+  ],
+  Array [
+    [Function],
+    1,
+  ],
+  Array [
+    [Function],
+    1,
+  ],
+  Array [
+    [Function],
+    1,
+  ],
+  Array [
+    [Function],
+    1,
+  ],
+  Array [
+    [Function],
+    1,
+  ],
+  Array [
+    [Function],
+    1,
+  ],
+  Array [
+    [Function],
+    1,
+  ],
+]
+`;
+
+exports[`queueDeletions() Queues correct length when multiple HTML tags are passed. 1`] = `
+Array [
+  Array [
+    [Function],
+    1,
+  ],
+  Array [
+    [Function],
+    1,
+  ],
+  Array [
+    [Function],
+    1,
+  ],
+  Array [
+    [Function],
+    1,
+  ],
+  Array [
+    [Function],
+    1,
+  ],
+  Array [
+    [Function],
+    1,
+  ],
+  Array [
+    [Function],
+    1,
+  ],
+  Array [
+    [Function],
+    1,
+  ],
+  Array [
+    [Function],
+    1,
+  ],
+  Array [
+    [Function],
+    1,
+  ],
+  Array [
+    [Function],
+    1,
+  ],
+  Array [
+    [Function],
+    1,
+  ],
+  Array [
+    [Function],
+    1,
+  ],
+  Array [
+    [Function],
+    1,
+  ],
+  Array [
+    [Function],
+    1,
+  ],
+  Array [
+    [Function],
+    1,
+  ],
+  Array [
+    [Function],
+    1,
+  ],
+  Array [
+    [Function],
+    1,
+  ],
+  Array [
+    [Function],
+    1,
+  ],
+  Array [
+    [Function],
+    1,
+  ],
+]
+`;
+
+exports[`queueDeletions() Queues number when number is passed. 1`] = `
+Array [
+  Array [
+    [Function],
+    1,
+  ],
+  Array [
+    [Function],
+    1,
+  ],
+  Array [
+    [Function],
+    1,
+  ],
+  Array [
+    [Function],
+    1,
+  ],
+  Array [
+    [Function],
+    1,
+  ],
+  Array [
+    [Function],
+    1,
+  ],
+]
+`;
+
+exports[`queueDeletions() Queues string length when simple string is passed. 1`] = `
+Array [
+  Array [
+    [Function],
+    1,
+  ],
+  Array [
+    [Function],
+    1,
+  ],
+  Array [
+    [Function],
+    1,
+  ],
+  Array [
+    [Function],
+    1,
+  ],
+  Array [
+    [Function],
+    1,
+  ],
+]
+`;

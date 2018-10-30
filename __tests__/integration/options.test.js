@@ -1,4 +1,4 @@
-import TypeIt from "../src/typeit";
+import TypeIt from "../../src/Typeit";
 
 test("Cursor should function by default.", () => {
   document.body.innerHTML = `<div>'
@@ -7,7 +7,7 @@ test("Cursor should function by default.", () => {
 
   const instance = new TypeIt("#element", {
     strings: ["This should have a default cursor."]
-  });
+  }).go();
 
   let cursorCharacter = document
     .getElementById("element")
@@ -24,7 +24,7 @@ test("Changes cursor character correctly.", () => {
   const instance = new TypeIt("#element", {
     strings: ["This should have a custom cursor."],
     cursorChar: "$"
-  });
+  }).go();
 
   let cursorCharacter = document
     .getElementById("element")

@@ -1,16 +1,16 @@
-import TypeIt from "../src/typeit";
+import TypeIt from "../../src/Typeit";
 
-test("Generates a queue correctly.", () => {
+test.only("Generates a queue correctly.", () => {
   document.body.innerHTML = `<div>'
       <span id="element"></span>
     </div>`;
 
   const instance = new TypeIt("#element", {
     strings: ["Taxation is...", "theft."]
-  });
+  }).go();
 
   instance.instances.forEach(instance => {
-    expect(instance.queue).toHaveLength(23);
+    expect(instance.queue).toMatchSnapshot();
   });
 });
 
@@ -22,7 +22,7 @@ test("Generates a queue correctly when chaining upon instantiation.", () => {
   const instance = new TypeIt("#element", {})
     .type("First string.")
     .delete()
-    .type("Second string.");
+    .type("Second string.").go();
 
   instance.instances.forEach(instance => {
     expect(instance.queue).toHaveLength(28);
@@ -38,7 +38,7 @@ test("Pauses and resumes typing.", () => {
 
   const instance = new TypeIt("#element", {
     strings: "Chicken nuggets."
-  });
+  }).go();
 
   //-- Pause typing.
   instance.freeze();
@@ -50,7 +50,7 @@ test("Pauses and resumes typing.", () => {
   //-- Resume typing.
   setTimeout(() => {
     instance.unfreeze();
-  }, 1000);
+  }, 1000).go();
 
   jest.runAllTimers();
 
@@ -69,7 +69,7 @@ test("Instance is marked complete successfully.", () => {
 
   const instance = new TypeIt("#element", {
     strings: ["Ham over turkey.", "<strong>Obviously.</strong>"]
-  });
+  }).go();
 
   jest.runAllTimers();
 
@@ -92,7 +92,7 @@ test("Can type new string after completion.", () => {
 
   const instance = new TypeIt("#element", {
     strings: "Ham over turkey."
-  });
+  }).go();
 
   jest.runAllTimers();
 
@@ -117,7 +117,7 @@ test("Generates correct `nextStringDelay`.", () => {
   const instance1 = new TypeIt("#element", {
     nextStringDelay: 500,
     strings: ["Free markets...", "win."]
-  });
+  }).go();
 
   let nextStringDelay = instance1.instances[0].options.nextStringDelay;
 
@@ -129,7 +129,7 @@ test("Generates correct `nextStringDelay`.", () => {
   const instance2 = new TypeIt("#element", {
     nextStringDelay: [150, 400],
     strings: ["Free markets...", "win."]
-  });
+  }).go();
 
   nextStringDelay = instance2.instances[0].options.nextStringDelay;
 
@@ -146,7 +146,7 @@ test("Generates correct `loopDelay`.", () => {
   const instance1 = new TypeIt("#element", {
     nextStringDelay: 500,
     strings: ["Free markets...", "win."]
-  });
+  }).go();
 
   let nextStringDelay = instance1.instances[0].options.nextStringDelay;
   let loopDelay = instance1.instances[0].options.loopDelay;
@@ -156,7 +156,7 @@ test("Generates correct `loopDelay`.", () => {
   const instance2 = new TypeIt("#element", {
     loopDelay: [3000, 5000],
     strings: ["Free markets...", "win."]
-  });
+  }).go();
 
   loopDelay = instance2.instances[0].options.loopDelay;
 
@@ -174,7 +174,7 @@ test("Wraps pauses correctly when replacing lines.", () => {
   const instance = new TypeIt("#element", {
     strings: ["Free markets...", "win."],
     breakLines: false
-  });
+  }).go();
 
   const firstInstance = instance.instances[0];
 
@@ -197,7 +197,7 @@ test("Wraps pauses correctly when breaking lines.", () => {
   const instance = new TypeIt("#element", {
     nextStringDelay: 500,
     strings: ["Free markets...", "win."]
-  });
+  }).go();
 
   const firstInstance = instance.instances[0];
 
@@ -224,7 +224,7 @@ test("Removes empty HTML when necessary.", () => {
     .delete(14)
     .type("<em>italicized text...</em>")
     .delete(18)
-    .type("standard text again.");
+    .type("standard text again.").go();
 
   jest.runAllTimers();
 

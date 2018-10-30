@@ -20,9 +20,13 @@
         padding: 20px;
       }
 
-      section:nth-child(2n) {
+      /* section:nth-child(2n) {
         background: #d3d3d396;
       }
+
+      section {
+        height: 100vh;
+      } */
     </style>
 
 	</head>
@@ -30,11 +34,17 @@
 	<body>
 
     <section>
-      <h2>Single String</h2>
-      <h3 id="example1"></h3>
+
     </section>
 
     <section>
+      <h2>Single String</h2>
+      <h3 id="example1"></h3>
+
+      <!-- <input type="text" id="myInput"> -->
+    </section>
+
+    <!-- <section>
       <h2>Multiple Strings</h2>
       <h3 id="example2"></h3>
     </section>
@@ -54,61 +64,50 @@
       <h3 id="example5"></h3>
     </section>
 
-    <section>
-      <h2>Hard-Coded String</h2>
-      <h3 id="example6"><!-- This comment should be removed automatically. Don't worry about it being typed. -->This string is hard-coded!</h3>
-    </section>
+  -->
 
-    <script src="dist/typeit.js"></script>
+    <script src="dist/typeit.min.js"></script>
 
 		<script>
+
       window.instance = new TypeIt('#example1', {
+        strings: ['this is a string!'],
         speed: 50,
-        strings: 'Just a simple string.',
-        cursorChar: '<strong>CUSTOM CURSOR!</strong>'
-      });
+        nextStringDelay: 2000,
+        breakLines: true,
+        loopDelay: 0,
+        lifeLike: false,
+        loop: false,
+        beforeString: function () {
+          // console.log('before string!');
+        },
+        beforeStep: function () {
+          // console.log('before step!');
+        },
+        afterString: function (key) {
+          // console.log('after string!', key);
+        },
+        afterStep: function (key) {
+          // console.log('after step!', key);
+        }
+      }).go();
 
-      new TypeIt('#example2', {
-        speed: 50,
-        strings: ['This is my first example.', 'It has several strings!'],
-        cursor: false,
-        startDelay: 3000
-      });
+        // .type('hello!')
+        // .hook(async function (typeit) {
 
-      new TypeIt('#example3', {
-        speed: 50,
-        strings: [
-          'This is my <strong>second</strong> example.',
-          'This should <strong>replace</strong> the second string!'
-        ],
-        breakLines: false
-      });
+        //   await new Promise((resolve, reject) => {
+        //     setTimeout(function () {
+        //       resolve();
+        //     }, 2000);
+        //   });
 
-      new TypeIt('#example4', {
-        speed: 50,
-        strings: ['My first string.', 'My second string.'],
-        loop: true
-      });
+        //   console.log('did it');
 
-      new TypeIt('#example5', {
-        speed: 100
-      })
-        .type('Here\'s my first sting.')
-        .pause(500)
-        .delete(4)
-        .pause(500)
-        .type('ring.')
-        .pause(500)
-        .delete()
-        .pause(500)
-        .options({
-          speed: 25
-        })
-        .type('And here it is faster!');
+        // })
+        // .type('hey!')
+        // .go();
 
-      new TypeIt('#example6', {
-        autoStart: false
-      });
+
 		</script>
 	</body>
 </html>

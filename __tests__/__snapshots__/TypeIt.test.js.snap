@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`queueUp() Correctly enqueues anonymous function. 1`] = `
+"function () {
+      return true;
+    }"
+`;
+
+exports[`queueUp() If invalid function name is passed, will save as undefined 1`] = `
+Array [
+  Array [
+    undefined,
+    "someArg",
+  ],
+]
+`;
+
+exports[`queueUp() It should add function name by string w/ correct arguments. 1`] = `
+Array [
+  Array [
+    [Function],
+    "someArg",
+  ],
+]
+`;
