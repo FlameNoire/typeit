@@ -386,7 +386,10 @@ export default class Instance {
 
     //-- Set the hard-coded string as the string(s) we'll type.
     if (!this.options.startDelete && markup.length > 0) {
-      this.options.strings = markup.trim();
+
+      this.options.strings = [toArray(markup.trim()), ...this.options.strings];
+
+      console.log(this.options.strings);
       return "";
     }
 
