@@ -13,7 +13,7 @@ const banner = `
 module.exports = {
   mode: isProd ? 'production' : 'development',
   entry: {
-    TypeIt: './src/Typeit.js'
+    TypeIt: './src/TypeIt.js'
   },
   output: {
     path: __dirname + '/dist',
