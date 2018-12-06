@@ -1,4 +1,4 @@
-import TypeIt from "../../src/Typeit";
+import TypeIt from "../../src/TypeIt";
 
 test.only("Generates a queue correctly.", () => {
   document.body.innerHTML = `<div>'

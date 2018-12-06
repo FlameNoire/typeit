@@ -1,4 +1,4 @@
-import TypeIt from "../../src/Typeit";
+import TypeIt from "../../src/TypeIt";
 
 test("Cursor should function by default.", () => {
   document.body.innerHTML = `<div>'
