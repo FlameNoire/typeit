@@ -73,8 +73,11 @@ export default class TypeIt {
    * @param  { number } numCharacters Number of characters to delete.
    * @return { TypeIt }
    */
-  delete(numCharacters = null) {
-    this.queueUp("delete", numCharacters);
+  delete(numCharacters = 1) {
+    for(let i = 0; i < numCharacters; i++) {
+      this.queueUp("delete", numCharacters);
+    }
+
     return this;
   }
 

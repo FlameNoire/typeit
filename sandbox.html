@@ -39,7 +39,7 @@
 
     <section>
       <h2>Single String</h2>
-      <h3 id="example1">hello.<br>there.</h3>
+      <h3 id="example1"></h3>
 
       <!-- <input type="text" id="myInput"> -->
     </section>
@@ -71,7 +71,6 @@
 		<script>
 
       window.instance = new TypeIt('#example1', {
-        strings: ['this is a string!'],
         speed: 50,
         nextStringDelay: 2000,
         breakLines: true,
@@ -90,7 +89,7 @@
         afterStep: function (key) {
           // console.log('after step!', key);
         }
-      }).go();
+      }).type('1234567890').pause(1000).delete().go();
 
         // .type('hello!')
         // .hook(async function (typeit) {
