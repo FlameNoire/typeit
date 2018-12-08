@@ -1,6 +1,6 @@
 import TypeIt from "../../src/TypeIt";
 
-test.only("Generates a queue correctly.", () => {
+test("Generates a queue correctly.", () => {
   document.body.innerHTML = `<div>'
       <span id="element"></span>
     </div>`;
@@ -26,88 +26,8 @@ test("Generates a queue correctly when chaining upon instantiation.", () => {
     .go();
 
   instance.instances.forEach(instance => {
-    expect(instance.queue).toHaveLength(28);
+    expect(instance.queue.waiting).toHaveLength(29);
   });
-});
-
-test("Pauses and resumes typing.", () => {
-  jest.useFakeTimers();
-
-  document.body.innerHTML = `<div>'
-      <span id="element"></span>
-    </div>`;
-
-  const instance = new TypeIt("#element", {
-    strings: "Chicken nuggets."
-  }).go();
-
-  //-- Pause typing.
-  instance.freeze();
-
-  instance.instances.forEach(instance => {
-    expect(instance.isFrozen).toBe(true);
-  });
-
-  //-- Resume typing.
-  setTimeout(() => {
-    instance.unfreeze();
-  }, 1000).go();
-
-  jest.runAllTimers();
-
-  const typedString = document.querySelector("#element .ti-container")
-    .innerHTML;
-
-  expect(typedString).toEqual("Chicken nuggets.");
-});
-
-test("Instance is marked complete successfully.", () => {
-  jest.useFakeTimers();
-
-  document.body.innerHTML = `<div>'
-      <span id="element"></span>
-    </div>`;
-
-  const instance = new TypeIt("#element", {
-    strings: ["Ham over turkey.", "<strong>Obviously.</strong>"]
-  }).go();
-
-  jest.runAllTimers();
-
-  const typedString = document.querySelector("#element .ti-container")
-    .innerHTML;
-
-  //-- Typing should be complete with the correct string.
-  expect(instance.isComplete).toBe(true);
-  expect(typedString).toEqual(
-    "Ham over turkey.<br><strong>Obviously.</strong>"
-  );
-});
-
-test("Can type new string after completion.", () => {
-  jest.useFakeTimers();
-
-  document.body.innerHTML = `<div>'
-      <span id="element"></span>
-    </div>`;
-
-  const instance = new TypeIt("#element", {
-    strings: "Ham over turkey."
-  }).go();
-
-  jest.runAllTimers();
-
-  let typedString = document.querySelector("#element .ti-container").innerHTML;
-
-  expect(typedString).toEqual("Ham over turkey.");
-
-  instance.type(" Obviously.");
-
-  jest.runAllTimers();
-
-  typedString = document.querySelector("#element .ti-container").innerHTML;
-
-  expect(typedString).toEqual("Ham over turkey. Obviously.");
 });
 
 test("Generates correct `nextStringDelay`.", () => {
@@ -149,7 +69,6 @@ test("Generates correct `loopDelay`.", () => {
     strings: ["Free markets...", "win."]
   }).go();
 
-  let nextStringDelay = instance1.instances[0].opts.nextStringDelay;
   let loopDelay = instance1.instances[0].opts.loopDelay;
 
   expect(loopDelay).toBe(false);
@@ -167,51 +86,7 @@ test("Generates correct `loopDelay`.", () => {
   expect(loopDelay.total).toBe(8000);
 });
 
-test("Wraps pauses correctly when replacing lines.", () => {
-  document.body.innerHTML = `<div>'
-      <span id="element"></span>
-    </div>`;
-
-  const instance = new TypeIt("#element", {
-    strings: ["Free markets...", "win."],
-    breakLines: false
-  }).go();
-
-  const firstInstance = instance.instances[0];
-
-  expect(firstInstance.queue[15][0].name).toBe("pause");
-  expect(firstInstance.queue[15][1]).toBe(
-    firstInstance.opts.nextStringDelay.before
-  );
-
-  expect(firstInstance.queue[31][0].name).toBe("pause");
-  expect(firstInstance.queue[31][1]).toBe(
-    firstInstance.opts.nextStringDelay.after
-  );
-});
-
-test("Wraps pauses correctly when breaking lines.", () => {
-  document.body.innerHTML = `<div>'
-      <span id="element"></span>
-    </div>`;
-
-  const instance = new TypeIt("#element", {
-    nextStringDelay: 500,
-    strings: ["Free markets...", "win."]
-  }).go();
-
-  const firstInstance = instance.instances[0];
-
-  expect(firstInstance.queue[15][0].name).toBe("pause");
-  expect(firstInstance.queue[15][1]).toBe(250);
-
-  expect(firstInstance.queue[17][0].name).toBe("pause");
-  expect(firstInstance.queue[17][1]).toBe(250);
-});
-
 test("Removes empty HTML when necessary.", () => {
-  jest.useFakeTimers();
-
   document.body.innerHTML = `<div>'
       <span id="element"></span>
     </div>`;
@@ -227,8 +102,6 @@ test("Removes empty HTML when necessary.", () => {
     .delete(18)
     .type("standard text again.")
     .go();
-
-  jest.runAllTimers();
 
   let emptyTagPattern = /<[^\/>][^>]*><\/[^>]+>/;
 

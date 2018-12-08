@@ -39,9 +39,9 @@
 
     <section>
       <h2>Single String</h2>
-      <h3 id="example1"></h3>
+      <!-- <h3 id="example1"></h3> -->
 
-      <!-- <input type="text" id="myInput"> -->
+      <textarea id="myInput"></textarea>
     </section>
 
     <!-- <section>
@@ -70,7 +70,7 @@
 
 		<script>
 
-      window.instance = new TypeIt('#example1', {
+      window.instance = new TypeIt('#myInput', {
         speed: 50,
         nextStringDelay: 1000,
         startDelete: true,
@@ -90,7 +90,7 @@
         afterStep: function (key) {
           // console.log('after step!', key);
         }
-      }).type('this is a string!').empty().type('and another').go();
+      }).type('this is a <strong>string</strong>!').empty().type('and another').go();
 
       // console.log(instance.instances[0].options.strings);
 

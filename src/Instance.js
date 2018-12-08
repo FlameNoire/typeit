@@ -5,6 +5,7 @@ import {
   removeComments,
   appendStyleBlock
 } from "./utilities";
+import isInput from "./helpers/isInput";
 import toArray from "./helpers/toArray";
 import noderize from "./helpers/noderize";
 import createNodeString from "./helpers/createNodeString";
@@ -29,9 +30,11 @@ export default class Instance {
     this.id = id;
     this.typeit = typeit;
     this.$e = element;
+    this.isInput = isInput(element);
     this.queue = new Queue(queue);
     this.opts = Object.assign({}, defaults, options);
     this.opts.strings = removeComments(toArray(this.opts.strings));
+    this.opts.html = this.isInput ? false : this.opts.html;
     this.queue.add([this.pause, this.opts.startDelay]);
 
     clearPreviousMarkup(element);
@@ -152,9 +155,8 @@ export default class Instance {
    * Performs DOM-related work to prepare for typing.
    */
   prepDOM() {
-    this.$e.innerHTML = `
-      <
-    `;
+    if (this.isInput) return;
+
     this.$e.innerHTML = `
       <span style="${baseInlineStyles}" class="ti-wrapper">
         <span style="${baseInlineStyles}" class="ti-container"></span>
@@ -199,7 +201,7 @@ export default class Instance {
    */
   contents(content = null) {
     if (content === null) {
-      if (this.$e instanceof HTMLInputElement) {
+      if (this.isInput) {
         return this.$e.value;
       }
 
@@ -208,9 +210,13 @@ export default class Instance {
         : this.$eContainer.innerText;
     }
 
-    this.$eContainer[this.opts.html ? "innerHTML" : "innerText"] = content;
+    if (this.isInput) {
+      this.$e.value = content;
+    } else {
+      this.$eContainer[this.opts.html ? "innerHTML" : "innerText"] = content;
+    }
 
-    return content;
+    return true;
   }
 
   prepareDelay(delayType) {
@@ -320,6 +326,8 @@ export default class Instance {
   }
 
   cursor() {
+    if (this.isInput) return;
+
     let visibilityStyle = "visibility: hidden;";
 
     if (this.opts.cursor) {
@@ -353,10 +361,7 @@ export default class Instance {
    * Inserts string to element container.
    */
   insert(content, toChildNode = false) {
-    //-- This is a form element!
-    if (this.$e instanceof HTMLInputElement) {
-      //@todo Make this focus() optional!
-      this.$e.focus();
+    if (this.isInput) {
       this.$e.value = `${this.$e.value}${content}`;
       return;
     }
@@ -453,7 +458,7 @@ export default class Instance {
   }
 
   empty() {
-    this.$eContainer.innerHTML = "";
+    this.contents("");
   }
 
   /**
