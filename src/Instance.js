@@ -3,12 +3,12 @@ import {
   isVisible,
   randomInRange,
   removeComments,
-  toArray,
   appendStyleBlock
 } from "./utilities";
+import toArray from "./helpers/toArray";
 import noderize from "./helpers/noderize";
-import clearPreviousMarkup from "./helpers/clearPreviousMarkup";
 import createNodeString from "./helpers/createNodeString";
+import clearPreviousMarkup from "./helpers/clearPreviousMarkup";
 
 import Queue from "./Queue";
 
