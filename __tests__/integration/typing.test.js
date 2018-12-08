@@ -241,3 +241,4 @@ test("Removes empty HTML when necessary.", () => {
   //-- Will not have any empty HTML.
   expect(result).not.toMatch(emptyTagPattern);
 });
+

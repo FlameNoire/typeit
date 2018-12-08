@@ -1,0 +1,680 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`startDelete option. Correctly adds strings also defined by type() companion method. 1`] = `
+Array [
+  Array [
+    [Function],
+    250,
+  ],
+  Array [
+    [Function],
+    "T",
+    Object {
+      "isFirst": true,
+    },
+  ],
+  Array [
+    [Function],
+    "h",
+  ],
+  Array [
+    [Function],
+    "i",
+  ],
+  Array [
+    [Function],
+    "s",
+  ],
+  Array [
+    [Function],
+    " ",
+  ],
+  Array [
+    [Function],
+    "s",
+  ],
+  Array [
+    [Function],
+    "h",
+  ],
+  Array [
+    [Function],
+    "o",
+  ],
+  Array [
+    [Function],
+    "u",
+  ],
+  Array [
+    [Function],
+    "l",
+  ],
+  Array [
+    [Function],
+    "d",
+  ],
+  Array [
+    [Function],
+    " ",
+  ],
+  Array [
+    [Function],
+    "b",
+  ],
+  Array [
+    [Function],
+    "e",
+  ],
+  Array [
+    [Function],
+    " ",
+  ],
+  Array [
+    [Function],
+    "t",
+  ],
+  Array [
+    [Function],
+    "y",
+  ],
+  Array [
+    [Function],
+    "p",
+  ],
+  Array [
+    [Function],
+    "e",
+  ],
+  Array [
+    [Function],
+    "d",
+  ],
+  Array [
+    [Function],
+    " ",
+  ],
+  Array [
+    [Function],
+    "f",
+  ],
+  Array [
+    [Function],
+    "i",
+  ],
+  Array [
+    [Function],
+    "r",
+  ],
+  Array [
+    [Function],
+    "s",
+  ],
+  Array [
+    [Function],
+    "t",
+  ],
+  Array [
+    [Function],
+    ".",
+    Object {
+      "isLast": true,
+    },
+  ],
+  Array [
+    [Function],
+    375,
+  ],
+  Array [
+    [Function],
+    "<br>",
+  ],
+  Array [
+    [Function],
+    375,
+  ],
+  Array [
+    [Function],
+    "T",
+    Object {
+      "isFirst": true,
+    },
+  ],
+  Array [
+    [Function],
+    "h",
+  ],
+  Array [
+    [Function],
+    "i",
+  ],
+  Array [
+    [Function],
+    "s",
+  ],
+  Array [
+    [Function],
+    " ",
+  ],
+  Array [
+    [Function],
+    "i",
+  ],
+  Array [
+    [Function],
+    "s",
+  ],
+  Array [
+    [Function],
+    " ",
+  ],
+  Array [
+    [Function],
+    "a",
+  ],
+  Array [
+    [Function],
+    "n",
+  ],
+  Array [
+    [Function],
+    "o",
+  ],
+  Array [
+    [Function],
+    "t",
+  ],
+  Array [
+    [Function],
+    "h",
+  ],
+  Array [
+    [Function],
+    "e",
+  ],
+  Array [
+    [Function],
+    "r",
+  ],
+  Array [
+    [Function],
+    " ",
+  ],
+  Array [
+    [Function],
+    "s",
+  ],
+  Array [
+    [Function],
+    "t",
+  ],
+  Array [
+    [Function],
+    "r",
+  ],
+  Array [
+    [Function],
+    "i",
+  ],
+  Array [
+    [Function],
+    "n",
+  ],
+  Array [
+    [Function],
+    "g",
+  ],
+  Array [
+    [Function],
+    ".",
+    Object {
+      "isLast": true,
+    },
+  ],
+  Array [
+    [Function],
+    "A",
+    Object {
+      "isFirst": true,
+    },
+  ],
+  Array [
+    [Function],
+    "n",
+  ],
+  Array [
+    [Function],
+    "d",
+  ],
+  Array [
+    [Function],
+    " ",
+  ],
+  Array [
+    [Function],
+    "f",
+  ],
+  Array [
+    [Function],
+    "i",
+  ],
+  Array [
+    [Function],
+    "n",
+  ],
+  Array [
+    [Function],
+    "a",
+  ],
+  Array [
+    [Function],
+    "l",
+  ],
+  Array [
+    [Function],
+    "l",
+  ],
+  Array [
+    [Function],
+    "y",
+  ],
+  Array [
+    [Function],
+    ",",
+  ],
+  Array [
+    [Function],
+    " ",
+  ],
+  Array [
+    [Function],
+    "a",
+  ],
+  Array [
+    [Function],
+    " ",
+  ],
+  Array [
+    [Function],
+    "t",
+  ],
+  Array [
+    [Function],
+    "h",
+  ],
+  Array [
+    [Function],
+    "i",
+  ],
+  Array [
+    [Function],
+    "r",
+  ],
+  Array [
+    [Function],
+    "d",
+  ],
+  Array [
+    [Function],
+    ".",
+    Object {
+      "isLast": true,
+    },
+  ],
+]
+`;
+
+exports[`startDelete option. Makes hard-coded string the first string to be typed. 1`] = `
+Array [
+  Array [
+    [Function],
+    250,
+  ],
+  Array [
+    [Function],
+    "T",
+    Object {
+      "isFirst": true,
+    },
+  ],
+  Array [
+    [Function],
+    "h",
+  ],
+  Array [
+    [Function],
+    "i",
+  ],
+  Array [
+    [Function],
+    "s",
+  ],
+  Array [
+    [Function],
+    " ",
+  ],
+  Array [
+    [Function],
+    "s",
+  ],
+  Array [
+    [Function],
+    "h",
+  ],
+  Array [
+    [Function],
+    "o",
+  ],
+  Array [
+    [Function],
+    "u",
+  ],
+  Array [
+    [Function],
+    "l",
+  ],
+  Array [
+    [Function],
+    "d",
+  ],
+  Array [
+    [Function],
+    " ",
+  ],
+  Array [
+    [Function],
+    "b",
+  ],
+  Array [
+    [Function],
+    "e",
+  ],
+  Array [
+    [Function],
+    " ",
+  ],
+  Array [
+    [Function],
+    "t",
+  ],
+  Array [
+    [Function],
+    "y",
+  ],
+  Array [
+    [Function],
+    "p",
+  ],
+  Array [
+    [Function],
+    "e",
+  ],
+  Array [
+    [Function],
+    "d",
+  ],
+  Array [
+    [Function],
+    " ",
+  ],
+  Array [
+    [Function],
+    "f",
+  ],
+  Array [
+    [Function],
+    "i",
+  ],
+  Array [
+    [Function],
+    "r",
+  ],
+  Array [
+    [Function],
+    "s",
+  ],
+  Array [
+    [Function],
+    "t",
+  ],
+  Array [
+    [Function],
+    ".",
+    Object {
+      "isLast": true,
+    },
+  ],
+]
+`;
+
+exports[`startDelete option. Sets both hard-coded and option-defined strings in correct order. 1`] = `
+Array [
+  Array [
+    [Function],
+    250,
+  ],
+  Array [
+    [Function],
+    "T",
+    Object {
+      "isFirst": true,
+    },
+  ],
+  Array [
+    [Function],
+    "h",
+  ],
+  Array [
+    [Function],
+    "i",
+  ],
+  Array [
+    [Function],
+    "s",
+  ],
+  Array [
+    [Function],
+    " ",
+  ],
+  Array [
+    [Function],
+    "s",
+  ],
+  Array [
+    [Function],
+    "h",
+  ],
+  Array [
+    [Function],
+    "o",
+  ],
+  Array [
+    [Function],
+    "u",
+  ],
+  Array [
+    [Function],
+    "l",
+  ],
+  Array [
+    [Function],
+    "d",
+  ],
+  Array [
+    [Function],
+    " ",
+  ],
+  Array [
+    [Function],
+    "b",
+  ],
+  Array [
+    [Function],
+    "e",
+  ],
+  Array [
+    [Function],
+    " ",
+  ],
+  Array [
+    [Function],
+    "t",
+  ],
+  Array [
+    [Function],
+    "y",
+  ],
+  Array [
+    [Function],
+    "p",
+  ],
+  Array [
+    [Function],
+    "e",
+  ],
+  Array [
+    [Function],
+    "d",
+  ],
+  Array [
+    [Function],
+    " ",
+  ],
+  Array [
+    [Function],
+    "f",
+  ],
+  Array [
+    [Function],
+    "i",
+  ],
+  Array [
+    [Function],
+    "r",
+  ],
+  Array [
+    [Function],
+    "s",
+  ],
+  Array [
+    [Function],
+    "t",
+  ],
+  Array [
+    [Function],
+    ".",
+    Object {
+      "isLast": true,
+    },
+  ],
+  Array [
+    [Function],
+    375,
+  ],
+  Array [
+    [Function],
+    "<br>",
+  ],
+  Array [
+    [Function],
+    375,
+  ],
+  Array [
+    [Function],
+    "T",
+    Object {
+      "isFirst": true,
+    },
+  ],
+  Array [
+    [Function],
+    "h",
+  ],
+  Array [
+    [Function],
+    "i",
+  ],
+  Array [
+    [Function],
+    "s",
+  ],
+  Array [
+    [Function],
+    " ",
+  ],
+  Array [
+    [Function],
+    "i",
+  ],
+  Array [
+    [Function],
+    "s",
+  ],
+  Array [
+    [Function],
+    " ",
+  ],
+  Array [
+    [Function],
+    "a",
+  ],
+  Array [
+    [Function],
+    "n",
+  ],
+  Array [
+    [Function],
+    "o",
+  ],
+  Array [
+    [Function],
+    "t",
+  ],
+  Array [
+    [Function],
+    "h",
+  ],
+  Array [
+    [Function],
+    "e",
+  ],
+  Array [
+    [Function],
+    "r",
+  ],
+  Array [
+    [Function],
+    " ",
+  ],
+  Array [
+    [Function],
+    "s",
+  ],
+  Array [
+    [Function],
+    "t",
+  ],
+  Array [
+    [Function],
+    "r",
+  ],
+  Array [
+    [Function],
+    "i",
+  ],
+  Array [
+    [Function],
+    "n",
+  ],
+  Array [
+    [Function],
+    "g",
+  ],
+  Array [
+    [Function],
+    ".",
+    Object {
+      "isLast": true,
+    },
+  ],
+]
+`;

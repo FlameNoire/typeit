@@ -47,3 +47,62 @@ test("Turning off cursor should work.", () => {
 
   expect(visibilityStyle).toBe("");
 });
+
+describe('startDelete option.', () => {
+
+  test("Makes hard-coded string the first string to be typed.", () => {
+
+    document.body.innerHTML = `<div>'
+      <span id="element">This should be typed first.</span>
+    </div>`;
+
+    const instance = new TypeIt("#element", {});
+
+    expect(instance.instances[0].queue.waiting).toMatchSnapshot()
+
+    expect(instance.instances[0].opts.strings).toEqual(
+      ['This should be typed first.']
+    );
+  });
+
+  test("Sets both hard-coded and option-defined strings in correct order.", () => {
+
+    document.body.innerHTML = `<div>'
+      <span id="element">This should be typed first.</span>
+    </div>`;
+
+    const instance = new TypeIt("#element", {
+      strings: "This is another string."
+    });
+
+    expect(instance.instances[0].queue.waiting).toMatchSnapshot()
+
+    expect(instance.instances[0].opts.strings).toEqual(
+      [
+        'This should be typed first.',
+        'This is another string.'
+      ]
+    );
+  });
+
+  test("Correctly adds strings also defined by type() companion method.", () => {
+
+    document.body.innerHTML = `<div>'
+      <span id="element">This should be typed first.</span>
+    </div>`;
+
+    const instance = new TypeIt("#element", {
+      strings: "This is another string."
+    }).type('And finally, a third.');
+
+    expect(instance.instances[0].queue.waiting).toMatchSnapshot()
+
+    expect(instance.instances[0].opts.strings).toEqual(
+      [
+        'This should be typed first.',
+        'This is another string.'
+      ]
+    );
+  });
+
+});
