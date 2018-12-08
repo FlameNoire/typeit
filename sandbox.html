@@ -39,7 +39,7 @@
 
     <section>
       <h2>Single String</h2>
-      <h3 id="example1">hard-coded string</h3>
+      <h3 id="example1"></h3>
 
       <!-- <input type="text" id="myInput"> -->
     </section>
@@ -71,9 +71,7 @@
 		<script>
 
       window.instance = new TypeIt('#example1', {
-        strings: ['this is not hard-coded.'],
         speed: 50,
-        startDelay: 2000,
         nextStringDelay: 1000,
         startDelete: true,
         breakLines: true,
@@ -92,7 +90,7 @@
         afterStep: function (key) {
           // console.log('after step!', key);
         }
-      }).go();
+      }).type('this is a string!').empty().type('and another').go();
 
       // console.log(instance.instances[0].options.strings);
 

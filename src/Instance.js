@@ -357,7 +357,6 @@ export default class Instance {
     if (this.$e instanceof HTMLInputElement) {
       //@todo Make this focus() optional!
       this.$e.focus();
-
       this.$e.value = `${this.$e.value}${content}`;
       return;
     }
@@ -451,6 +450,10 @@ export default class Instance {
     this.deletePace = this.opts.lifeLike
       ? randomInRange(deleteSpeed, deleteRange)
       : deleteSpeed;
+  }
+
+  empty() {
+    this.$eContainer.innerHTML = "";
   }
 
   /**

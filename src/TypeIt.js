@@ -86,7 +86,6 @@ export default class TypeIt {
     return this;
   }
 
-  //-- works!
   pause(ms = null) {
     this.queueUp("pause", ms);
     return this;
@@ -99,6 +98,11 @@ export default class TypeIt {
 
   options(options) {
     this.queueUp("setOptions", options);
+    return this;
+  }
+
+  hook(func) {
+    this.queueUp(func);
     return this;
   }
 
@@ -120,8 +124,8 @@ export default class TypeIt {
     });
   }
 
-  hook(func) {
-    this.queueUp(func);
+  empty() {
+    this.queueUp("empty");
     return this;
   }
 
