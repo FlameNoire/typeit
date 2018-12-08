@@ -1,4 +1,4 @@
-export default function (things, property, value) {
+export default function(things, property, value) {
   if (!things.length) return false;
 
   let result = things.filter(thing => {

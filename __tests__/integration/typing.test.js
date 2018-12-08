@@ -22,7 +22,8 @@ test("Generates a queue correctly when chaining upon instantiation.", () => {
   const instance = new TypeIt("#element", {})
     .type("First string.")
     .delete()
-    .type("Second string.").go();
+    .type("Second string.")
+    .go();
 
   instance.instances.forEach(instance => {
     expect(instance.queue).toHaveLength(28);
@@ -224,7 +225,8 @@ test("Removes empty HTML when necessary.", () => {
     .delete(14)
     .type("<em>italicized text...</em>")
     .delete(18)
-    .type("standard text again.").go();
+    .type("standard text again.")
+    .go();
 
   jest.runAllTimers();
 
@@ -241,4 +243,3 @@ test("Removes empty HTML when necessary.", () => {
   //-- Will not have any empty HTML.
   expect(result).not.toMatch(emptyTagPattern);
 });
-

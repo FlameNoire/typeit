@@ -78,7 +78,7 @@ export default class TypeIt {
    */
   delete(numberOfCharactersToDelete = null) {
     this.queueUp(
-      'delete',
+      "delete",
       numberOfCharactersToDelete === null, //-- Maybe delete all.
       numberOfCharactersToDelete === null ? 1 : numberOfCharactersToDelete
     );

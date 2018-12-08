@@ -1,12 +1,7 @@
-export default function ({
-  tag,
-  attributes = [],
-  content = ''
-}) {
-
+export default function({ tag, attributes = [], content = "" }) {
   let node = document.createElement(tag);
 
-  if(attributes !== undefined) {
+  if (attributes !== undefined) {
     attributes.forEach(att => {
       node.setAttribute(att.name, att.value);
     });

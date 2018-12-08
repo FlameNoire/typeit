@@ -152,7 +152,6 @@ export default class Instance {
    * Performs DOM-related work to prepare for typing.
    */
   prepDOM() {
-
     this.$e.innerHTML = `
       <
     `;
@@ -230,8 +229,7 @@ export default class Instance {
   }
 
   generateQueue(initialStep = null) {
-
-    if(initialStep) {
+    if (initialStep) {
       this.queue.add(initialStep);
     }
 
@@ -260,7 +258,6 @@ export default class Instance {
    * @todo Why am I accepting a string or number?
    */
   queueDeletions(stringOrNumber = null) {
-
     let numberOfCharsToDelete =
       typeof stringOrNumber === "string"
         ? noderize(stringOrNumber).length
@@ -335,8 +332,7 @@ export default class Instance {
         }
 
         [data-typeit-id='${this.id}'] .ti-cursor {
-          animation: blink-${this.id} ${this.opts.cursorSpeed /
-          1000}s infinite;
+          animation: blink-${this.id} ${this.opts.cursorSpeed / 1000}s infinite;
         }
       `,
         this.id
@@ -461,9 +457,7 @@ export default class Instance {
    * Deletes a single printed character or ALL typed characters.
    */
   delete(keepGoingUntilAllIsGone = false) {
-
     return new Promise((resolve, reject) => {
-
       this.wait(() => {
         let contents = noderize(this.contents());
 
@@ -495,7 +489,6 @@ export default class Instance {
         }
 
         return resolve();
-
       }, this.deletePace);
     });
   }
