@@ -39,7 +39,7 @@
 
     <section>
       <h2>Single String</h2>
-      <h3 id="example1">hard-coded string!</h3>
+      <h3 id="example1">hard-coded string</h3>
 
       <!-- <input type="text" id="myInput"> -->
     </section>
@@ -74,6 +74,7 @@
         strings: ['this is not hard-coded.'],
         speed: 50,
         nextStringDelay: 2000,
+        startDelete: true,
         breakLines: true,
         loopDelay: 0,
         lifeLike: false,
@@ -90,9 +91,9 @@
         afterStep: function (key) {
           // console.log('after step!', key);
         }
-      });
+      }).go();
 
-      console.log(instance.instances[0].options.strings);
+      // console.log(instance.instances[0].options.strings);
 
         // .type('hello!')
         // .hook(async function (typeit) {
@@ -108,7 +109,6 @@
         // })
         // .type('hey!')
         // .go();
-
 
 		</script>
 	</body>

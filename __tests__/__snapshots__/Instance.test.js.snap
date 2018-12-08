@@ -76,43 +76,33 @@ exports[`queueDeletions() Queues correct length when HTML is passed. 1`] = `
 Array [
   Array [
     [Function],
-    1,
   ],
   Array [
     [Function],
-    1,
   ],
   Array [
     [Function],
-    1,
   ],
   Array [
     [Function],
-    1,
   ],
   Array [
     [Function],
-    1,
   ],
   Array [
     [Function],
-    1,
   ],
   Array [
     [Function],
-    1,
   ],
   Array [
     [Function],
-    1,
   ],
   Array [
     [Function],
-    1,
   ],
   Array [
     [Function],
-    1,
   ],
 ]
 `;
@@ -121,83 +111,63 @@ exports[`queueDeletions() Queues correct length when multiple HTML tags are pass
 Array [
   Array [
     [Function],
-    1,
   ],
   Array [
     [Function],
-    1,
   ],
   Array [
     [Function],
-    1,
   ],
   Array [
     [Function],
-    1,
   ],
   Array [
     [Function],
-    1,
   ],
   Array [
     [Function],
-    1,
   ],
   Array [
     [Function],
-    1,
   ],
   Array [
     [Function],
-    1,
   ],
   Array [
     [Function],
-    1,
   ],
   Array [
     [Function],
-    1,
   ],
   Array [
     [Function],
-    1,
   ],
   Array [
     [Function],
-    1,
   ],
   Array [
     [Function],
-    1,
   ],
   Array [
     [Function],
-    1,
   ],
   Array [
     [Function],
-    1,
   ],
   Array [
     [Function],
-    1,
   ],
   Array [
     [Function],
-    1,
   ],
   Array [
     [Function],
-    1,
   ],
   Array [
     [Function],
-    1,
   ],
   Array [
     [Function],
-    1,
   ],
 ]
 `;
@@ -206,27 +176,21 @@ exports[`queueDeletions() Queues number when number is passed. 1`] = `
 Array [
   Array [
     [Function],
-    1,
   ],
   Array [
     [Function],
-    1,
   ],
   Array [
     [Function],
-    1,
   ],
   Array [
     [Function],
-    1,
   ],
   Array [
     [Function],
-    1,
   ],
   Array [
     [Function],
-    1,
   ],
 ]
 `;
@@ -235,23 +199,18 @@ exports[`queueDeletions() Queues string length when simple string is passed. 1`]
 Array [
   Array [
     [Function],
-    1,
   ],
   Array [
     [Function],
-    1,
   ],
   Array [
     [Function],
-    1,
   ],
   Array [
     [Function],
-    1,
   ],
   Array [
     [Function],
-    1,
   ],
 ]
 `;

@@ -32,6 +32,8 @@ export default class Instance {
     this.queue = new Queue(queue);
     this.options = Object.assign({}, defaults, options);
 
+    this.options.strings = removeComments(toArray(this.options.strings));
+
     clearPreviousMarkup(element);
 
     this.prepareDelay("nextStringDelay");
@@ -39,19 +41,13 @@ export default class Instance {
 
     let existingMarkup = this.checkForExistingMarkup();
 
-    this.prepareDOM();
+    this.prepDOM();
 
     if (this.options.startDelete && existingMarkup) {
       this.insert(existingMarkup);
       this.queue.add([this.delete]);
       this.insertSplitPause(1);
     }
-
-    console.log(this.options.strings);
-
-    this.options.strings = removeComments(toArray(this.options.strings));
-
-    // console.log(this.options.strings);
 
     if (this.options.strings.length) {
       this.generateQueue();
@@ -160,7 +156,7 @@ export default class Instance {
   /**
    * Performs DOM-related work to prepare for typing.
    */
-  prepareDOM() {
+  prepDOM() {
     this.$e.innerHTML = `
       <span style="${baseInlineStyles}" class="ti-wrapper">
         <span style="${baseInlineStyles}" class="ti-container"></span>
