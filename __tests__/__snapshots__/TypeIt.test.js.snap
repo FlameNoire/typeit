@@ -15,6 +15,44 @@ Array [
 ]
 `;
 
+exports[`queueUp() It duplicates the action a certain number of times per instance, if specified. 1`] = `
+Array [
+  Array [
+    [Function],
+    1,
+  ],
+  Array [
+    [Function],
+    1,
+  ],
+  Array [
+    [Function],
+    1,
+  ],
+]
+`;
+
+exports[`queueUp() It duplicates the action a certain number of times per instance, if specified. 2`] = `
+Array [
+  Array [
+    [Function],
+    1,
+  ],
+  Array [
+    [Function],
+    1,
+  ],
+  Array [
+    [Function],
+    1,
+  ],
+  Array [
+    [Function],
+    1,
+  ],
+]
+`;
+
 exports[`queueUp() It should add function name by string w/ correct arguments. 1`] = `
 Array [
   Array [

@@ -259,15 +259,18 @@ export default class Instance {
 
   /**
    * Delete each character from a string.
+   *
+   * @todo Why am I accepting a string or number?
    */
-  queueDeletions(stringOrNumber = 0) {
+  queueDeletions(stringOrNumber = null) {
+
     let numberOfCharsToDelete =
       typeof stringOrNumber === "string"
         ? noderize(stringOrNumber).length
         : stringOrNumber;
 
     for (let i = 0; i < numberOfCharsToDelete; i++) {
-      this.queue.add([this.delete, 1]);
+      this.queue.add([this.delete]);
     }
   }
 
@@ -461,10 +464,12 @@ export default class Instance {
   }
 
   /**
-   * Deletes a single printed character.
+   * Deletes a single printed character or ALL typed characters.
    */
-  delete() {
+  delete(keepGoingUntilAllIsGone = false) {
+
     return new Promise((resolve, reject) => {
+
       this.wait(() => {
         let contents = noderize(this.contents());
 
@@ -486,7 +491,17 @@ export default class Instance {
 
         this.contents(contents);
 
+        /**
+         * If it's specified, keep deleting until all characters are gone. This is
+         * the only time when a SINGLE queue action (`delete()`) deals with multiple
+         * characters at once. I don't like it, but need to implement like this right now.
+         */
+        if (keepGoingUntilAllIsGone && contents.length > 0) {
+          this.delete(true);
+        }
+
         return resolve();
+
       }, this.deletePace);
     });
   }

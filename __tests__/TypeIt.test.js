@@ -21,23 +21,23 @@ test("Returns an object with expected properties.", () => {
   expect(Object.keys(instance).sort()).toEqual(["instances"]);
 });
 
-test("Defines hard-coded string correctly.", () => {
-  jest.useFakeTimers();
+// test("Defines hard-coded string correctly.", () => {
+//   jest.useFakeTimers();
 
-  document.body.innerHTML = `
-    <div>
-      <span id="element">
-        Hard-coded string.
-      </span>
-    </div>
-  `;
+//   document.body.innerHTML = `
+//     <div>
+//       <span id="element">
+//         Hard-coded string.
+//       </span>
+//     </div>
+//   `;
 
-  let instance = new TypeIt("#element", {
-    strings: "My string."
-  });
+//   let instance = new TypeIt("#element", {
+//     strings: "My string."
+//   });
 
-  expect(instance.instances[0].options.strings).toEqual(["Hard-coded string."]);
-});
+//   expect(instance.instances[0].options.strings).toEqual(["Hard-coded string."]);
+// });
 
 test("Will not begin until explicitly called.", () => {
   jest.useFakeTimers();
@@ -173,4 +173,17 @@ describe("queueUp()", () => {
     expect(funcAsString).toMatchSnapshot();
     expect(argument).toBeInstanceOf(TypeIt);
   });
+
+  test("It duplicates the action a certain number of times per instance, if specified.", () => {
+
+    //-- Add 'type' to queue three times.
+    instance.queueUp('type', 1, 3);
+
+    expect(instance.instances[0].queue.waiting).toMatchSnapshot();
+
+    instance.queueUp('delete', 1);
+
+    expect(instance.instances[0].queue.waiting).toMatchSnapshot();
+  });
+
 });

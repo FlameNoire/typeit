@@ -16,13 +16,14 @@ export default class TypeIt {
   }
 
   /**
-   * Push a specific action into the queue of each instance.
+   * Push a specific action directly into the queue of each instance.
    * If an instance has already completed, trigger the queeu again.
    *
    * @param {string} function
    * @param {*} argument
+   * @
    */
-  queueUp(action, argument = null) {
+  queueUp(action, argument = null, numberOfTimesToCopy = 1) {
     this.instances.forEach(instance => {
       let isIndependentFunction = typeof action !== "string";
 
@@ -34,7 +35,9 @@ export default class TypeIt {
 
       let toPassAsArguments = isIndependentFunction ? this : argument;
 
-      instance.queue.add([toFire, toPassAsArguments]);
+      for (let i = 0; i < numberOfTimesToCopy; i++) {
+        instance.queue.add([toFire, toPassAsArguments]);
+      }
     });
   }
 
@@ -73,10 +76,12 @@ export default class TypeIt {
    * @param  { number } numCharacters Number of characters to delete.
    * @return { TypeIt }
    */
-  delete(numCharacters = 1) {
-    for(let i = 0; i < numCharacters; i++) {
-      this.queueUp("delete", numCharacters);
-    }
+  delete(numberOfCharactersToDelete = null) {
+    this.queueUp(
+      'delete',
+      numberOfCharactersToDelete === null, //-- Maybe delete all.
+      numberOfCharactersToDelete === null ? 1 : numberOfCharactersToDelete
+    );
 
     return this;
   }
