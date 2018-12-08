@@ -24,25 +24,25 @@ beforeEach(() => {
 describe("queueDeletions()", () => {
   test("Queues string length when simple string is passed.", () => {
     instance.queueDeletions("hello");
-    expect(instance.queue.waiting).toHaveLength(5);
+    expect(instance.queue.waiting).toHaveLength(6);
     expect(instance.queue.waiting).toMatchSnapshot();
   });
 
   test("Queues number when number is passed.", () => {
     instance.queueDeletions(6);
-    expect(instance.queue.waiting).toHaveLength(6);
+    expect(instance.queue.waiting).toHaveLength(7);
     expect(instance.queue.waiting).toMatchSnapshot();
   });
 
   test("Queues correct length when HTML is passed.", () => {
     instance.queueDeletions("Some <strong>HTML</strong>.");
-    expect(instance.queue.waiting).toHaveLength(10);
+    expect(instance.queue.waiting).toHaveLength(11);
     expect(instance.queue.waiting).toMatchSnapshot();
   });
 
   test("Queues correct length when multiple HTML tags are passed.", () => {
     instance.queueDeletions("Some <strong>HTML</strong>. And <i>more</i>.");
-    expect(instance.queue.waiting).toHaveLength(20);
+    expect(instance.queue.waiting).toHaveLength(21);
     expect(instance.queue.waiting).toMatchSnapshot();
   });
 });

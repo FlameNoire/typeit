@@ -119,7 +119,7 @@ test("Generates correct `nextStringDelay`.", () => {
     strings: ["Free markets...", "win."]
   }).go();
 
-  let nextStringDelay = instance1.instances[0].options.nextStringDelay;
+  let nextStringDelay = instance1.instances[0].opts.nextStringDelay;
 
   expect(typeof nextStringDelay).toBe("object");
   expect(nextStringDelay.before).toBe(250);
@@ -131,7 +131,7 @@ test("Generates correct `nextStringDelay`.", () => {
     strings: ["Free markets...", "win."]
   }).go();
 
-  nextStringDelay = instance2.instances[0].options.nextStringDelay;
+  nextStringDelay = instance2.instances[0].opts.nextStringDelay;
 
   expect(nextStringDelay.before).toBe(150);
   expect(nextStringDelay.after).toBe(400);
@@ -148,8 +148,8 @@ test("Generates correct `loopDelay`.", () => {
     strings: ["Free markets...", "win."]
   }).go();
 
-  let nextStringDelay = instance1.instances[0].options.nextStringDelay;
-  let loopDelay = instance1.instances[0].options.loopDelay;
+  let nextStringDelay = instance1.instances[0].opts.nextStringDelay;
+  let loopDelay = instance1.instances[0].opts.loopDelay;
 
   expect(loopDelay).toBe(false);
 
@@ -158,7 +158,7 @@ test("Generates correct `loopDelay`.", () => {
     strings: ["Free markets...", "win."]
   }).go();
 
-  loopDelay = instance2.instances[0].options.loopDelay;
+  loopDelay = instance2.instances[0].opts.loopDelay;
 
   expect(typeof loopDelay).toBe("object");
   expect(loopDelay.before).toBe(3000);
@@ -180,12 +180,12 @@ test("Wraps pauses correctly when replacing lines.", () => {
 
   expect(firstInstance.queue[15][0].name).toBe("pause");
   expect(firstInstance.queue[15][1]).toBe(
-    firstInstance.options.nextStringDelay.before
+    firstInstance.opts.nextStringDelay.before
   );
 
   expect(firstInstance.queue[31][0].name).toBe("pause");
   expect(firstInstance.queue[31][1]).toBe(
-    firstInstance.options.nextStringDelay.after
+    firstInstance.opts.nextStringDelay.after
   );
 });
 

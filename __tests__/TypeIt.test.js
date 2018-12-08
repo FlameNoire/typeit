@@ -34,7 +34,7 @@ test("Defines hard-coded string correctly.", () => {
     strings: ["My string."]
   });
 
-  expect(instance.instances[0].options.strings).toEqual(["Hard-coded string.", "My string."]);
+  expect(instance.instances[0].opts.strings).toEqual(["Hard-coded string.", "My string."]);
 });
 
 test("Will not begin until explicitly called.", () => {
@@ -73,7 +73,7 @@ test("Clears out remnants of previous instances correctly.", () => {
   });
 
   expect(
-    !instance.instances[0].options.strings[0].includes("ti-container")
+    !instance.instances[0].opts.strings[0].includes("ti-container")
   ).toEqual(true);
 });
 
@@ -118,7 +118,7 @@ describe("reset()", () => {
     //-- Ensure the arguments that define these properties were passed.
     expect(instance.instances[0].$e).not.toBe(undefined);
     expect(instance.instances[0].id).not.toBe(undefined);
-    expect(instance.instances[0].options).not.toBe(undefined);
+    expect(instance.instances[0].opts).not.toBe(undefined);
     expect(instance.instances[0].typeit).not.toBe(undefined);
     expect(instance.instances).toHaveLength(1);
     expect(instance.is("complete")).toBe(false);
@@ -165,8 +165,8 @@ describe("queueUp()", () => {
       return true;
     });
 
-    let funcAsString = instance.instances[0].queue.waiting[0][0].toString();
-    let argument = instance.instances[0].queue.waiting[0][1];
+    let funcAsString = instance.instances[0].queue.waiting[1][0].toString();
+    let argument = instance.instances[0].queue.waiting[1][1];
 
     expect(funcAsString).toMatchSnapshot();
     expect(argument).toBeInstanceOf(TypeIt);

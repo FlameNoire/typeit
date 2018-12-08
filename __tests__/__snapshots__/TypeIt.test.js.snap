@@ -9,6 +9,10 @@ exports[`queueUp() Correctly enqueues anonymous function. 1`] = `
 exports[`queueUp() If invalid function name is passed, will save as undefined 1`] = `
 Array [
   Array [
+    [Function],
+    250,
+  ],
+  Array [
     undefined,
     "someArg",
   ],
@@ -17,6 +21,10 @@ Array [
 
 exports[`queueUp() It duplicates the action a certain number of times per instance, if specified. 1`] = `
 Array [
+  Array [
+    [Function],
+    250,
+  ],
   Array [
     [Function],
     1,
@@ -34,6 +42,10 @@ Array [
 
 exports[`queueUp() It duplicates the action a certain number of times per instance, if specified. 2`] = `
 Array [
+  Array [
+    [Function],
+    250,
+  ],
   Array [
     [Function],
     1,
@@ -55,6 +67,10 @@ Array [
 
 exports[`queueUp() It should add function name by string w/ correct arguments. 1`] = `
 Array [
+  Array [
+    [Function],
+    250,
+  ],
   Array [
     [Function],
     "someArg",

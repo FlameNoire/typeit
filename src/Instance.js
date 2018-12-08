@@ -30,26 +30,29 @@ export default class Instance {
     this.typeit = typeit;
     this.$e = element;
     this.queue = new Queue(queue);
-    this.options = Object.assign({}, defaults, options);
-
-    this.options.strings = removeComments(toArray(this.options.strings));
+    this.opts = Object.assign({}, defaults, options);
+    this.opts.strings = removeComments(toArray(this.opts.strings));
+    this.queue.add([this.pause, this.opts.startDelay]);
 
     clearPreviousMarkup(element);
 
     this.prepareDelay("nextStringDelay");
     this.prepareDelay("loopDelay");
 
-    let existingMarkup = this.checkForExistingMarkup();
+    let existingMarkup = this.checkForExistingMarkup(!this.opts.startDelete);
 
     this.prepDOM();
 
-    if (this.options.startDelete && existingMarkup) {
+    if (existingMarkup && this.opts.startDelete) {
       this.insert(existingMarkup);
-      this.queue.add([this.delete]);
+      this.queue.add([this.delete, true]);
       this.insertSplitPause(1);
     }
 
-    if (this.options.strings.length) {
+    // this.queue.waiting.forEach(item => console.log(item));
+    // console.log(this.opts.strings);
+
+    if (this.opts.strings.length) {
       this.generateQueue();
     }
   }
@@ -59,7 +62,7 @@ export default class Instance {
 
     this.cursor();
 
-    if (!this.options.waitUntilVisible || isVisible(this.$e)) {
+    if (!this.opts.waitUntilVisible || isVisible(this.$e)) {
       this.status.started = true;
 
       return this.fire();
@@ -89,23 +92,23 @@ export default class Instance {
 
           this.setPace();
 
-          if (key[2] && key[2].isFirst && this.options.beforeString) {
-            this.options.beforeString(...callbackArgs);
+          if (key[2] && key[2].isFirst && this.opts.beforeString) {
+            this.opts.beforeString(...callbackArgs);
           }
 
-          if (this.options.beforeStep) {
-            this.options.beforeStep(...callbackArgs);
+          if (this.opts.beforeStep) {
+            this.opts.beforeStep(...callbackArgs);
           }
 
           //-- Fire this step!
           await key[0].call(this, key[1], key[2]);
 
-          if (key[2] && key[2].isLast && this.options.afterString) {
-            this.options.afterString(...callbackArgs);
+          if (key[2] && key[2].isLast && this.opts.afterString) {
+            this.opts.afterString(...callbackArgs);
           }
 
-          if (this.options.afterStep) {
-            this.options.afterStep(...callbackArgs);
+          if (this.opts.afterStep) {
+            this.opts.afterStep(...callbackArgs);
           }
 
           //-- Remove this item from the global queue. Needed for pausing.
@@ -118,11 +121,11 @@ export default class Instance {
       }
     }
 
-    if (this.options.loop) {
+    if (this.opts.loop) {
       //-- Split the delay!
-      let delay = this.options.loopDelay
-        ? this.options.loopDelay
-        : this.options.nextStringDelay;
+      let delay = this.opts.loopDelay
+        ? this.opts.loopDelay
+        : this.opts.nextStringDelay;
 
       this.wait(() => {
         //-- Reset queue with initial loop pause.
@@ -141,15 +144,15 @@ export default class Instance {
 
     this.status.complete = true;
 
-    if (this.options.afterComplete) {
-      this.options.afterComplete(this.typeit);
+    if (this.opts.afterComplete) {
+      this.opts.afterComplete(this.typeit);
     }
 
     return;
   }
 
   setOptions(options) {
-    this.options = Object.assign(this.options, options);
+    this.opts = Object.assign(this.opts, options);
     return;
   }
 
@@ -162,7 +165,7 @@ export default class Instance {
         <span style="${baseInlineStyles}" class="ti-container"></span>
       </span>
       `;
-    this.$e.setAttribute("data-typeitid", this.id);
+    this.$e.setAttribute("data-typeit-id", this.id);
     this.$eContainer = this.$e.querySelector(".ti-container");
     this.$eWrapper = this.$e.querySelector(".ti-wrapper");
 
@@ -187,7 +190,7 @@ export default class Instance {
     return new Instance({
       element: this.$e,
       id: this.id,
-      options: this.options,
+      options: this.opts,
       typeit: this.typeit,
       queue: this.queue.waiting
     });
@@ -205,25 +208,25 @@ export default class Instance {
         return this.$e.value;
       }
 
-      return this.options.html
+      return this.opts.html
         ? this.$eContainer.innerHTML
         : this.$eContainer.innerText;
     }
 
-    this.$eContainer[this.options.html ? "innerHTML" : "innerText"] = content;
+    this.$eContainer[this.opts.html ? "innerHTML" : "innerText"] = content;
 
     return content;
   }
 
   prepareDelay(delayType) {
-    let delay = this.options[delayType];
+    let delay = this.opts[delayType];
 
     if (!delay) return;
 
     let isArray = Array.isArray(delay);
     let halfDelay = !isArray ? delay / 2 : null;
 
-    this.options[delayType] = {
+    this.opts[delayType] = {
       before: isArray ? delay[0] : halfDelay,
       after: isArray ? delay[1] : halfDelay,
       total: isArray ? delay[0] + delay[1] : delay
@@ -231,22 +234,20 @@ export default class Instance {
   }
 
   generateQueue(initialStep = null) {
-    initialStep =
-      initialStep === null
-        ? [this.pause, this.options.startDelay]
-        : initialStep;
 
-    this.queue.add(initialStep);
+    if(initialStep) {
+      this.queue.add(initialStep);
+    }
 
-    this.options.strings.forEach((string, index) => {
+    this.opts.strings.forEach((string, index) => {
       this.queueString(string);
 
       let queueLength = this.queue.waiting.length;
 
       //-- This is the last string. Get outta here.
-      if (index + 1 === this.options.strings.length) return;
+      if (index + 1 === this.opts.strings.length) return;
 
-      if (this.options.breakLines) {
+      if (this.opts.breakLines) {
         this.queue.add([this.insert, "<br>"]);
         this.insertSplitPause(queueLength);
         return;
@@ -316,19 +317,19 @@ export default class Instance {
   insertSplitPause(startPosition, numberOfActionsToWrap = 1) {
     this.queue.waiting.splice(startPosition, 0, [
       this.pause,
-      this.options.nextStringDelay.before
+      this.opts.nextStringDelay.before
     ]);
 
     this.queue.waiting.splice(startPosition + numberOfActionsToWrap + 1, 0, [
       this.pause,
-      this.options.nextStringDelay.after
+      this.opts.nextStringDelay.after
     ]);
   }
 
   cursor() {
     let visibilityStyle = "visibility: hidden;";
 
-    if (this.options.cursor) {
+    if (this.opts.cursor) {
       appendStyleBlock(
         `
         @keyframes blink-${this.id} {
@@ -337,8 +338,8 @@ export default class Instance {
           50% {opacity: 1}
         }
 
-        [data-typeitid='${this.id}'] .ti-cursor {
-          animation: blink-${this.id} ${this.options.cursorSpeed /
+        [data-typeit-id='${this.id}'] .ti-cursor {
+          animation: blink-${this.id} ${this.opts.cursorSpeed /
           1000}s infinite;
         }
       `,
@@ -351,7 +352,7 @@ export default class Instance {
     this.$eWrapper.insertAdjacentHTML(
       "beforeend",
       `<span style="${baseInlineStyles}${visibilityStyle}left: -.25ch;" class="ti-cursor">${
-        this.options.cursorChar
+        this.opts.cursorChar
       }</span>`
     );
   }
@@ -384,13 +385,12 @@ export default class Instance {
    * Depending on if we're starting by deleting an existing string or typing
    * from nothing, set a specific variable to what's in the HTML.
    */
-  checkForExistingMarkup() {
+  checkForExistingMarkup(addExistingMarkupToStrings) {
     let markup = this.$e.innerHTML;
 
     //-- Set the hard-coded string as the string(s) we'll type.
-    if (markup.length > 0) {
-      this.options.strings = [...toArray(markup.trim()), ...this.options.strings];
-      return "";
+    if (markup.length > 0 && addExistingMarkupToStrings) {
+      this.opts.strings = [...toArray(markup.trim()), ...this.opts.strings];
     }
 
     return markup;
@@ -406,7 +406,7 @@ export default class Instance {
         () => {
           return resolve();
         },
-        time ? time : this.options.nextStringDelay.total
+        time ? time : this.opts.nextStringDelay.total
       );
     });
   }
@@ -447,18 +447,18 @@ export default class Instance {
   }
 
   setPace() {
-    let typeSpeed = this.options.speed;
+    let typeSpeed = this.opts.speed;
     let deleteSpeed =
-      this.options.deleteSpeed !== null
-        ? this.options.deleteSpeed
-        : this.options.speed / 3;
+      this.opts.deleteSpeed !== null
+        ? this.opts.deleteSpeed
+        : this.opts.speed / 3;
     let typeRange = typeSpeed / 2;
     let deleteRange = deleteSpeed / 2;
 
-    this.typePace = this.options.lifeLike
+    this.typePace = this.opts.lifeLike
       ? randomInRange(typeSpeed, typeRange)
       : typeSpeed;
-    this.deletePace = this.options.lifeLike
+    this.deletePace = this.opts.lifeLike
       ? randomInRange(deleteSpeed, deleteRange)
       : deleteSpeed;
   }

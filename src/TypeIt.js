@@ -110,7 +110,7 @@ export default class TypeIt {
 
       instance.timeouts = [];
 
-      if (removeCursor && instance.options.cursor) {
+      if (removeCursor && instance.opts.cursor) {
         instance.$eWrapper.removeChild(
           instance.$eWrapper.querySelector(".ti-cursor")
         );

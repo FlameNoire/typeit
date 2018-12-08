@@ -15,6 +15,10 @@ Array [
   "c",
   "d",
   "e",
+  Array [
+    [Function],
+    250,
+  ],
 ]
 `;
 
@@ -32,6 +36,10 @@ Array [
   Array [
     [Function],
     375,
+  ],
+  Array [
+    [Function],
+    250,
   ],
 ]
 `;
@@ -51,6 +59,10 @@ Array [
   ],
   "d",
   "e",
+  Array [
+    [Function],
+    250,
+  ],
 ]
 `;
 
@@ -69,11 +81,19 @@ Array [
     375,
   ],
   "e",
+  Array [
+    [Function],
+    250,
+  ],
 ]
 `;
 
 exports[`queueDeletions() Queues correct length when HTML is passed. 1`] = `
 Array [
+  Array [
+    [Function],
+    250,
+  ],
   Array [
     [Function],
   ],
@@ -109,6 +129,10 @@ Array [
 
 exports[`queueDeletions() Queues correct length when multiple HTML tags are passed. 1`] = `
 Array [
+  Array [
+    [Function],
+    250,
+  ],
   Array [
     [Function],
   ],
@@ -176,6 +200,10 @@ exports[`queueDeletions() Queues number when number is passed. 1`] = `
 Array [
   Array [
     [Function],
+    250,
+  ],
+  Array [
+    [Function],
   ],
   Array [
     [Function],
@@ -197,6 +225,10 @@ Array [
 
 exports[`queueDeletions() Queues string length when simple string is passed. 1`] = `
 Array [
+  Array [
+    [Function],
+    250,
+  ],
   Array [
     [Function],
   ],
