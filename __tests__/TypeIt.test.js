@@ -21,23 +21,21 @@ test("Returns an object with expected properties.", () => {
   expect(Object.keys(instance).sort()).toEqual(["instances"]);
 });
 
-// test("Defines hard-coded string correctly.", () => {
-//   jest.useFakeTimers();
+test("Defines hard-coded string correctly.", () => {
+  jest.useFakeTimers();
 
-//   document.body.innerHTML = `
-//     <div>
-//       <span id="element">
-//         Hard-coded string.
-//       </span>
-//     </div>
-//   `;
+  document.body.innerHTML = `
+    <div>
+      <span id="element">Hard-coded string.</span>
+    </div>
+  `;
 
-//   let instance = new TypeIt("#element", {
-//     strings: "My string."
-//   });
+  let instance = new TypeIt("#element", {
+    strings: ["My string."]
+  });
 
-//   expect(instance.instances[0].options.strings).toEqual(["Hard-coded string."]);
-// });
+  expect(instance.instances[0].options.strings).toEqual(["Hard-coded string.", "My string."]);
+});
 
 test("Will not begin until explicitly called.", () => {
   jest.useFakeTimers();

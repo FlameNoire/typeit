@@ -47,7 +47,11 @@ export default class Instance {
       this.insertSplitPause(1);
     }
 
+    console.log(this.options.strings);
+
     this.options.strings = removeComments(toArray(this.options.strings));
+
+    // console.log(this.options.strings);
 
     if (this.options.strings.length) {
       this.generateQueue();
