@@ -47,7 +47,7 @@ describe("queueDeletions()", () => {
   });
 });
 
-describe("insertSplitPause()", () => {
+describe("addSplitPause()", () => {
   test("Inserts split pause around one item.", () => {
     instance = new Instance(
       Object.assign(args, {
@@ -55,7 +55,7 @@ describe("insertSplitPause()", () => {
       })
     );
 
-    instance.insertSplitPause(2);
+    instance.addSplitPause(2);
 
     expect(instance.queue.waiting).toMatchSnapshot();
   });
@@ -67,7 +67,7 @@ describe("insertSplitPause()", () => {
       })
     );
 
-    instance.insertSplitPause(2, 2);
+    instance.addSplitPause(2, 2);
 
     expect(instance.queue.waiting).toMatchSnapshot();
   });
@@ -79,7 +79,7 @@ describe("insertSplitPause()", () => {
       })
     );
 
-    instance.insertSplitPause(0);
+    instance.addSplitPause(0);
 
     expect(instance.queue.waiting).toMatchSnapshot();
   });
@@ -91,7 +91,7 @@ describe("insertSplitPause()", () => {
       })
     );
 
-    instance.insertSplitPause(4);
+    instance.addSplitPause(4);
 
     expect(instance.queue.waiting).toMatchSnapshot();
   });

@@ -39,18 +39,10 @@ export default class Instance {
     this.prepareDelay("nextStringDelay");
     this.prepareDelay("loopDelay");
 
-    let existingMarkup = this.checkForExistingMarkup(!this.opts.startDelete);
+    let existingMarkup = this.$e.innerHTML;
 
     this.prepDOM();
-
-    if (existingMarkup && this.opts.startDelete) {
-      this.insert(existingMarkup);
-      this.queue.add([this.delete, true]);
-      this.insertSplitPause(1);
-    }
-
-    // this.queue.waiting.forEach(item => console.log(item));
-    // console.log(this.opts.strings);
+    this.handleHardCoded(existingMarkup);
 
     if (this.opts.strings.length) {
       this.generateQueue();
@@ -160,6 +152,10 @@ export default class Instance {
    * Performs DOM-related work to prepare for typing.
    */
   prepDOM() {
+
+    this.$e.innerHTML = `
+      <
+    `;
     this.$e.innerHTML = `
       <span style="${baseInlineStyles}" class="ti-wrapper">
         <span style="${baseInlineStyles}" class="ti-container"></span>
@@ -249,12 +245,12 @@ export default class Instance {
 
       if (this.opts.breakLines) {
         this.queue.add([this.insert, "<br>"]);
-        this.insertSplitPause(queueLength);
+        this.addSplitPause(queueLength);
         return;
       }
 
       this.queueDeletions(string);
-      this.insertSplitPause(queueLength, string.length);
+      this.addSplitPause(queueLength, string.length);
     });
   }
 
@@ -314,7 +310,7 @@ export default class Instance {
    * @param  {Number} numberOfActionsToWrap The number of actions in the queue to wrap.
    * @return {void}
    */
-  insertSplitPause(startPosition, numberOfActionsToWrap = 1) {
+  addSplitPause(startPosition, numberOfActionsToWrap = 1) {
     this.queue.waiting.splice(startPosition, 0, [
       this.pause,
       this.opts.nextStringDelay.before
@@ -381,19 +377,17 @@ export default class Instance {
     );
   }
 
-  /**
-   * Depending on if we're starting by deleting an existing string or typing
-   * from nothing, set a specific variable to what's in the HTML.
-   */
-  checkForExistingMarkup(addExistingMarkupToStrings) {
-    let markup = this.$e.innerHTML;
+  handleHardCoded(existing) {
+    if (!existing.length) return false;
 
-    //-- Set the hard-coded string as the string(s) we'll type.
-    if (markup.length > 0 && addExistingMarkupToStrings) {
-      this.opts.strings = [...toArray(markup.trim()), ...this.opts.strings];
+    if (this.opts.startDelete) {
+      this.insert(existing);
+      this.queue.add([this.delete, true]);
+      this.addSplitPause(1);
+      return;
     }
 
-    return markup;
+    this.opts.strings = [...toArray(existing.trim()), ...this.opts.strings];
   }
 
   wait(callback, delay) {

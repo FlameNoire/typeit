@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`insertSplitPause() Inserts split pause around first item. 1`] = `
+exports[`addSplitPause() Inserts split pause around first item. 1`] = `
 Array [
   Array [
     [Function],
@@ -22,7 +22,7 @@ Array [
 ]
 `;
 
-exports[`insertSplitPause() Inserts split pause around last item. 1`] = `
+exports[`addSplitPause() Inserts split pause around last item. 1`] = `
 Array [
   "a",
   "b",
@@ -44,7 +44,7 @@ Array [
 ]
 `;
 
-exports[`insertSplitPause() Inserts split pause around one item. 1`] = `
+exports[`addSplitPause() Inserts split pause around one item. 1`] = `
 Array [
   "a",
   "b",
@@ -66,7 +66,7 @@ Array [
 ]
 `;
 
-exports[`insertSplitPause() Inserts split pause around one item. 2`] = `
+exports[`addSplitPause() Inserts split pause around one item. 2`] = `
 Array [
   "a",
   "b",

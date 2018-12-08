@@ -1,5 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Initial queue only contains startDelay pause. 1`] = `
+_default {
+  "executed": Array [],
+  "waiting": Array [
+    Array [
+      [Function],
+      250,
+    ],
+  ],
+}
+`;
+
 exports[`queueUp() Correctly enqueues anonymous function. 1`] = `
 "function () {
       return true;

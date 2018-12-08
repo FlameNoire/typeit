@@ -12,9 +12,8 @@ beforeEach(() => {
   instance = new TypeIt("#element");
 });
 
-test("Starts with an empty queue.", () => {
-  expect(instance.instances[0].queue.waiting).toEqual([]);
-  expect(instance.instances[0].queue.executed).toEqual([]);
+test("Initial queue only contains startDelay pause.", () => {
+  expect(instance.instances[0].queue).toMatchSnapshot();
 });
 
 test("Returns an object with expected properties.", () => {
