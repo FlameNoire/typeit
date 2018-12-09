@@ -5,6 +5,7 @@ import {
   removeComments,
   appendStyleBlock
 } from "./utilities";
+import merge from "./helpers/merge";
 import isInput from "./helpers/isInput";
 import toArray from "./helpers/toArray";
 import noderize from "./helpers/noderize";
@@ -32,7 +33,7 @@ export default class Instance {
     this.$e = element;
     this.isInput = isInput(element);
     this.queue = new Queue(queue);
-    this.opts = Object.assign({}, defaults, options);
+    this.opts = merge(defaults, options);
     this.opts.strings = removeComments(toArray(this.opts.strings));
     this.opts.html = this.isInput ? false : this.opts.html;
     this.queue.add([this.pause, this.opts.startDelay]);
@@ -137,7 +138,7 @@ export default class Instance {
       }, delay.after);
     }
 
-    this.status.complete = true;
+    this.status.completed = true;
 
     if (this.opts.afterComplete) {
       this.opts.afterComplete(this.typeit);
@@ -147,7 +148,7 @@ export default class Instance {
   }
 
   setOptions(options) {
-    this.opts = Object.assign(this.opts, options);
+    this.opts = merge(this.opts, options);
     return;
   }
 
@@ -266,7 +267,7 @@ export default class Instance {
   queueDeletions(stringOrNumber = null) {
     let numberOfCharsToDelete =
       typeof stringOrNumber === "string"
-        ? noderize(stringOrNumber).length
+        ? this.maybeNoderize(stringOrNumber).length
         : stringOrNumber;
 
     for (let i = 0; i < numberOfCharsToDelete; i++) {
@@ -275,13 +276,25 @@ export default class Instance {
   }
 
   /**
+   * Based on HTML options, noderize the string,
+   * always ensuring its returned as split pieces.
+   *
+   * @param {array} stuff
+   */
+  maybeNoderize(stuff) {
+    if (!this.opts.html) {
+      return stuff.split("");
+    }
+
+    return noderize(stuff);
+  }
+
+  /**
    * Add steps to the queue for each character in a given string.
    */
   queueString(string) {
-    if (!string) return;
-
     //-- Get array of string with nodes where applicable.
-    string = noderize(string);
+    string = this.maybeNoderize(string);
 
     let strLength = string.length;
 
@@ -368,6 +381,8 @@ export default class Instance {
 
     let el = toChildNode ? this.$eContainer.lastChild : this.$eContainer;
 
+    // console.log(el, toChildNode);
+
     el.insertAdjacentHTML("beforeend", content);
 
     this.contents(
@@ -418,24 +433,23 @@ export default class Instance {
           return resolve();
         }
 
+        console.log(character);
+
         //-- We hit a node.
-        if (typeof character === "object") {
-          //-- Create element with first character.
-          if (character.isFirstCharacter) {
-            this.insert(
-              createNodeString({
-                tag: character.tag,
-                attributes: character.attributes,
-                content: character.content
-              })
-            );
+        if (character.isFirstCharacter) {
+          this.insert(
+            createNodeString({
+              tag: character.tag,
+              attributes: character.attributes,
+              content: character.content
+            })
+          );
 
-            return;
-          }
-
-          this.insert(character.content, true);
           return resolve();
         }
+
+        this.insert(character.content, true);
+        return resolve();
       }, this.typePace);
     });
   }
@@ -467,7 +481,7 @@ export default class Instance {
   delete(keepGoingUntilAllIsGone = false) {
     return new Promise((resolve, reject) => {
       this.wait(() => {
-        let contents = noderize(this.contents());
+        let contents = this.maybeNoderize(this.contents());
 
         contents.splice(-1, 1);
 

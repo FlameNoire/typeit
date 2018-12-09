@@ -12,7 +12,7 @@ export default {
   startDelete: false,
   nextStringDelay: 750,
   loop: false,
-  loopDelay: false,
+  loopDelay: null,
   html: true,
   waitUntilVisible: false,
   callback: false,

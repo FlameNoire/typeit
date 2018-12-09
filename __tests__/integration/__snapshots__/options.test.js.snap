@@ -1,5 +1,526 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`html option It should leave strings be when option is disabled. 1`] = `
+Array [
+  Array [
+    [Function],
+    250,
+  ],
+  Array [
+    [Function],
+    "T",
+    Object {
+      "isFirst": true,
+    },
+  ],
+  Array [
+    [Function],
+    "h",
+  ],
+  Array [
+    [Function],
+    "i",
+  ],
+  Array [
+    [Function],
+    "s",
+  ],
+  Array [
+    [Function],
+    " ",
+  ],
+  Array [
+    [Function],
+    "i",
+  ],
+  Array [
+    [Function],
+    "s",
+  ],
+  Array [
+    [Function],
+    " ",
+  ],
+  Array [
+    [Function],
+    "a",
+  ],
+  Array [
+    [Function],
+    " ",
+  ],
+  Array [
+    [Function],
+    "<",
+  ],
+  Array [
+    [Function],
+    "s",
+  ],
+  Array [
+    [Function],
+    "t",
+  ],
+  Array [
+    [Function],
+    "r",
+  ],
+  Array [
+    [Function],
+    "o",
+  ],
+  Array [
+    [Function],
+    "n",
+  ],
+  Array [
+    [Function],
+    "g",
+  ],
+  Array [
+    [Function],
+    ">",
+  ],
+  Array [
+    [Function],
+    "a",
+  ],
+  Array [
+    [Function],
+    "n",
+  ],
+  Array [
+    [Function],
+    "o",
+  ],
+  Array [
+    [Function],
+    "t",
+  ],
+  Array [
+    [Function],
+    "h",
+  ],
+  Array [
+    [Function],
+    "e",
+  ],
+  Array [
+    [Function],
+    "r",
+  ],
+  Array [
+    [Function],
+    " ",
+  ],
+  Array [
+    [Function],
+    "B",
+  ],
+  Array [
+    [Function],
+    "O",
+  ],
+  Array [
+    [Function],
+    "L",
+  ],
+  Array [
+    [Function],
+    "D",
+  ],
+  Array [
+    [Function],
+    "<",
+  ],
+  Array [
+    [Function],
+    "/",
+  ],
+  Array [
+    [Function],
+    "s",
+  ],
+  Array [
+    [Function],
+    "t",
+  ],
+  Array [
+    [Function],
+    "r",
+  ],
+  Array [
+    [Function],
+    "o",
+  ],
+  Array [
+    [Function],
+    "n",
+  ],
+  Array [
+    [Function],
+    "g",
+  ],
+  Array [
+    [Function],
+    ">",
+  ],
+  Array [
+    [Function],
+    " ",
+  ],
+  Array [
+    [Function],
+    "s",
+  ],
+  Array [
+    [Function],
+    "t",
+  ],
+  Array [
+    [Function],
+    "r",
+  ],
+  Array [
+    [Function],
+    "i",
+  ],
+  Array [
+    [Function],
+    "n",
+  ],
+  Array [
+    [Function],
+    "g",
+  ],
+  Array [
+    [Function],
+    ".",
+    Object {
+      "isLast": true,
+    },
+  ],
+]
+`;
+
+exports[`html option It should queue strings as HTML by default. 1`] = `
+Array [
+  Array [
+    [Function],
+    250,
+  ],
+  Array [
+    [Function],
+    "T",
+    Object {
+      "isFirst": true,
+    },
+  ],
+  Array [
+    [Function],
+    "h",
+  ],
+  Array [
+    [Function],
+    "i",
+  ],
+  Array [
+    [Function],
+    "s",
+  ],
+  Array [
+    [Function],
+    " ",
+  ],
+  Array [
+    [Function],
+    "i",
+  ],
+  Array [
+    [Function],
+    "s",
+  ],
+  Array [
+    [Function],
+    " ",
+  ],
+  Array [
+    [Function],
+    "a",
+  ],
+  Array [
+    [Function],
+    " ",
+  ],
+  Array [
+    [Function],
+    Object {
+      "attributes": Array [],
+      "content": "B",
+      "isFirstCharacter": true,
+      "tag": "STRONG",
+    },
+  ],
+  Array [
+    [Function],
+    Object {
+      "attributes": Array [],
+      "content": "O",
+      "isFirstCharacter": false,
+      "tag": "STRONG",
+    },
+  ],
+  Array [
+    [Function],
+    Object {
+      "attributes": Array [],
+      "content": "L",
+      "isFirstCharacter": false,
+      "tag": "STRONG",
+    },
+  ],
+  Array [
+    [Function],
+    Object {
+      "attributes": Array [],
+      "content": "D",
+      "isFirstCharacter": false,
+      "tag": "STRONG",
+    },
+  ],
+  Array [
+    [Function],
+    " ",
+  ],
+  Array [
+    [Function],
+    "s",
+  ],
+  Array [
+    [Function],
+    "t",
+  ],
+  Array [
+    [Function],
+    "r",
+  ],
+  Array [
+    [Function],
+    "i",
+  ],
+  Array [
+    [Function],
+    "n",
+  ],
+  Array [
+    [Function],
+    "g",
+  ],
+  Array [
+    [Function],
+    ".",
+    Object {
+      "isLast": true,
+    },
+  ],
+]
+`;
+
+exports[`html option It should queue strings as HTML when explicitly set. 1`] = `
+Array [
+  Array [
+    [Function],
+    250,
+  ],
+  Array [
+    [Function],
+    "T",
+    Object {
+      "isFirst": true,
+    },
+  ],
+  Array [
+    [Function],
+    "h",
+  ],
+  Array [
+    [Function],
+    "i",
+  ],
+  Array [
+    [Function],
+    "s",
+  ],
+  Array [
+    [Function],
+    " ",
+  ],
+  Array [
+    [Function],
+    "i",
+  ],
+  Array [
+    [Function],
+    "s",
+  ],
+  Array [
+    [Function],
+    " ",
+  ],
+  Array [
+    [Function],
+    "a",
+  ],
+  Array [
+    [Function],
+    " ",
+  ],
+  Array [
+    [Function],
+    Object {
+      "attributes": Array [],
+      "content": "a",
+      "isFirstCharacter": true,
+      "tag": "STRONG",
+    },
+  ],
+  Array [
+    [Function],
+    Object {
+      "attributes": Array [],
+      "content": "n",
+      "isFirstCharacter": false,
+      "tag": "STRONG",
+    },
+  ],
+  Array [
+    [Function],
+    Object {
+      "attributes": Array [],
+      "content": "o",
+      "isFirstCharacter": false,
+      "tag": "STRONG",
+    },
+  ],
+  Array [
+    [Function],
+    Object {
+      "attributes": Array [],
+      "content": "t",
+      "isFirstCharacter": false,
+      "tag": "STRONG",
+    },
+  ],
+  Array [
+    [Function],
+    Object {
+      "attributes": Array [],
+      "content": "h",
+      "isFirstCharacter": false,
+      "tag": "STRONG",
+    },
+  ],
+  Array [
+    [Function],
+    Object {
+      "attributes": Array [],
+      "content": "e",
+      "isFirstCharacter": false,
+      "tag": "STRONG",
+    },
+  ],
+  Array [
+    [Function],
+    Object {
+      "attributes": Array [],
+      "content": "r",
+      "isFirstCharacter": false,
+      "tag": "STRONG",
+    },
+  ],
+  Array [
+    [Function],
+    Object {
+      "attributes": Array [],
+      "content": " ",
+      "isFirstCharacter": false,
+      "tag": "STRONG",
+    },
+  ],
+  Array [
+    [Function],
+    Object {
+      "attributes": Array [],
+      "content": "B",
+      "isFirstCharacter": false,
+      "tag": "STRONG",
+    },
+  ],
+  Array [
+    [Function],
+    Object {
+      "attributes": Array [],
+      "content": "O",
+      "isFirstCharacter": false,
+      "tag": "STRONG",
+    },
+  ],
+  Array [
+    [Function],
+    Object {
+      "attributes": Array [],
+      "content": "L",
+      "isFirstCharacter": false,
+      "tag": "STRONG",
+    },
+  ],
+  Array [
+    [Function],
+    Object {
+      "attributes": Array [],
+      "content": "D",
+      "isFirstCharacter": false,
+      "tag": "STRONG",
+    },
+  ],
+  Array [
+    [Function],
+    " ",
+  ],
+  Array [
+    [Function],
+    "s",
+  ],
+  Array [
+    [Function],
+    "t",
+  ],
+  Array [
+    [Function],
+    "r",
+  ],
+  Array [
+    [Function],
+    "i",
+  ],
+  Array [
+    [Function],
+    "n",
+  ],
+  Array [
+    [Function],
+    "g",
+  ],
+  Array [
+    [Function],
+    ".",
+    Object {
+      "isLast": true,
+    },
+  ],
+]
+`;
+
 exports[`startDelete option. Correctly adds strings also defined by type() companion method. 1`] = `
 Array [
   Array [

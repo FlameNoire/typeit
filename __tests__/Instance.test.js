@@ -96,3 +96,25 @@ describe("addSplitPause()", () => {
     expect(instance.queue.waiting).toMatchSnapshot();
   });
 });
+
+describe("maybeNoderize()", () => {
+  test("Should return noderized string when setting is enabled.", () => {
+    expect(
+      instance.maybeNoderize("A <em>fancy</em> string.")
+    ).toMatchSnapshot();
+  });
+
+  test("Should leave string be, but split it into array when setting is disabled.", () => {
+    instance = new Instance(
+      Object.assign(args, {
+        options: {
+          html: false
+        }
+      })
+    );
+
+    expect(
+      instance.maybeNoderize("A <em>fancy</em> string.")
+    ).toMatchSnapshot();
+  });
+});

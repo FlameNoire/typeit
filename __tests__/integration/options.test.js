@@ -38,7 +38,7 @@ test("Turning off cursor should work.", () => {
       <span id="element"></span>
     </div>`;
 
-  const instance = new TypeIt("#element", {
+  new TypeIt("#element", {
     strings: ["This should have no cursor."],
     cursor: false
   });
@@ -95,5 +95,51 @@ describe("startDelete option.", () => {
       "This should be typed first.",
       "This is another string."
     ]);
+  });
+});
+
+describe("html option", () => {
+  test("It should queue strings as HTML by default.", () => {
+    document.body.innerHTML = `
+      <div>
+        <span id="element"></span>
+      </div>
+    `;
+
+    const instance = new TypeIt("#element", {
+      strings: "This is a <strong>BOLD</strong> string."
+    });
+
+    expect(instance.instances[0].queue.waiting).toMatchSnapshot();
+  });
+
+  test("It should queue strings as HTML when explicitly set.", () => {
+    document.body.innerHTML = `
+      <div>
+        <span id="element"></span>
+      </div>
+    `;
+
+    const instance = new TypeIt("#element", {
+      strings: "This is a <strong>another BOLD</strong> string.",
+      html: true
+    });
+
+    expect(instance.instances[0].queue.waiting).toMatchSnapshot();
+  });
+
+  test("It should leave strings be when option is disabled.", () => {
+    document.body.innerHTML = `
+      <div>
+        <span id="element"></span>
+      </div>
+    `;
+
+    const instance = new TypeIt("#element", {
+      strings: "This is a <strong>another BOLD</strong> string.",
+      html: false
+    });
+
+    expect(instance.instances[0].queue.waiting).toMatchSnapshot();
   });
 });

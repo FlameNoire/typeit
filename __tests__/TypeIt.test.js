@@ -123,7 +123,7 @@ describe("reset()", () => {
     expect(instance.instances[0].opts).not.toBe(undefined);
     expect(instance.instances[0].typeit).not.toBe(undefined);
     expect(instance.instances).toHaveLength(1);
-    expect(instance.is("complete")).toBe(false);
+    expect(instance.is("completed")).toBe(false);
     expect(instance.is("destroyed")).toBe(false);
   });
 });

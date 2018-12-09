@@ -88,6 +88,80 @@ Array [
 ]
 `;
 
+exports[`maybeNoderize() Should leave string be, but split it into array when setting is disabled. 1`] = `
+Array [
+  "A",
+  " ",
+  "<",
+  "e",
+  "m",
+  ">",
+  "f",
+  "a",
+  "n",
+  "c",
+  "y",
+  "<",
+  "/",
+  "e",
+  "m",
+  ">",
+  " ",
+  "s",
+  "t",
+  "r",
+  "i",
+  "n",
+  "g",
+  ".",
+]
+`;
+
+exports[`maybeNoderize() Should return noderized string when setting is enabled. 1`] = `
+Array [
+  "A",
+  " ",
+  Object {
+    "attributes": Array [],
+    "content": "f",
+    "isFirstCharacter": true,
+    "tag": "EM",
+  },
+  Object {
+    "attributes": Array [],
+    "content": "a",
+    "isFirstCharacter": false,
+    "tag": "EM",
+  },
+  Object {
+    "attributes": Array [],
+    "content": "n",
+    "isFirstCharacter": false,
+    "tag": "EM",
+  },
+  Object {
+    "attributes": Array [],
+    "content": "c",
+    "isFirstCharacter": false,
+    "tag": "EM",
+  },
+  Object {
+    "attributes": Array [],
+    "content": "y",
+    "isFirstCharacter": false,
+    "tag": "EM",
+  },
+  " ",
+  "s",
+  "t",
+  "r",
+  "i",
+  "n",
+  "g",
+  ".",
+]
+`;
+
 exports[`queueDeletions() Queues correct length when HTML is passed. 1`] = `
 Array [
   Array [

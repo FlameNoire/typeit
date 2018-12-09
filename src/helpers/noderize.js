@@ -1,11 +1,12 @@
-export default function(string) {
+export default function(string, nevermind = false) {
+  let pattern = "{%}";
   let parser = new DOMParser();
   let doc = parser.parseFromString(string, "text/html");
   let nodes = [].slice.call(doc.body.querySelectorAll("*"));
 
   //-- Replace node instances with placeholders.
   nodes.forEach(item => {
-    string = string.replace(item.outerHTML, "{%}");
+    string = string.replace(item.outerHTML, pattern);
   });
 
   let stringArray = string.split("");
@@ -13,11 +14,7 @@ export default function(string) {
   //-- Replace placeholders w/ nodes.
   stringArray.forEach((item, index) => {
     //-- Check for a placeholder.
-    if (
-      item === "{" &&
-      stringArray[index + 1] === "%" &&
-      stringArray[index + 2] === "}"
-    ) {
+    if (stringArray.slice(index, index + 3).join("") === pattern) {
       //-- Remove placeholder.
       stringArray.splice(index, 3);
 
