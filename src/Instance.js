@@ -76,45 +76,46 @@ export default class Instance {
 
   async fire() {
     let queue = this.queue.waiting.slice();
+    let prom = Promise.resolve();
 
     for (let key of queue) {
       let callbackArgs = [key, this.queue, this.typeit];
 
-      try {
-        await new Promise(async (resolve, reject) => {
-          if (this.status.frozen) {
-            return reject();
-          }
+      prom = prom
+        .then(() => {
+          return new Promise((resolve, reject) => {
+            if (this.status.frozen) {
+              return reject();
+            }
 
-          this.setPace();
+            this.setPace();
 
-          if (key[2] && key[2].isFirst && this.opts.beforeString) {
-            this.opts.beforeString(...callbackArgs);
-          }
+            if (key[2] && key[2].isFirst && this.opts.beforeString) {
+              this.opts.beforeString(...callbackArgs);
+            }
 
-          if (this.opts.beforeStep) {
-            this.opts.beforeStep(...callbackArgs);
-          }
+            if (this.opts.beforeStep) {
+              this.opts.beforeStep(...callbackArgs);
+            }
 
-          //-- Fire this step!
-          await key[0].call(this, key[1], key[2]);
+            //-- Fire this step!
+            key[0].call(this, key[1], key[2]).then(() => {
+              if (key[2] && key[2].isLast && this.opts.afterString) {
+                this.opts.afterString(...callbackArgs);
+              }
 
-          if (key[2] && key[2].isLast && this.opts.afterString) {
-            this.opts.afterString(...callbackArgs);
-          }
+              if (this.opts.afterStep) {
+                this.opts.afterStep(...callbackArgs);
+              }
 
-          if (this.opts.afterStep) {
-            this.opts.afterStep(...callbackArgs);
-          }
+              //-- Remove this item from the global queue. Needed for pausing.
+              this.queue.executed.push(this.queue.waiting.shift());
 
-          //-- Remove this item from the global queue. Needed for pausing.
-          this.queue.executed.push(this.queue.waiting.shift());
-
-          resolve();
-        });
-      } catch (e) {
-        break;
-      }
+              resolve();
+            });
+          });
+        })
+        .catch(() => {});
     }
 
     if (this.opts.loop) {
@@ -432,8 +433,6 @@ export default class Instance {
           this.insert(character);
           return resolve();
         }
-
-        console.log(character);
 
         //-- We hit a node.
         if (character.isFirstCharacter) {

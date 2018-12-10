@@ -17,6 +17,7 @@
     "build": "NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=webpack.config.js && prettier src/* --write && prettier __tests__/* --write",
     "watch": "NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --progress --hide-modules --config=webpack.config.js && prettier src/* --write && prettier __tests__/* --write",
     "serve": "concurrently --kill-others \"npm run watch\" \"node serve.js\"",
+    "analyze": "node_modules/webpack/bin/webpack.js --profile --json > stats.json",
     "prettify-and-add": "prettier \"./**/*.js\" --write && git add -A",
     "test": "jest",
     "postinstall": "node ./notice.js"
@@ -42,8 +43,6 @@
     "@babel/cli": "^7.1.5",
     "@babel/core": "^7.1.6",
     "@babel/plugin-proposal-class-properties": "^7.1.0",
-    "@babel/plugin-transform-async-to-generator": "^7.1.0",
-    "@babel/plugin-transform-runtime": "^7.1.0",
     "@babel/preset-env": "^7.1.6",
     "babel-core": "^7.0.0-bridge.0",
     "babel-jest": "^23.6.0",
@@ -56,9 +55,7 @@
     "webpack": "^4.26.1",
     "webpack-cli": "^3.1.2"
   },
-  "dependencies": {
-    "@babel/runtime": "^7.1.5"
-  },
+  "dependencies": {},
   "jest": {
     "timers": "fake"
   }
