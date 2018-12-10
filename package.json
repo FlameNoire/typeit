@@ -55,8 +55,13 @@
     "webpack": "^4.26.1",
     "webpack-cli": "^3.1.2"
   },
-  "dependencies": {},
+  "dependencies": {
+    "babel-polyfill": "^6.26.0"
+  },
   "jest": {
-    "timers": "fake"
+    "timers": "fake",
+    "setupFiles": [
+      "<rootDir>/__tests__/jest.init.js"
+    ]
   }
 }
