@@ -33,7 +33,7 @@ export default class Instance {
     this.$e = element;
     this.isInput = isInput(element);
     this.queue = new Queue(queue);
-    this.opts = merge(defaults, options);
+    this.opts = merge({}, defaults, options);
     this.opts.strings = removeComments(toArray(this.opts.strings));
     this.opts.html = this.isInput ? false : this.opts.html;
     this.queue.add([this.pause, this.opts.startDelay]);
@@ -148,7 +148,7 @@ export default class Instance {
   }
 
   setOptions(options) {
-    this.opts = merge(this.opts, options);
+    this.opts = merge({}, this.opts, options);
     return;
   }
 

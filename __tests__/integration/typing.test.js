@@ -71,7 +71,7 @@ test("Generates correct `loopDelay`.", () => {
 
   let loopDelay = instance1.instances[0].opts.loopDelay;
 
-  expect(loopDelay).toBe(false);
+  expect(loopDelay).toBe(null);
 
   const instance2 = new TypeIt("#element", {
     loopDelay: [3000, 5000],
