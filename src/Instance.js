@@ -18,16 +18,14 @@ let baseInlineStyles =
   "display:inline;position:relative;font:inherit;color:inherit;line-height:inherit;";
 
 export default class Instance {
-  status = {
-    started: false,
-    complete: false,
-    frozen: false,
-    destroyed: false
-  };
-
-  timeouts = [];
-
   constructor({ element, id, options, typeit = null, queue = [] } = {}) {
+    this.status = {
+      started: false,
+      complete: false,
+      frozen: false,
+      destroyed: false
+    };
+    this.timeouts = [];
     this.id = id;
     this.typeit = typeit;
     this.$e = element;
@@ -74,7 +72,7 @@ export default class Instance {
     window.addEventListener("scroll", checkForStart);
   }
 
-  async fire() {
+  fire() {
     let queue = this.queue.waiting.slice();
     let prom = Promise.resolve();
 

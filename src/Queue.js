@@ -1,7 +1,6 @@
 export default class {
-  executed = [];
-
   constructor(items = []) {
+    this.executed = [];
     this.waiting = items;
   }
 
