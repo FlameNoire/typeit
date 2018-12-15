@@ -17,7 +17,7 @@ test("It should add steps properly.", () => {
   expect(queue.executed).toEqual([]);
 });
 
-test("It should add steps properly.", () => {
+test("It should reset properly.", () => {
   queue.waiting = [4, 5, 6];
   queue.executed = [1, 2, 3];
 
@@ -27,7 +27,7 @@ test("It should add steps properly.", () => {
   expect(queue.executed).toEqual([]);
 });
 
-test("It should add steps properly.", () => {
+test("It should set initial steps properly.", () => {
   let q1 = new Queue();
 
   expect(q1.waiting).toEqual([]);
@@ -35,4 +35,14 @@ test("It should add steps properly.", () => {
   let q2 = new Queue([1, 2, 3]);
 
   expect(q2.waiting).toEqual([1, 2, 3]);
+});
+
+test("It should empty properly.", () => {
+  queue.waiting = [4, 5, 6];
+  queue.executed = [1, 2, 3];
+
+  queue.empty();
+
+  expect(queue.waiting).toEqual([]);
+  expect(queue.executed).toEqual([]);
 });

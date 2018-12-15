@@ -8,6 +8,11 @@ export default class {
     this.waiting.push(step);
   }
 
+  empty() {
+    this.waiting = [];
+    this.executed = [];
+  }
+
   reset() {
     this.waiting = [...this.executed, ...this.waiting];
     this.executed = [];
