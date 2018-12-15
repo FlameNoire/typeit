@@ -124,7 +124,7 @@ export default class Instance {
 
       this.wait(() => {
         //-- Reset queue with initial loop pause.
-        this.queue = [];
+        this.queue.empty();
         this.queueDeletions(this.contents());
         this.generateQueue([this.pause, delay.before]);
         this.fire();

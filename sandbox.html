@@ -39,7 +39,7 @@
 
     <section>
       <h2>Single String</h2>
-      <h3 id="example1"></h3>
+      <h3 id="example1">hello</h3>
 
       <!-- <textarea id="example1"></textarea> -->
     </section>
@@ -71,8 +71,9 @@
 		<script>
 
       window.instance = new TypeIt('#example1', {
-        strings: "This string is will be paused and resumed.",
-        speed: 50
+        strings: ["This string is here.", "And here's another!"],
+        breakLines: false,
+        loop: true
       }).go();
 
         // .type('hello!')
