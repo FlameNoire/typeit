@@ -116,28 +116,32 @@ export default class Instance {
         .catch(() => {});
     }
 
-    if (this.opts.loop) {
-      //-- Split the delay!
-      let delay = this.opts.loopDelay
-        ? this.opts.loopDelay
-        : this.opts.nextStringDelay;
+    //-- After all queue items have fired.
 
-      this.wait(() => {
-        //-- Reset queue with initial loop pause.
-        this.queue.empty();
-        this.queueDeletions(this.contents());
-        this.generateQueue([this.pause, delay.before]);
-        this.fire();
-      }, delay.after);
-    }
+    prom.then(() => {
+      if (this.opts.loop) {
+        //-- Split the delay!
+        let delay = this.opts.loopDelay
+          ? this.opts.loopDelay
+          : this.opts.nextStringDelay;
 
-    this.status.completed = true;
+        this.wait(() => {
+          //-- Reset queue with initial loop pause.
+          this.queue.empty();
+          this.queueDeletions(this.contents());
+          this.generateQueue([this.pause, delay.before]);
+          this.fire();
+        }, delay.after);
+      }
 
-    if (this.opts.afterComplete) {
-      this.opts.afterComplete(this.typeit);
-    }
+      this.status.completed = true;
 
-    return;
+      if (this.opts.afterComplete) {
+        this.opts.afterComplete(this.typeit);
+      }
+
+      return;
+    });
   }
 
   setOptions(options) {
