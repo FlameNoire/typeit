@@ -74,12 +74,13 @@ export default class Instance {
 
   fire() {
     let queue = this.queue.waiting.slice();
-    let prom = Promise.resolve();
+    let promiseChain = Promise.resolve();
+    let shouldReturnEarly = false;
 
     for (let key of queue) {
       let callbackArgs = [key, this.queue, this.typeit];
 
-      prom = prom
+      promiseChain = promiseChain
         .then(() => {
           return new Promise((resolve, reject) => {
             if (this.status.frozen) {
@@ -113,12 +114,17 @@ export default class Instance {
             });
           });
         })
-        .catch(() => {});
+        .catch(() => {
+          shouldReturnEarly = true;
+        });
     }
 
-    //-- After all queue items have fired.
+    // this is returning as undefined when it should be 'true' -- why???
+    console.log(shouldReturnEarly);
 
-    prom.then(() => {
+    if (shouldReturnEarly) return;
+
+    promiseChain.then(() => {
       if (this.opts.loop) {
         //-- Split the delay!
         let delay = this.opts.loopDelay
