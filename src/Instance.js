@@ -75,79 +75,71 @@ export default class Instance {
   fire() {
     let queue = this.queue.waiting.slice();
     let promiseChain = Promise.resolve();
-    let shouldReturnEarly = false;
 
     for (let key of queue) {
       let callbackArgs = [key, this.queue, this.typeit];
 
-      promiseChain = promiseChain
-        .then(() => {
-          return new Promise((resolve, reject) => {
-            if (this.status.frozen) {
-              return reject();
+      promiseChain = promiseChain.then(() => {
+        return new Promise((resolve, reject) => {
+          if (this.status.frozen) {
+            return reject();
+          }
+
+          this.setPace();
+
+          if (key[2] && key[2].isFirst && this.opts.beforeString) {
+            this.opts.beforeString(...callbackArgs);
+          }
+
+          if (this.opts.beforeStep) {
+            this.opts.beforeStep(...callbackArgs);
+          }
+
+          //-- Fire this step!
+          key[0].call(this, key[1], key[2]).then(() => {
+            if (key[2] && key[2].isLast && this.opts.afterString) {
+              this.opts.afterString(...callbackArgs);
             }
 
-            this.setPace();
-
-            if (key[2] && key[2].isFirst && this.opts.beforeString) {
-              this.opts.beforeString(...callbackArgs);
+            if (this.opts.afterStep) {
+              this.opts.afterStep(...callbackArgs);
             }
 
-            if (this.opts.beforeStep) {
-              this.opts.beforeStep(...callbackArgs);
-            }
+            //-- Remove this item from the global queue. Needed for pausing.
+            this.queue.executed.push(this.queue.waiting.shift());
 
-            //-- Fire this step!
-            key[0].call(this, key[1], key[2]).then(() => {
-              if (key[2] && key[2].isLast && this.opts.afterString) {
-                this.opts.afterString(...callbackArgs);
-              }
-
-              if (this.opts.afterStep) {
-                this.opts.afterStep(...callbackArgs);
-              }
-
-              //-- Remove this item from the global queue. Needed for pausing.
-              this.queue.executed.push(this.queue.waiting.shift());
-
-              resolve();
-            });
+            resolve();
           });
-        })
-        .catch(() => {
-          shouldReturnEarly = true;
         });
+      });
     }
 
-    // this is returning as undefined when it should be 'true' -- why???
-    console.log(shouldReturnEarly);
+    promiseChain
+      .then(() => {
+        if (this.opts.loop) {
+          //-- Split the delay!
+          let delay = this.opts.loopDelay
+            ? this.opts.loopDelay
+            : this.opts.nextStringDelay;
 
-    if (shouldReturnEarly) return;
+          this.wait(() => {
+            //-- Reset queue with initial loop pause.
+            this.queue.empty();
+            this.queueDeletions(this.contents());
+            this.generateQueue([this.pause, delay.before]);
+            this.fire();
+          }, delay.after);
+        }
 
-    promiseChain.then(() => {
-      if (this.opts.loop) {
-        //-- Split the delay!
-        let delay = this.opts.loopDelay
-          ? this.opts.loopDelay
-          : this.opts.nextStringDelay;
+        this.status.completed = true;
 
-        this.wait(() => {
-          //-- Reset queue with initial loop pause.
-          this.queue.empty();
-          this.queueDeletions(this.contents());
-          this.generateQueue([this.pause, delay.before]);
-          this.fire();
-        }, delay.after);
-      }
+        if (this.opts.afterComplete) {
+          this.opts.afterComplete(this.typeit);
+        }
 
-      this.status.completed = true;
-
-      if (this.opts.afterComplete) {
-        this.opts.afterComplete(this.typeit);
-      }
-
-      return;
-    });
+        return;
+      })
+      .catch(() => {});
   }
 
   setOptions(options) {
