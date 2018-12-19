@@ -71,13 +71,13 @@
 		<script>
 
       window.instance = new TypeIt('#example1', {
-        strings: ["This string is here."],
+        speed: 50,
         breakLines: false,
         loop: true,
         afterComplete: function () {
           console.log('complete');
         }
-      }).go();
+      }).type('and another one here!').go();
 
         // .type('hello!')
         // .hook(async function (typeit) {

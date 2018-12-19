@@ -15,6 +15,12 @@ export default class TypeIt {
     });
   }
 
+  each(func) {
+    this.instances.forEach(instance => {
+      func.call(this, instance);
+    });
+  }
+
   /**
    * Push a specific action directly into the queue of each instance.
    * If an instance has already completed, trigger the queeu again.
@@ -24,7 +30,7 @@ export default class TypeIt {
    * @
    */
   queueUp(action, argument = null, numberOfTimesToCopy = 1) {
-    this.instances.forEach(instance => {
+    this.each(instance => {
       let isIndependentFunction = typeof action !== "string";
 
       /**
@@ -46,13 +52,13 @@ export default class TypeIt {
   }
 
   freeze() {
-    this.instances.forEach(instance => {
+    this.each(instance => {
       instance.status.frozen = true;
     });
   }
 
   unfreeze() {
-    this.instances.forEach(instance => {
+    this.each(instance => {
       if (!instance.status.frozen) return;
       instance.status.frozen = false;
       instance.fire();
@@ -66,7 +72,7 @@ export default class TypeIt {
    * @return {object} TypeIt instance
    */
   type(string = "") {
-    this.instances.forEach(instance => instance.queueString(string));
+    this.each(instance => instance.queueString(string));
     return this;
   }
 
@@ -107,7 +113,7 @@ export default class TypeIt {
   }
 
   destroy(removeCursor = true) {
-    this.instances.forEach(instance => {
+    this.each(instance => {
       instance.timeouts.forEach(timeout => {
         clearTimeout(timeout);
       });
@@ -140,7 +146,7 @@ export default class TypeIt {
   }
 
   go() {
-    this.instances.forEach(instance => {
+    this.each(instance => {
       instance.init();
     });
     return this;

@@ -185,3 +185,35 @@ describe("queueUp()", () => {
     expect(instance.instances[0].queue.waiting).toMatchSnapshot();
   });
 });
+
+describe("each()", () => {
+  test("It should fire a function on an instance.", () => {
+    let mockCallback = jest.fn(instance => instance.$e);
+
+    instance.each(mockCallback);
+
+    expect(mockCallback.mock.calls[0][0].constructor.name).toEqual("Instance");
+
+    expect(mockCallback.mock.calls.length).toBe(1);
+  });
+
+  test("It should fire a function on several instances.", () => {
+    document.body.innerHTML = `
+      <div>
+        <span class="element"></span>
+        <span class="element"></span>
+        <span class="element"></span>
+      </div>
+    `;
+
+    instance = new TypeIt(".element");
+
+    let mockCallback = jest.fn(instance => instance.$e);
+
+    instance.each(mockCallback);
+
+    expect(mockCallback.mock.calls[0][0].constructor.name).toEqual("Instance");
+
+    expect(mockCallback.mock.calls.length).toBe(3);
+  });
+});
