@@ -128,12 +128,11 @@ export default class Instance {
             //-- Reset queue with initial loop pause.
             this.queue.reset();
 
-            this.delete(true).then(() => {
-              console.log("done deleting");
-              // this.fire();
+            this.delete(true).catch(() => {
+              console.log("failed");
+              this.fire();
             });
 
-            // this.queueDeletions(this.contents());
             // this.generateQueue([this.pause, delay.before]);
           }, delay.after);
         }
@@ -506,8 +505,12 @@ export default class Instance {
          * the only time when a SINGLE queue action (`delete()`) deals with multiple
          * characters at once. I don't like it, but need to implement like this right now.
          */
-        if (keepGoingUntilAllIsGone && contents.length > 0) {
-          this.delete(true);
+        if (keepGoingUntilAllIsGone) {
+          if (contents.length > 0) {
+            this.delete(true);
+          } else {
+            return reject();
+          }
         }
 
         return resolve();
