@@ -36,13 +36,3 @@ test("It should set initial steps properly.", () => {
 
   expect(q2.waiting).toEqual([1, 2, 3]);
 });
-
-test("It should empty properly.", () => {
-  queue.waiting = [4, 5, 6];
-  queue.executed = [1, 2, 3];
-
-  queue.empty();
-
-  expect(queue.waiting).toEqual([]);
-  expect(queue.executed).toEqual([]);
-});

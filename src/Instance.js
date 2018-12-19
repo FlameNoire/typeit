@@ -117,6 +117,8 @@ export default class Instance {
     promiseChain
       .then(() => {
         if (this.opts.loop) {
+          console.log(this.queue);
+
           //-- Split the delay!
           let delay = this.opts.loopDelay
             ? this.opts.loopDelay
@@ -124,10 +126,15 @@ export default class Instance {
 
           this.wait(() => {
             //-- Reset queue with initial loop pause.
-            this.queue.empty();
-            this.queueDeletions(this.contents());
-            this.generateQueue([this.pause, delay.before]);
-            this.fire();
+            this.queue.reset();
+
+            this.delete(true).then(() => {
+              console.log("done deleting");
+              // this.fire();
+            });
+
+            // this.queueDeletions(this.contents());
+            // this.generateQueue([this.pause, delay.before]);
           }, delay.after);
         }
 
