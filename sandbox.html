@@ -74,11 +74,13 @@
         speed: 50,
         breakLines: false,
         loop: true,
-        loopDelay: 5000,
+        strings: ['one string'],
+        loopDelay: 2000,
+        startDelay: 5000,
         afterComplete: function () {
           console.log('complete');
         }
-      }).type('check out my string!').go();
+      }).go();
 
         // .type('hello!')
         // .hook(async function (typeit) {

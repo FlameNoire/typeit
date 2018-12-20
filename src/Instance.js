@@ -133,24 +133,7 @@ export default class Instance {
             : this.opts.nextStringDelay;
 
           this.wait(() => {
-            //-- @todo: Remove initial pauses, convert to loop pauses.
-
-            //-- Reset queue with initial loop pause.
-            this.queue.reset();
-
-            let phantomArg = {
-              isPhantom: true
-            };
-
-            //-- We need to add delay pause FIRST, since we're adding to beginning of queue.
-            this.queue.add([this.pause, delay.after, phantomArg], true);
-
-            this.maybeNoderize(this.contents()).forEach(item => {
-              this.queue.add([this.delete, null, phantomArg], true);
-            });
-
-            this.queue.add([this.pause, delay.before, phantomArg, true]);
-
+            this.loopify(delay);
             this.fire();
           }, delay.after);
         }
@@ -164,6 +147,34 @@ export default class Instance {
         return;
       })
       .catch(() => {});
+  }
+
+  /**
+   * 1. Reset queue.
+   * 2. Remove initial pause.
+   * 3. Add phantom deletions.
+   */
+  loopify(delay) {
+    //-- Reset queue.
+    //-- Remove initial pause, so we can replace with `loop` pause.
+    //-- Add delay pause FIRST, since we're adding to beginning of queue.
+    this.queue
+      .reset()
+      .delete(0)
+      .add([this.pause, delay.before], true);
+
+    this.maybeNoderize(this.contents()).forEach(item => {
+      this.queue.add(
+        [
+          this.delete,
+          null,
+          {
+            isPhantom: true
+          }
+        ],
+        true
+      );
+    });
   }
 
   setOptions(options) {
