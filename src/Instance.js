@@ -76,7 +76,9 @@ export default class Instance {
     let queue = this.queue.waiting.slice();
     let promiseChain = Promise.resolve();
 
-    for (let key of queue) {
+    // for (let key of queue) {
+    for (let i = 0; i < queue.length; i++) {
+      let key = queue[i];
       let callbackArgs = [key, this.queue, this.typeit];
 
       promiseChain = promiseChain.then(() => {
@@ -97,6 +99,14 @@ export default class Instance {
 
           //-- Fire this step!
           key[0].call(this, key[1], key[2]).then(() => {
+            let justExecuted = this.queue.waiting.shift();
+
+            //-- If this is a phantom item, as soon as it's executed,
+            //-- remove it from the queue and pretend it never existed.
+            if (key[2] && key[2].isPhantom) {
+              return resolve();
+            }
+
             if (key[2] && key[2].isLast && this.opts.afterString) {
               this.opts.afterString(...callbackArgs);
             }
@@ -106,9 +116,9 @@ export default class Instance {
             }
 
             //-- Remove this item from the global queue. Needed for pausing.
-            this.queue.executed.push(this.queue.waiting.shift());
+            this.queue.executed.push(justExecuted);
 
-            resolve();
+            return resolve();
           });
         });
       });
@@ -117,23 +127,31 @@ export default class Instance {
     promiseChain
       .then(() => {
         if (this.opts.loop) {
-          console.log(this.queue);
-
           //-- Split the delay!
           let delay = this.opts.loopDelay
             ? this.opts.loopDelay
             : this.opts.nextStringDelay;
 
           this.wait(() => {
+            //-- @todo: Remove initial pauses, convert to loop pauses.
+
             //-- Reset queue with initial loop pause.
             this.queue.reset();
 
-            this.delete(true).catch(() => {
-              console.log("failed");
-              this.fire();
+            let phantomArg = {
+              isPhantom: true
+            };
+
+            //-- We need to add delay pause FIRST, since we're adding to beginning of queue.
+            this.queue.add([this.pause, delay.after, phantomArg], true);
+
+            this.maybeNoderize(this.contents()).forEach(item => {
+              this.queue.add([this.delete, null, phantomArg], true);
             });
 
-            // this.generateQueue([this.pause, delay.before]);
+            this.queue.add([this.pause, delay.before, phantomArg, true]);
+
+            this.fire();
           }, delay.after);
         }
 
@@ -505,12 +523,8 @@ export default class Instance {
          * the only time when a SINGLE queue action (`delete()`) deals with multiple
          * characters at once. I don't like it, but need to implement like this right now.
          */
-        if (keepGoingUntilAllIsGone) {
-          if (contents.length > 0) {
-            this.delete(true);
-          } else {
-            return reject();
-          }
+        if (keepGoingUntilAllIsGone && contents.length > 0) {
+          this.delete(true);
         }
 
         return resolve();

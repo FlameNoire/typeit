@@ -4,8 +4,12 @@ export default class {
     this.waiting = items;
   }
 
-  add(step) {
-    this.waiting.push(step);
+  add(step, toBeginning = false) {
+    this.waiting[toBeginning ? "unshift" : "push"](step);
+  }
+
+  delete(index) {
+    this.waiting.splice(index, 1);
   }
 
   reset() {
