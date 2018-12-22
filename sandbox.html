@@ -72,33 +72,9 @@
 
       window.instance = new TypeIt('#example1', {
         speed: 50,
-        breakLines: true,
-        strings: ['one string with <strong>HTML</strong>', 'and another'],
         html: false,
-        loop: true,
-        beforeStep: function () {
-          console.log('before Step');
-        },
-        afterStep: function (key, queue, instance) {
-          console.log(key);
-          console.log(queue);
-        }
-      }).go();
-
-        // .type('hello!')
-        // .hook(async function (typeit) {
-
-        //   await new Promise((resolve, reject) => {
-        //     setTimeout(function () {
-        //       resolve();
-        //     }, 2000);
-        //   });
-
-        //   console.log('did it');
-
-        // })
-        // .type('hey!')
-        // .go();
+        loop: true
+      }).type('hey').options({speed: 500}).type('again').empty().go();
 
 		</script>
 	</body>

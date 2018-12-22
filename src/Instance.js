@@ -177,8 +177,10 @@ export default class Instance {
   }
 
   setOptions(options) {
-    this.opts = merge({}, this.opts, options);
-    return;
+    return new Promise(resolve => {
+      this.opts = merge({}, this.opts, options);
+      return resolve();
+    });
   }
 
   /**
@@ -495,6 +497,7 @@ export default class Instance {
       : deleteSpeed;
   }
 
+  //-- @todo Should this be wrapped in a promise and made chainable?
   empty() {
     this.contents("");
   }

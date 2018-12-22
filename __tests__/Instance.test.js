@@ -1,4 +1,5 @@
 import Instance from "../src/Instance.js";
+import { deepStrictEqual } from "assert";
 
 let instance;
 let args;
