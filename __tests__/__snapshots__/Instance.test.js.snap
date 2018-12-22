@@ -88,6 +88,276 @@ Array [
 ]
 `;
 
+exports[`loopify() Should queue correct number of deletions when HTML is present. 1`] = `
+Array [
+  Array [
+    [Function],
+    null,
+    Object {
+      "isPhantom": true,
+    },
+  ],
+  Array [
+    [Function],
+    null,
+    Object {
+      "isPhantom": true,
+    },
+  ],
+  Array [
+    [Function],
+    null,
+    Object {
+      "isPhantom": true,
+    },
+  ],
+  Array [
+    [Function],
+    null,
+    Object {
+      "isPhantom": true,
+    },
+  ],
+  Array [
+    [Function],
+    null,
+    Object {
+      "isPhantom": true,
+    },
+  ],
+  Array [
+    [Function],
+    null,
+    Object {
+      "isPhantom": true,
+    },
+  ],
+  Array [
+    [Function],
+    null,
+    Object {
+      "isPhantom": true,
+    },
+  ],
+  Array [
+    [Function],
+    null,
+    Object {
+      "isPhantom": true,
+    },
+  ],
+  Array [
+    [Function],
+    null,
+    Object {
+      "isPhantom": true,
+    },
+  ],
+  Array [
+    [Function],
+    null,
+    Object {
+      "isPhantom": true,
+    },
+  ],
+  Array [
+    [Function],
+    null,
+    Object {
+      "isPhantom": true,
+    },
+  ],
+  Array [
+    [Function],
+    null,
+    Object {
+      "isPhantom": true,
+    },
+  ],
+  Array [
+    [Function],
+    null,
+    Object {
+      "isPhantom": true,
+    },
+  ],
+  Array [
+    [Function],
+    null,
+    Object {
+      "isPhantom": true,
+    },
+  ],
+  Array [
+    [Function],
+    null,
+    Object {
+      "isPhantom": true,
+    },
+  ],
+  Array [
+    [Function],
+    null,
+    Object {
+      "isPhantom": true,
+    },
+  ],
+  Array [
+    [Function],
+    null,
+    Object {
+      "isPhantom": true,
+    },
+  ],
+  Array [
+    [Function],
+    null,
+    Object {
+      "isPhantom": true,
+    },
+  ],
+  Array [
+    [Function],
+    null,
+    Object {
+      "isPhantom": true,
+    },
+  ],
+  Array [
+    [Function],
+    null,
+    Object {
+      "isPhantom": true,
+    },
+  ],
+  Array [
+    [Function],
+    null,
+    Object {
+      "isPhantom": true,
+    },
+  ],
+  Array [
+    [Function],
+    null,
+    Object {
+      "isPhantom": true,
+    },
+  ],
+  Array [
+    [Function],
+    2000,
+  ],
+]
+`;
+
+exports[`loopify() Should queue correct number of deletions. 1`] = `
+Array [
+  Array [
+    [Function],
+    null,
+    Object {
+      "isPhantom": true,
+    },
+  ],
+  Array [
+    [Function],
+    null,
+    Object {
+      "isPhantom": true,
+    },
+  ],
+  Array [
+    [Function],
+    null,
+    Object {
+      "isPhantom": true,
+    },
+  ],
+  Array [
+    [Function],
+    null,
+    Object {
+      "isPhantom": true,
+    },
+  ],
+  Array [
+    [Function],
+    null,
+    Object {
+      "isPhantom": true,
+    },
+  ],
+  Array [
+    [Function],
+    null,
+    Object {
+      "isPhantom": true,
+    },
+  ],
+  Array [
+    [Function],
+    null,
+    Object {
+      "isPhantom": true,
+    },
+  ],
+  Array [
+    [Function],
+    null,
+    Object {
+      "isPhantom": true,
+    },
+  ],
+  Array [
+    [Function],
+    null,
+    Object {
+      "isPhantom": true,
+    },
+  ],
+  Array [
+    [Function],
+    null,
+    Object {
+      "isPhantom": true,
+    },
+  ],
+  Array [
+    [Function],
+    null,
+    Object {
+      "isPhantom": true,
+    },
+  ],
+  Array [
+    [Function],
+    null,
+    Object {
+      "isPhantom": true,
+    },
+  ],
+  Array [
+    [Function],
+    null,
+    Object {
+      "isPhantom": true,
+    },
+  ],
+  Array [
+    [Function],
+    null,
+    Object {
+      "isPhantom": true,
+    },
+  ],
+  Array [
+    [Function],
+    2000,
+  ],
+]
+`;
+
 exports[`maybeNoderize() Should leave string be, but split it into array when setting is disabled. 1`] = `
 Array [
   "A",

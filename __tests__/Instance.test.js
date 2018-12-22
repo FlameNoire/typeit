@@ -118,3 +118,26 @@ describe("maybeNoderize()", () => {
     ).toMatchSnapshot();
   });
 });
+
+describe("loopify()", () => {
+  test("Should set correct 'before' delay.", () => {
+    instance.loopify({ before: 6000 });
+
+    expect(instance.queue.waiting[0][0].name).toEqual("pause");
+    expect(instance.queue.waiting[0][1]).toEqual(6000);
+  });
+
+  test("Should queue correct number of deletions.", () => {
+    instance.$eContainer.innerHTML = "Just a string.";
+    instance.loopify({ before: 2000 });
+
+    expect(instance.queue.waiting).toMatchSnapshot();
+  });
+
+  test("Should queue correct number of deletions when HTML is present.", () => {
+    instance.$eContainer.innerHTML = "String with <strong>bold text.</strong>";
+    instance.loopify({ before: 2000 });
+
+    expect(instance.queue.waiting).toMatchSnapshot();
+  });
+});
