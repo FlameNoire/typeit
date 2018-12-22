@@ -21,8 +21,6 @@ test("Returns an object with expected properties.", () => {
 });
 
 test("Defines hard-coded string correctly.", () => {
-  jest.useFakeTimers();
-
   document.body.innerHTML = `
     <div>
       <span id="element">Hard-coded string.</span>
@@ -40,8 +38,6 @@ test("Defines hard-coded string correctly.", () => {
 });
 
 test("Will not begin until explicitly called.", () => {
-  jest.useFakeTimers();
-
   document.body.innerHTML = `<div>'
       <span id="element"></span>
     </div>`;
@@ -49,8 +45,6 @@ test("Will not begin until explicitly called.", () => {
   const instance = new TypeIt("#element", {
     strings: "hello!"
   });
-
-  jest.runAllTimers();
 
   expect(instance.is("started")).toBe(false);
 
@@ -60,8 +54,6 @@ test("Will not begin until explicitly called.", () => {
 });
 
 test("Clears out remnants of previous instances correctly.", () => {
-  jest.useFakeTimers();
-
   document.body.innerHTML = `
     <div>
       <span id="element">
@@ -80,8 +72,6 @@ test("Clears out remnants of previous instances correctly.", () => {
 });
 
 test("Typing doesn't end with a break tag.", () => {
-  jest.useFakeTimers();
-
   document.body.innerHTML = `<div>'
     <span id="element"></span>
   </div>`;
@@ -90,8 +80,6 @@ test("Typing doesn't end with a break tag.", () => {
     strings: ["One string.", "Two string", "Three string."]
   }).go();
 
-  jest.runAllTimers();
-
   expect(instance.instances[0].$eContainer.innerHTML.endsWith("<br>")).not.toBe(
     true
   );
@@ -99,8 +87,6 @@ test("Typing doesn't end with a break tag.", () => {
 
 describe("reset()", () => {
   test("Successfully resets when called.", () => {
-    jest.useFakeTimers();
-
     document.body.innerHTML = `<div>'
         <span id="element"></span>
       </div>`;
@@ -108,8 +94,6 @@ describe("reset()", () => {
     const instance = new TypeIt("#element", {
       strings: "This is my string!"
     }).go();
-
-    jest.runAllTimers();
 
     instance.destroy();
 
@@ -121,7 +105,6 @@ describe("reset()", () => {
     expect(instance.instances[0].$e).not.toBe(undefined);
     expect(instance.instances[0].id).not.toBe(undefined);
     expect(instance.instances[0].opts).not.toBe(undefined);
-    expect(instance.instances[0].typeit).not.toBe(undefined);
     expect(instance.instances).toHaveLength(1);
     expect(instance.is("completed")).toBe(false);
     expect(instance.is("destroyed")).toBe(false);
@@ -130,8 +113,6 @@ describe("reset()", () => {
 
 describe("destroy()", () => {
   test("Destroys instances successfully.", () => {
-    jest.useFakeTimers();
-
     document.body.innerHTML = `<div>'
       <span id="element"></span>
     </div>`;
@@ -139,8 +120,6 @@ describe("destroy()", () => {
     const instance = new TypeIt("#element", {
       strings: "This is my string!"
     }).go();
-
-    jest.runAllTimers();
 
     expect(instance.is("destroyed")).toBe(false);
 

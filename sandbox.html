@@ -38,7 +38,7 @@
     </section>
 
     <section>
-      <h2>Single String</h2>
+      <h2>Single STep</h2>
       <h3 id="example1"></h3>
 
       <!-- <textarea id="example1"></textarea> -->
@@ -72,13 +72,16 @@
 
       window.instance = new TypeIt('#example1', {
         speed: 50,
-        breakLines: false,
+        breakLines: true,
+        strings: ['one string with <strong>HTML</strong>', 'and another'],
+        html: false,
         loop: true,
-        strings: ['one string'],
-        loopDelay: 2000,
-        startDelay: 5000,
-        afterComplete: function () {
-          console.log('complete');
+        beforeStep: function () {
+          console.log('before Step');
+        },
+        afterStep: function (key, queue, instance) {
+          console.log(key);
+          console.log(queue);
         }
       }).go();
 

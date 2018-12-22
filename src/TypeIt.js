@@ -10,7 +10,7 @@ export default class TypeIt {
         element: el,
         id: generateHash(),
         options,
-        typeit: this
+        queue: []
       });
     });
   }

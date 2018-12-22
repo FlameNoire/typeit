@@ -14,7 +14,6 @@ export default {
   loopDelay: null,
   html: true,
   waitUntilVisible: false,
-  callback: false,
   beforeString: false,
   afterString: false,
   beforeStep: false,

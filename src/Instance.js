@@ -18,7 +18,7 @@ let baseInlineStyles =
   "display:inline;position:relative;font:inherit;color:inherit;line-height:inherit;";
 
 export default class Instance {
-  constructor({ element, id, options, typeit = null, queue = [] } = {}) {
+  constructor({ element, id, options, queue = [] } = {}) {
     this.status = {
       started: false,
       complete: false,
@@ -27,7 +27,6 @@ export default class Instance {
     };
     this.timeouts = [];
     this.id = id;
-    this.typeit = typeit;
     this.$e = element;
     this.isInput = isInput(element);
     this.queue = new Queue(queue);
@@ -76,10 +75,10 @@ export default class Instance {
     let queue = this.queue.waiting.slice();
     let promiseChain = Promise.resolve();
 
-    // for (let key of queue) {
     for (let i = 0; i < queue.length; i++) {
       let key = queue[i];
-      let callbackArgs = [key, this.queue, this.typeit];
+
+      let callbackArgs = [key, this.queue, this];
 
       promiseChain = promiseChain.then(() => {
         return new Promise((resolve, reject) => {
@@ -141,7 +140,7 @@ export default class Instance {
         this.status.completed = true;
 
         if (this.opts.afterComplete) {
-          this.opts.afterComplete(this.typeit);
+          this.opts.afterComplete(this);
         }
 
         return;
@@ -219,7 +218,6 @@ export default class Instance {
       element: this.$e,
       id: this.id,
       options: this.opts,
-      typeit: this.typeit,
       queue: this.queue.waiting
     });
   }
@@ -279,7 +277,7 @@ export default class Instance {
       if (index + 1 === this.opts.strings.length) return;
 
       if (this.opts.breakLines) {
-        this.queue.add([this.insert, "<br>"]);
+        this.queue.add([this.type, "<br>"]);
         this.addSplitPause(queueLength);
         return;
       }
@@ -410,8 +408,6 @@ export default class Instance {
     }
 
     let el = toChildNode ? this.$eContainer.lastChild : this.$eContainer;
-
-    // console.log(el, toChildNode);
 
     el.insertAdjacentHTML("beforeend", content);
 
