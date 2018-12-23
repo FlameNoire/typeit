@@ -162,7 +162,7 @@ export default class Instance {
       .delete(0)
       .add([this.pause, delay.before], true);
 
-    this.maybeNoderize(this.contents()).forEach(item => {
+    this.getNoderized().forEach(item => {
       this.queue.add(
         [
           this.delete,
@@ -225,29 +225,33 @@ export default class Instance {
   }
 
   /**
-   * If argument is passed, set to content according to `html` option.
-   * If not, just return the contents of the element, based on `html` option.
+   * Set to content according to `html` option.
    * @param {string | null} content
    * @todo Test this!
    */
-  contents(content = null) {
-    if (content === null) {
-      if (this.isInput) {
-        return this.$e.value;
-      }
-
-      return this.opts.html
-        ? this.$eContainer.innerHTML
-        : this.$eContainer.innerText;
-    }
-
+  setContents(content = "") {
     if (this.isInput) {
       this.$e.value = content;
     } else {
       this.$eContainer[this.opts.html ? "innerHTML" : "innerText"] = content;
     }
+  }
 
-    return true;
+  /**
+   * Get the raw content in the element, unnoderized.
+   */
+  getRaw() {
+    if (this.isInput) {
+      return this.$e.value;
+    }
+
+    return this.opts.html
+      ? this.$eContainer.innerHTML
+      : this.$eContainer.innerText;
+  }
+
+  getNoderized() {
+    return this.maybeNoderize(this.getRaw());
   }
 
   prepareDelay(delayType) {
@@ -413,8 +417,8 @@ export default class Instance {
 
     el.insertAdjacentHTML("beforeend", content);
 
-    this.contents(
-      this.contents()
+    this.setContents(
+      this.getRaw()
         .split("")
         .join("")
     );
@@ -497,9 +501,11 @@ export default class Instance {
       : deleteSpeed;
   }
 
-  //-- @todo Should this be wrapped in a promise and made chainable?
   empty() {
-    this.contents("");
+    return new Promise(resolve => {
+      this.setContents("");
+      return resolve();
+    });
   }
 
   /**
@@ -508,7 +514,7 @@ export default class Instance {
   delete(keepGoingUntilAllIsGone = false) {
     return new Promise((resolve, reject) => {
       this.wait(() => {
-        let contents = this.maybeNoderize(this.contents());
+        let contents = this.getNoderized();
 
         contents.splice(-1, 1);
 
@@ -526,7 +532,7 @@ export default class Instance {
 
         contents = contents.join("").replace(/<[^\/>][^>]*><\/[^>]+>/, "");
 
-        this.contents(contents);
+        this.setContents(contents);
 
         /**
          * If it's specified, keep deleting until all characters are gone. This is
