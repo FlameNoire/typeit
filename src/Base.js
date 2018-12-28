@@ -17,8 +17,8 @@ import Queue from "./Queue";
 let baseInlineStyles =
   "display:inline;position:relative;font:inherit;color:inherit;line-height:inherit;";
 
-export default class Instance {
-  constructor({ element, id, options, queue = [] } = {}) {
+export default class Base {
+  constructor(element, id, options, queue = []) {
     this.status = {
       started: false,
       complete: false,
@@ -149,9 +149,9 @@ export default class Instance {
   }
 
   /**
-   * 1. Reset queue.
-   * 2. Remove initial pause.
-   * 3. Add phantom deletions.
+   * 1 - Reset queue.
+   * 2 - Remove initial pause.
+   * 3 - Add phantom deletions.
    */
   loopify(delay) {
     //-- Reset queue.
@@ -449,111 +449,5 @@ export default class Instance {
     this.deletePace = this.opts.lifeLike
       ? randomInRange(deleteSpeed, deleteRange)
       : deleteSpeed;
-  }
-
-  /**
-   * QUEUEABLE
-   */
-  pause(time = false) {
-    return new Promise((resolve, reject) => {
-      this.wait(
-        () => {
-          return resolve();
-        },
-        time ? time : this.opts.nextStringDelay.total
-      );
-    });
-  }
-
-  /**
-   * QUEUEABLE - Type a SINGLE character.
-   * @param {*} character
-   */
-  type(character) {
-    return new Promise((resolve, reject) => {
-      this.wait(() => {
-        //-- We hit a standard string.
-        if (typeof character === "string") {
-          this.insert(character);
-          return resolve();
-        }
-
-        //-- We hit a node.
-        if (character.isFirstCharacter) {
-          this.insert(
-            createNodeString({
-              tag: character.tag,
-              attributes: character.attributes,
-              content: character.content
-            })
-          );
-
-          return resolve();
-        }
-
-        this.insert(character.content, true);
-        return resolve();
-      }, this.typePace);
-    });
-  }
-
-  /**
-   * QUEUEABLE
-   */
-  empty() {
-    return new Promise(resolve => {
-      this.setContents("");
-      return resolve();
-    });
-  }
-
-  /**
-   * QUEUEABLE
-   */
-  delete(keepGoingUntilAllIsGone = false) {
-    return new Promise((resolve, reject) => {
-      this.wait(() => {
-        let contents = this.getNoderized();
-
-        contents.splice(-1, 1);
-
-        contents = contents.map(character => {
-          if (typeof character === "object") {
-            return createNodeString({
-              tag: character.tag,
-              attributes: character.attributes,
-              content: character.content
-            });
-          }
-
-          return character;
-        });
-
-        contents = contents.join("").replace(/<[^\/>][^>]*><\/[^>]+>/, "");
-
-        this.setContents(contents);
-
-        /**
-         * If it's specified, keep deleting until all characters are gone. This is
-         * the only time when a SINGLE queue action (`delete()`) deals with multiple
-         * characters at once. I don't like it, but need to implement like this right now.
-         */
-        if (keepGoingUntilAllIsGone && contents.length > 0) {
-          this.delete(true);
-        }
-
-        return resolve();
-      }, this.deletePace);
-    });
-  }
-
-  /**
-   * QUEUEABLE
-   */
-  setOptions(options) {
-    return new Promise(resolve => {
-      this.opts = merge({}, this.opts, options);
-      return resolve();
-    });
   }
 }
