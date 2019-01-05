@@ -8,8 +8,8 @@
     "url": "https://github.com/alexmacarthur/typeit/issues"
   },
   "homepage": "https://typeitjs.com",
-  "main": "dist/typeit.js",
-  "module": "dist/typeit.es.js",
+  "main": "src/TypeIt.js",
+  "module": "src/TypeIt.js",
   "files": [
     "dist/"
   ],
