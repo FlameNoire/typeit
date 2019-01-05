@@ -56,5 +56,8 @@
   },
   "jest": {
     "timers": "fake"
+  },
+  "dependencies": {
+    "@vue/cli": "^3.2.2"
   }
 }
