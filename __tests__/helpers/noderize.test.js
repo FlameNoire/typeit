@@ -1,4 +1,4 @@
-import noderize from "../../src/helpers/noderize";
+import noderize, { placeholderize } from "../../src/helpers/noderize";
 
 test("Parses normal string correctly.", () => {
   let result = noderize("Hello, this is my string.");
@@ -42,4 +42,34 @@ test("Parses HTML tag with attributes.", () => {
   );
 
   expect(result).toMatchSnapshot();
+});
+
+describe("placeholderize()", () => {
+  test("Sets placeholder for single regular HTML tag.", () => {
+    let result = placeholderize(
+      "This is a string with some <strong>bold text</strong>."
+    );
+
+    expect(result).toMatchSnapshot();
+  });
+
+  test("Sets placeholder for a self-closing tag.", () => {
+    let result = placeholderize("This is a string with a <br/> break in it.");
+
+    expect(result).toMatchSnapshot();
+  });
+
+  test("Sets placeholder for a self-closing tag with no closing slash.", () => {
+    let result = placeholderize("This is a string with a <br> break in it.");
+
+    expect(result).toMatchSnapshot();
+  });
+
+  test("Sets placeholder for strings with both standard tags and self-closing.", () => {
+    let result = placeholderize(
+      "This is a string with a <br> break in it, as well as some <em>italized</em> text."
+    );
+
+    expect(result).toMatchSnapshot();
+  });
 });

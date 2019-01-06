@@ -72,9 +72,11 @@
 
       window.instance = new TypeIt('#example1', {
         speed: 50,
-        html: false,
-        loop: true
-      }).type('hey, again!').pause(3000).break().pause(3000).type('hello again').go();
+        // loop: true
+      })
+        // .type('This is a string with <strong>some</strong> a break in it.')
+        .type('This is a string with <br> a break in it.')
+        .go();
 
 		</script>
 	</body>

@@ -576,3 +576,44 @@ Array [
   ".",
 ]
 `;
+
+exports[`placeholderize() Sets placeholder for a self-closing tag with no closing slash. 1`] = `
+Object {
+  "nodes": Array [
+    <br />,
+  ],
+  "string": "This is a string with a {%} break in it.",
+}
+`;
+
+exports[`placeholderize() Sets placeholder for a self-closing tag. 1`] = `
+Object {
+  "nodes": Array [
+    <br />,
+  ],
+  "string": "This is a string with a {%} break in it.",
+}
+`;
+
+exports[`placeholderize() Sets placeholder for single regular HTML tag. 1`] = `
+Object {
+  "nodes": Array [
+    <strong>
+      bold text
+    </strong>,
+  ],
+  "string": "This is a string with some {%}.",
+}
+`;
+
+exports[`placeholderize() Sets placeholder for strings with both standard tags and self-closing. 1`] = `
+Object {
+  "nodes": Array [
+    <br />,
+    <em>
+      italized
+    </em>,
+  ],
+  "string": "This is a string with a {%} break in it, as well as some {%} text.",
+}
+`;
