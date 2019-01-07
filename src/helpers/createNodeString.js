@@ -7,7 +7,9 @@ export default function({ tag, attributes = [], content = "" }) {
     });
   }
 
-  node.innerHTML = content;
+  if (content) {
+    node.innerHTML = content;
+  }
 
   return node.outerHTML;
 }

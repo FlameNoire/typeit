@@ -24,7 +24,7 @@ export function placeholderize(string) {
   };
 }
 
-export default function(rawString, nevermind = false) {
+export default function(rawString) {
   let { string, nodes } = placeholderize(rawString);
   let stringArray = string.split("");
 
@@ -38,23 +38,32 @@ export default function(rawString, nevermind = false) {
       //-- For each character inside this node, insert an object.
       let i = index;
       let node = nodes.shift();
-      node.innerHTML.split("").forEach(character => {
-        let atts = [].slice.call(node.attributes).map(att => {
-          return {
-            name: att.name,
-            value: att.nodeValue
-          };
-        });
+      let nodeContents = node.innerHTML.split("");
+      let nodeAttributes = [].slice.call(node.attributes).map(att => {
+        return {
+          name: att.name,
+          value: att.nodeValue
+        };
+      });
 
+      if (!nodeContents.length) {
         stringArray.splice(i, 0, {
           tag: node.tagName,
-          attributes: atts,
-          content: character,
-          isFirstCharacter: i === index
+          attributes: nodeAttributes,
+          content: null
         });
+      } else {
+        nodeContents.forEach(character => {
+          stringArray.splice(i, 0, {
+            tag: node.tagName,
+            attributes: nodeAttributes,
+            content: character,
+            isFirstCharacter: i === index
+          });
 
-        i++;
-      });
+          i++;
+        });
+      }
     }
   });
 

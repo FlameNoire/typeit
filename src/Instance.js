@@ -478,8 +478,10 @@ export default class Instance {
           return resolve();
         }
 
-        //-- We hit a node.
-        if (character.isFirstCharacter) {
+        //-- We hit a node; create tag itself only if it's:
+        //-- 1) the first character
+        //-- 2) a self-closing tag (content === null)
+        if (character.isFirstCharacter || character.content === null) {
           this.insert(
             createNodeString({
               tag: character.tag,
@@ -492,6 +494,7 @@ export default class Instance {
         }
 
         this.insert(character.content, true);
+
         return resolve();
       }, this.typePace);
     });
