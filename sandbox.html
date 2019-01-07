@@ -71,11 +71,12 @@
 		<script>
 
       window.instance = new TypeIt('#example1', {
-        speed: 50,
-        loop: true
       })
-        .type('This is a string with a <br> break in it.')
-        .go();
+      .type('<em>some word</em>')
+      .pause(100)
+      .delete(3)
+      // .type('et.')
+      .go();
 
 		</script>
 	</body>

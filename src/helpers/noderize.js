@@ -36,7 +36,6 @@ export default function(rawString) {
       stringArray.splice(index, 3);
 
       //-- For each character inside this node, insert an object.
-      let i = index;
       let node = nodes.shift();
       let nodeContents = node.innerHTML.split("");
       let nodeAttributes = [].slice.call(node.attributes).map(att => {
@@ -45,23 +44,25 @@ export default function(rawString) {
           value: att.nodeValue
         };
       });
+      let firstCharacterIndex = index;
 
       if (!nodeContents.length) {
-        stringArray.splice(i, 0, {
+        stringArray.splice(firstCharacterIndex, 0, {
           tag: node.tagName,
           attributes: nodeAttributes,
           content: null
         });
       } else {
-        nodeContents.forEach(character => {
-          stringArray.splice(i, 0, {
+        nodeContents.forEach((character, i) => {
+          stringArray.splice(firstCharacterIndex, 0, {
             tag: node.tagName,
             attributes: nodeAttributes,
             content: character,
-            isFirstCharacter: i === index
+            isFirstCharacter: firstCharacterIndex === index,
+            isLastCharacter: i + 1 === nodeContents.length
           });
 
-          i++;
+          firstCharacterIndex++;
         });
       }
     }

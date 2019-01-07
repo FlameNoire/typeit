@@ -518,21 +518,49 @@ export default class Instance {
       this.wait(() => {
         let contents = this.getNoderized();
 
+        //-- Remove last character.
         contents.splice(-1, 1);
 
-        contents = contents.map(character => {
+        //-- Convert each node object into string representation.
+        contents = contents.map((character, index, array) => {
           if (typeof character === "object") {
-            return createNodeString({
-              tag: character.tag,
-              attributes: character.attributes,
-              content: character.content
-            });
+            if (character.isFirstCharacter) {
+              //-- Reach ahead to determine when the tag ends!
+
+              console.log(character);
+
+              let remainingContent = contents.slice(index + 1);
+
+              //-- Get the first 'isLastCharacter' item, or the end.
+              console.log(remainingContent);
+
+              let hasLastItem = false;
+              let lastItem = null;
+
+              while (!hasLastItem) {
+                lastItem = remainingContent.shift();
+
+                if (lastItem.isLastCharacter || !remainingContent.length) {
+                  hasLastItem = true;
+                }
+              }
+
+              console.log(lastItem);
+
+              throw new Error("sup");
+
+              return createNodeString({
+                tag: character.tag,
+                attributes: character.attributes,
+                content: character.content
+              });
+            }
           }
 
           return character;
         });
 
-        contents = contents.join("").replace(/<[^\/>][^>]*><\/[^>]+>/, "");
+        contents = contents.join("");
 
         this.setContents(contents);
 
