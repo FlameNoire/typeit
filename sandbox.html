@@ -71,10 +71,11 @@
 		<script>
 
       window.instance = new TypeIt('#example1', {
+        speed: 25
       })
-      .type('<em>some word</em>')
+      .type('<em>some word</em> and another <strong>bold word</strong> here.')
       .pause(100)
-      .delete(3)
+      .delete(5)
       // .type('et.')
       .go();
 

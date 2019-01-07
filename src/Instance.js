@@ -522,43 +522,35 @@ export default class Instance {
         contents.splice(-1, 1);
 
         //-- Convert each node object into string representation.
-        contents = contents.map((character, index, array) => {
-          if (typeof character === "object") {
-            if (character.isFirstCharacter) {
-              //-- Reach ahead to determine when the tag ends!
+        //-- Sort into tags!
+        contents = contents.map((character, index) => {
+          if (typeof character === "object" && character.isFirstCharacter) {
+            let tagContent = [];
+            let allRemainingContent = contents.slice(index);
+            let hasLastItem = false;
+            let lastItem = null;
 
-              console.log(character);
+            while (!hasLastItem) {
+              lastItem = allRemainingContent.shift();
 
-              let remainingContent = contents.slice(index + 1);
+              tagContent.push(lastItem.content);
 
-              //-- Get the first 'isLastCharacter' item, or the end.
-              console.log(remainingContent);
-
-              let hasLastItem = false;
-              let lastItem = null;
-
-              while (!hasLastItem) {
-                lastItem = remainingContent.shift();
-
-                if (lastItem.isLastCharacter || !remainingContent.length) {
-                  hasLastItem = true;
-                }
+              if (lastItem.isLastCharacter || !allRemainingContent.length) {
+                hasLastItem = true;
               }
-
-              console.log(lastItem);
-
-              throw new Error("sup");
-
-              return createNodeString({
-                tag: character.tag,
-                attributes: character.attributes,
-                content: character.content
-              });
             }
+
+            return createNodeString({
+              tag: character.tag,
+              attributes: character.attributes,
+              content: tagContent.join("")
+            });
           }
 
           return character;
         });
+
+        contents = contents.filter(item => typeof item !== "object");
 
         contents = contents.join("");
 
