@@ -15,3 +15,30 @@ test("Creates a self-closing tag correctly.", () => {
 
   expect(result).toEqual("<br>");
 });
+
+test("Creates a tag with attributes correctly.", () => {
+  let result = createNodeString({
+    tag: "DIV",
+    attributes: [
+      {
+        name: "data-my-attribute",
+        value: "my-value"
+      },
+      {
+        name: "id",
+        value: "my-id"
+      }
+    ]
+  });
+
+  expect(result).toEqual(`<div data-my-attribute="my-value" id="my-id"></div>`);
+});
+
+test("Creates a tag with content correctly.", () => {
+  let result = createNodeString({
+    tag: "DIV",
+    content: "my content"
+  });
+
+  expect(result).toEqual(`<div>my content</div>`);
+});
