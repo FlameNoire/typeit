@@ -10,7 +10,10 @@ export function placeholderize(string) {
   let doc = parser.parseFromString(string, "text/html");
   let nodes = [].slice.call(doc.body.querySelectorAll("*"));
 
+  // console.log()
+
   nodes.forEach(item => {
+    // console.log(item.outerHTML);
     let chopped = item.outerHTML.slice(0, -1);
     string = string.replace(
       new RegExp(`${chopped}\/?>`, "i"),

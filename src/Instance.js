@@ -518,6 +518,9 @@ export default class Instance {
       this.wait(() => {
         let contents = this.getNoderized();
 
+        // console.log(contents);
+        // not getting replaced back in!
+
         //-- Remove last character.
         contents.splice(-1, 1);
 
