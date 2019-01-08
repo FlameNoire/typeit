@@ -147,7 +147,6 @@ export default class TypeIt {
 
   go() {
     this.each(instance => {
-      console.log(instance.queue);
       instance.init();
     });
     return this;

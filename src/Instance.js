@@ -323,8 +323,6 @@ export default class Instance {
     //-- Get array of string with nodes where applicable.
     string = this.maybeNoderize(string);
 
-    // console.log(string);
-
     let strLength = string.length;
 
     //-- Push each array item to the queue.

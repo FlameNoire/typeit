@@ -1,6 +1,39 @@
 const PLACEHOLDER_PATTERN = "{%}";
 
 /**
+ * Remove remants "%}" of placeholders that remain
+ * after noderizing an array.
+ *
+ * @param array items
+ */
+export function removePlaceholderRemnants(items) {
+  let isPruning = true;
+
+  while (isPruning) {
+    let hasLastCharacters = items.some((item, index) => {
+      let isLastCharacterObject =
+        typeof item === "object" && item.isLastCharacter;
+
+      if (
+        isLastCharacterObject &&
+        items.slice(index + 1, index + 3).join("") === "%}"
+      ) {
+        items.splice(index + 1, 2);
+        return true;
+      }
+
+      return false;
+    });
+
+    if (!hasLastCharacters) {
+      isPruning = false;
+    }
+  }
+
+  return items;
+}
+
+/**
  * Replace nodes with string placeholders.
  *
  * @param string string
@@ -68,26 +101,7 @@ export default function(rawString) {
     }
   });
 
-  let isPruning = true;
-
-  while (isPruning) {
-    let hasLastCharacters = nodifiedArray.some((item, index) => {
-      let isLastCharacterObject =
-        typeof item === "object" && item.isLastCharacter;
-
-      if (
-        isLastCharacterObject &&
-        nodifiedArray.slice(index + 1, index + 3).join("") === "%}"
-      ) {
-        nodifiedArray.splice(index + 1, 2);
-        return true;
-      }
-    });
-
-    if (!hasLastCharacters) {
-      isPruning = false;
-    }
-  }
+  nodifiedArray = removePlaceholderRemnants(nodifiedArray);
 
   return nodifiedArray;
 }

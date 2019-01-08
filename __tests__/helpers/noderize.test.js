@@ -1,4 +1,7 @@
-import noderize, { placeholderize } from "../../src/helpers/noderize";
+import noderize, {
+  placeholderize,
+  removePlaceholderRemnants
+} from "../../src/helpers/noderize";
 
 test("Parses normal string correctly.", () => {
   let result = noderize("Hello, this is my string.");
@@ -71,5 +74,85 @@ describe("placeholderize()", () => {
     );
 
     expect(result).toMatchSnapshot();
+  });
+});
+
+describe("removePlaceholderRemnants()", () => {
+  test("It removes placeholder remnants following the end of a tag.", () => {
+    let payload = [
+      "x",
+      {
+        isLastCharacter: false
+      },
+      {
+        isLastCharacter: false
+      },
+      {
+        isLastCharacter: true
+      },
+      "%",
+      "}"
+    ];
+
+    expect(removePlaceholderRemnants(payload)).toMatchSnapshot();
+  });
+
+  test("It does not touch array if last character is not followed by remnants.", () => {
+    let payload = [
+      "x",
+      {
+        isLastCharacter: false
+      },
+      {
+        isLastCharacter: false
+      },
+      {
+        isLastCharacter: true
+      },
+      "%",
+      "%"
+    ];
+
+    expect(removePlaceholderRemnants(payload)).toMatchSnapshot();
+  });
+
+  test("It properly handles arrays whose node objects are at the very beginning.", () => {
+    let payload = [
+      {
+        isLastCharacter: false
+      },
+      {
+        isLastCharacter: false
+      },
+      {
+        isLastCharacter: true
+      },
+      "%",
+      "%"
+    ];
+
+    expect(removePlaceholderRemnants(payload)).toMatchSnapshot();
+  });
+
+  test("It properly handles arrays completely filled with node objects.", () => {
+    let payload = [
+      {
+        isLastCharacter: false
+      },
+      {
+        isLastCharacter: false
+      },
+      {
+        isLastCharacter: true
+      }
+    ];
+
+    expect(removePlaceholderRemnants(payload)).toMatchSnapshot();
+  });
+
+  test("It does not modify arrays with no node objects.", () => {
+    let payload = ["a", "b", "c"];
+
+    expect(removePlaceholderRemnants(payload)).toEqual(["a", "b", "c"]);
   });
 });
