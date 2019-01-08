@@ -11,6 +11,7 @@ import toArray from "./helpers/toArray";
 import noderize from "./helpers/noderize";
 import createNodeString from "./helpers/createNodeString";
 import clearPreviousMarkup from "./helpers/clearPreviousMarkup";
+import groupNodeStringContents from "./helpers/groupNodeStringContents";
 
 import Queue from "./Queue";
 
@@ -521,43 +522,11 @@ export default class Instance {
         //-- Remove last character.
         contents.splice(-1, 1);
 
-        //-- Convert each node object into string representation.
-        //-- Sort into tags!
-        contents = contents.map((character, index) => {
-          //-- @todo TEST!!!
-          if (typeof character === "object" && character.isFirstCharacter) {
-            let tagContent = [];
-            let allRemainingContent = contents.slice(index);
-            let hasLastItem = false;
-            let lastItem = null;
+        //-- Convert each node object into string representation,
+        //-- grouping them before reprinting.
+        contents = groupNodeStringContents(contents);
 
-            while (!hasLastItem) {
-              lastItem = allRemainingContent.shift();
-
-              tagContent.push(lastItem.content);
-
-              if (lastItem.isLastCharacter || !allRemainingContent.length) {
-                hasLastItem = true;
-              }
-            }
-
-            let nodeString = createNodeString({
-              tag: character.tag,
-              attributes: character.attributes,
-              content: tagContent.join("")
-            });
-
-            return nodeString;
-          }
-
-          return character;
-        });
-
-        contents = contents.filter(item => typeof item !== "object");
-
-        contents = contents.join("");
-
-        this.setContents(contents);
+        this.setContents(contents.join(""));
 
         /**
          * If it's specified, keep deleting until all characters are gone. This is

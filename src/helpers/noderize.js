@@ -1,6 +1,30 @@
 const PLACEHOLDER_PATTERN = "{%}";
 
 /**
+ * Replace nodes with string placeholders.
+ *
+ * @param string string
+ */
+export function placeholderize(string) {
+  let parser = new DOMParser();
+  let doc = parser.parseFromString(string, "text/html");
+  let nodes = [].slice.call(doc.body.querySelectorAll("*"));
+
+  nodes.forEach(item => {
+    let chopped = item.outerHTML.slice(0, -1);
+    string = string.replace(
+      new RegExp(`${chopped}\/?>`, "i"),
+      PLACEHOLDER_PATTERN
+    );
+  });
+
+  return {
+    string,
+    nodes
+  };
+}
+
+/**
  * Remove remants "%}" of placeholders that remain
  * after noderizing an array.
  *
@@ -31,30 +55,6 @@ export function removePlaceholderRemnants(items) {
   }
 
   return items;
-}
-
-/**
- * Replace nodes with string placeholders.
- *
- * @param string string
- */
-export function placeholderize(string) {
-  let parser = new DOMParser();
-  let doc = parser.parseFromString(string, "text/html");
-  let nodes = [].slice.call(doc.body.querySelectorAll("*"));
-
-  nodes.forEach(item => {
-    let chopped = item.outerHTML.slice(0, -1);
-    string = string.replace(
-      new RegExp(`${chopped}\/?>`, "i"),
-      PLACEHOLDER_PATTERN
-    );
-  });
-
-  return {
-    string,
-    nodes
-  };
 }
 
 export default function(rawString) {
