@@ -53,11 +53,5 @@
     "prettier": "^1.15.3",
     "webpack": "^4.27.1",
     "webpack-cli": "^3.1.2"
-  },
-  "jest": {
-    "timers": "fake"
-  },
-  "dependencies": {
-    "@vue/cli": "^3.2.2"
   }
 }
