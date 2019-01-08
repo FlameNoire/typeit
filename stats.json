@@ -1,0 +1,2252 @@
+{
+  "errors": [],
+  "warnings": [],
+  "version": "4.27.1",
+  "hash": "7d510d6051ccb536d47e",
+  "time": 731,
+  "builtAt": 1546919516275,
+  "publicPath": "",
+  "outputPath": "/Users/alex.macarthur/apps/typeit/dist",
+  "assetsByChunkName": {
+    "TypeIt": "typeit.min.js"
+  },
+  "assets": [
+    {
+      "name": "typeit.min.js",
+      "size": 41691,
+      "chunks": [
+        "TypeIt"
+      ],
+      "chunkNames": [
+        "TypeIt"
+      ],
+      "emitted": true
+    }
+  ],
+  "filteredAssets": 0,
+  "entrypoints": {
+    "TypeIt": {
+      "chunks": [
+        "TypeIt"
+      ],
+      "assets": [
+        "typeit.min.js"
+      ],
+      "children": {},
+      "childAssets": {}
+    }
+  },
+  "namedChunkGroups": {
+    "TypeIt": {
+      "chunks": [
+        "TypeIt"
+      ],
+      "assets": [
+        "typeit.min.js"
+      ],
+      "children": {},
+      "childAssets": {}
+    }
+  },
+  "chunks": [
+    {
+      "id": "TypeIt",
+      "rendered": true,
+      "initial": true,
+      "entry": true,
+      "size": 26717,
+      "names": [
+        "TypeIt"
+      ],
+      "files": [
+        "typeit.min.js"
+      ],
+      "hash": "3ade8cda51d21a16fee4",
+      "siblings": [],
+      "parents": [],
+      "children": [],
+      "childrenByOrder": {},
+      "modules": [
+        {
+          "id": "./src/Instance.js",
+          "identifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/Instance.js",
+          "name": "./src/Instance.js",
+          "index": 1,
+          "index2": 10,
+          "size": 13720,
+          "cacheable": true,
+          "built": true,
+          "optional": false,
+          "prefetched": false,
+          "chunks": [
+            "TypeIt"
+          ],
+          "issuer": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/TypeIt.js",
+          "issuerId": "./src/TypeIt.js",
+          "issuerName": "./src/TypeIt.js",
+          "issuerPath": [
+            {
+              "id": "./src/TypeIt.js",
+              "identifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/TypeIt.js",
+              "name": "./src/TypeIt.js",
+              "profile": {
+                "factory": 32,
+                "building": 366
+              }
+            }
+          ],
+          "profile": {
+            "factory": 38,
+            "building": 177,
+            "dependencies": 1
+          },
+          "failed": false,
+          "errors": 0,
+          "warnings": 0,
+          "assets": [],
+          "reasons": [
+            {
+              "moduleId": "./src/TypeIt.js",
+              "moduleIdentifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/TypeIt.js",
+              "module": "./src/TypeIt.js",
+              "moduleName": "./src/TypeIt.js",
+              "type": "harmony side effect evaluation",
+              "userRequest": "./Instance",
+              "loc": "1:631-664"
+            },
+            {
+              "moduleId": "./src/TypeIt.js",
+              "moduleIdentifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/TypeIt.js",
+              "module": "./src/TypeIt.js",
+              "moduleName": "./src/TypeIt.js",
+              "type": "harmony import specifier",
+              "userRequest": "./Instance",
+              "loc": "1:970-978"
+            }
+          ],
+          "providedExports": [
+            "default"
+          ],
+          "optimizationBailout": [],
+          "depth": 1,
+          "source": "function _toConsumableArray(arr){return _arrayWithoutHoles(arr)||_iterableToArray(arr)||_nonIterableSpread();}function _nonIterableSpread(){throw new TypeError(\"Invalid attempt to spread non-iterable instance\");}function _iterableToArray(iter){if(Symbol.iterator in Object(iter)||Object.prototype.toString.call(iter)===\"[object Arguments]\")return Array.from(iter);}function _arrayWithoutHoles(arr){if(Array.isArray(arr)){for(var i=0,arr2=new Array(arr.length);i<arr.length;i++){arr2[i]=arr[i];}return arr2;}}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError(\"Cannot call a class as a function\");}}function _defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if(\"value\"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}function _createClass(Constructor,protoProps,staticProps){if(protoProps)_defineProperties(Constructor.prototype,protoProps);if(staticProps)_defineProperties(Constructor,staticProps);return Constructor;}import defaults from\"./defaults.js\";import{isVisible,randomInRange,removeComments,appendStyleBlock}from\"./utilities\";import merge from\"./helpers/merge\";import isInput from\"./helpers/isInput\";import toArray from\"./helpers/toArray\";import noderize from\"./helpers/noderize\";import createNodeString from\"./helpers/createNodeString\";import clearPreviousMarkup from\"./helpers/clearPreviousMarkup\";import groupNodeStringContents from\"./helpers/groupNodeStringContents\";import Queue from\"./Queue\";var baseInlineStyles=\"display:inline;position:relative;font:inherit;color:inherit;line-height:inherit;\";var Instance=/*#__PURE__*/function(){function Instance(){var _ref=arguments.length>0&&arguments[0]!==undefined?arguments[0]:{},element=_ref.element,id=_ref.id,options=_ref.options,_ref$queue=_ref.queue,queue=_ref$queue===void 0?[]:_ref$queue;_classCallCheck(this,Instance);this.status={started:false,complete:false,frozen:false,destroyed:false};this.timeouts=[];this.id=id;this.$e=element;this.isInput=isInput(element);this.queue=new Queue(queue);this.opts=merge({},defaults,options);this.opts.strings=removeComments(toArray(this.opts.strings));this.opts.html=this.isInput?false:this.opts.html;this.queue.add([this.pause,this.opts.startDelay]);clearPreviousMarkup(element);this.prepareDelay(\"nextStringDelay\");this.prepareDelay(\"loopDelay\");var existingMarkup=this.$e.innerHTML;this.prepDOM();this.handleHardCoded(existingMarkup);if(this.opts.strings.length){this.generateQueue();}}_createClass(Instance,[{key:\"init\",value:function init(){var _this=this;if(this.status.started)return;this.cursor();if(!this.opts.waitUntilVisible||isVisible(this.$e)){this.status.started=true;return this.fire();}var checkForStart=function checkForStart(){if(isVisible(_this.$e)&&!_this.status.started){_this.fire();window.removeEventListener(\"scroll\",checkForStart);}};window.addEventListener(\"scroll\",checkForStart);}},{key:\"fire\",value:function fire(){var _this2=this;var queue=this.queue.waiting.slice();var promiseChain=Promise.resolve();var _loop=function _loop(i){var key=queue[i];var callbackArgs=[key,_this2.queue,_this2];promiseChain=promiseChain.then(function(){return new Promise(function(resolve,reject){if(_this2.status.frozen){return reject();}_this2.setPace();if(key[2]&&key[2].isFirst&&_this2.opts.beforeString){var _this2$opts;(_this2$opts=_this2.opts).beforeString.apply(_this2$opts,callbackArgs);}if(_this2.opts.beforeStep){var _this2$opts2;(_this2$opts2=_this2.opts).beforeStep.apply(_this2$opts2,callbackArgs);}//-- Fire this step!\nkey[0].call(_this2,key[1],key[2]).then(function(){var justExecuted=_this2.queue.waiting.shift();//-- If this is a phantom item, as soon as it's executed,\n//-- remove it from the queue and pretend it never existed.\nif(key[2]&&key[2].isPhantom){return resolve();}if(key[2]&&key[2].isLast&&_this2.opts.afterString){var _this2$opts3;(_this2$opts3=_this2.opts).afterString.apply(_this2$opts3,callbackArgs);}if(_this2.opts.afterStep){var _this2$opts4;(_this2$opts4=_this2.opts).afterStep.apply(_this2$opts4,callbackArgs);}//-- Remove this item from the global queue. Needed for pausing.\n_this2.queue.executed.push(justExecuted);return resolve();});});});};for(var i=0;i<queue.length;i++){_loop(i);}promiseChain.then(function(){if(_this2.opts.loop){//-- Split the delay!\nvar delay=_this2.opts.loopDelay?_this2.opts.loopDelay:_this2.opts.nextStringDelay;_this2.wait(function(){_this2.loopify(delay);_this2.fire();},delay.after);}_this2.status.completed=true;if(_this2.opts.afterComplete){_this2.opts.afterComplete(_this2);}return;}).catch(function(){});}/**\n   * 1. Reset queue.\n   * 2. Remove initial pause.\n   * 3. Add phantom deletions.\n   */},{key:\"loopify\",value:function loopify(delay){var _this3=this;//-- Reset queue.\n//-- Remove initial pause, so we can replace with `loop` pause.\n//-- Add delay pause FIRST, since we're adding to beginning of queue.\nthis.queue.reset().delete(0).add([this.pause,delay.before],true);this.getNoderized().forEach(function(item){_this3.queue.add([_this3.delete,null,{isPhantom:true}],true);});}/**\n   * Performs DOM-related work to prepare for typing.\n   */},{key:\"prepDOM\",value:function prepDOM(){if(this.isInput)return;this.$e.innerHTML=\"\\n      <span style=\\\"\".concat(baseInlineStyles,\"\\\" class=\\\"ti-wrapper\\\">\\n        <span style=\\\"\").concat(baseInlineStyles,\"\\\" class=\\\"ti-container\\\"></span>\\n      </span>\\n      \");this.$e.setAttribute(\"data-typeit-id\",this.id);this.$eContainer=this.$e.querySelector(\".ti-container\");this.$eWrapper=this.$e.querySelector(\".ti-wrapper\");appendStyleBlock(\"\\n        .\".concat(this.$eContainer.className,\":before {\\n          content: '.';\\n          display: inline-block;\\n          width: 0;\\n          visibility: hidden;\\n        }\\n      \"));}/**\n   * Reset the instance to new status.\n   */},{key:\"reset\",value:function reset(){this.queue.reset();return new Instance({element:this.$e,id:this.id,options:this.opts,queue:this.queue.waiting});}/**\n   * Set to content according to `html` option.\n   * @param {string | null} content\n   * @todo Test this!\n   */},{key:\"setContents\",value:function setContents(){var content=arguments.length>0&&arguments[0]!==undefined?arguments[0]:\"\";if(this.isInput){this.$e.value=content;}else{this.$eContainer[this.opts.html?\"innerHTML\":\"innerText\"]=content;}}/**\n   * Get the raw content in the element, unnoderized.\n   */},{key:\"getRaw\",value:function getRaw(){if(this.isInput){return this.$e.value;}return this.opts.html?this.$eContainer.innerHTML:this.$eContainer.innerText;}},{key:\"getNoderized\",value:function getNoderized(){return this.maybeNoderize(this.getRaw());}},{key:\"prepareDelay\",value:function prepareDelay(delayType){var delay=this.opts[delayType];if(!delay)return;var isArray=Array.isArray(delay);var halfDelay=!isArray?delay/2:null;this.opts[delayType]={before:isArray?delay[0]:halfDelay,after:isArray?delay[1]:halfDelay,total:isArray?delay[0]+delay[1]:delay};}},{key:\"generateQueue\",value:function generateQueue(){var _this4=this;var initialStep=arguments.length>0&&arguments[0]!==undefined?arguments[0]:null;if(initialStep){this.queue.add(initialStep);}this.opts.strings.forEach(function(string,index){_this4.queueString(string);var queueLength=_this4.queue.waiting.length;//-- This is the last string. Get outta here.\nif(index+1===_this4.opts.strings.length)return;if(_this4.opts.breakLines){_this4.queue.add([_this4.type,\"<br>\"]);_this4.addSplitPause(queueLength);return;}_this4.queueDeletions(string);_this4.addSplitPause(queueLength,string.length);});}/**\n   * Delete each character from a string.\n   *\n   * @todo Why am I accepting a string or number?\n   */},{key:\"queueDeletions\",value:function queueDeletions(){var stringOrNumber=arguments.length>0&&arguments[0]!==undefined?arguments[0]:null;var numberOfCharsToDelete=typeof stringOrNumber===\"string\"?this.maybeNoderize(stringOrNumber).length:stringOrNumber;for(var i=0;i<numberOfCharsToDelete;i++){this.queue.add([this.delete]);}}/**\n   * Based on HTML options, noderize the string,\n   * always ensuring its returned as split pieces.\n   *\n   * @param {array} stuff\n   */},{key:\"maybeNoderize\",value:function maybeNoderize(stuff){if(!this.opts.html){return stuff.split(\"\");}return noderize(stuff);}/**\n   * Add steps to the queue for each character in a given string.\n   */},{key:\"queueString\",value:function queueString(string){var _this5=this;//-- Get array of string with nodes where applicable.\nstring=this.maybeNoderize(string);var strLength=string.length;//-- Push each array item to the queue.\nstring.forEach(function(item,index){var queueItem=[_this5.type,item];//-- Tag as first character of string for callback usage.\nif(index===0){queueItem.push({isFirst:true});}if(index+1===strLength){queueItem.push({isLast:true});}_this5.queue.add(queueItem);});}/**\n   * Insert a split pause around a range of queue items.\n   *\n   * @param  {Number} startPosition The array position at which to start wrapping.\n   * @param  {Number} numberOfActionsToWrap The number of actions in the queue to wrap.\n   * @return {void}\n   */},{key:\"addSplitPause\",value:function addSplitPause(startPosition){var numberOfActionsToWrap=arguments.length>1&&arguments[1]!==undefined?arguments[1]:1;this.queue.waiting.splice(startPosition,0,[this.pause,this.opts.nextStringDelay.before]);this.queue.waiting.splice(startPosition+numberOfActionsToWrap+1,0,[this.pause,this.opts.nextStringDelay.after]);}},{key:\"cursor\",value:function cursor(){if(this.isInput)return;var visibilityStyle=\"visibility: hidden;\";if(this.opts.cursor){appendStyleBlock(\"\\n        @keyframes blink-\".concat(this.id,\" {\\n          0% {opacity: 0}\\n          49% {opacity: 0}\\n          50% {opacity: 1}\\n        }\\n\\n        [data-typeit-id='\").concat(this.id,\"'] .ti-cursor {\\n          animation: blink-\").concat(this.id,\" \").concat(this.opts.cursorSpeed/1000,\"s infinite;\\n        }\\n      \"),this.id);visibilityStyle=\"\";}this.$eWrapper.insertAdjacentHTML(\"beforeend\",\"<span style=\\\"\".concat(baseInlineStyles).concat(visibilityStyle,\"left: -.25ch;\\\" class=\\\"ti-cursor\\\">\").concat(this.opts.cursorChar,\"</span>\"));}/**\n   * Inserts string to element container.\n   */},{key:\"insert\",value:function insert(content){var toChildNode=arguments.length>1&&arguments[1]!==undefined?arguments[1]:false;if(this.isInput){this.$e.value=\"\".concat(this.$e.value).concat(content);return;}var el=toChildNode?this.$eContainer.lastChild:this.$eContainer;el.insertAdjacentHTML(\"beforeend\",content);this.setContents(this.getRaw().split(\"\").join(\"\"));}},{key:\"handleHardCoded\",value:function handleHardCoded(existing){if(!existing.length)return false;if(this.opts.startDelete){this.insert(existing);this.queue.add([this.delete,true]);this.addSplitPause(1);return;}this.opts.strings=_toConsumableArray(toArray(existing.trim())).concat(_toConsumableArray(this.opts.strings));}},{key:\"wait\",value:function wait(callback,delay){this.timeouts.push(setTimeout(callback,delay));}},{key:\"setPace\",value:function setPace(){var typeSpeed=this.opts.speed;var deleteSpeed=this.opts.deleteSpeed!==null?this.opts.deleteSpeed:this.opts.speed/3;var typeRange=typeSpeed/2;var deleteRange=deleteSpeed/2;this.typePace=this.opts.lifeLike?randomInRange(typeSpeed,typeRange):typeSpeed;this.deletePace=this.opts.lifeLike?randomInRange(deleteSpeed,deleteRange):deleteSpeed;}/**\n   * QUEUEABLE\n   */},{key:\"pause\",value:function pause(){var _this6=this;var time=arguments.length>0&&arguments[0]!==undefined?arguments[0]:false;return new Promise(function(resolve,reject){_this6.wait(function(){return resolve();},time?time:_this6.opts.nextStringDelay.total);});}/**\n   * QUEUEABLE - Type a SINGLE character.\n   * @param {*} character\n   */},{key:\"type\",value:function type(character){var _this7=this;return new Promise(function(resolve,reject){_this7.wait(function(){//-- We hit a standard string.\nif(typeof character===\"string\"){_this7.insert(character);return resolve();}//-- We hit a node; create tag itself only if it's:\n//-- 1) the first character\n//-- 2) a self-closing tag (content === null)\nif(character.isFirstCharacter||character.content===null){_this7.insert(createNodeString({tag:character.tag,attributes:character.attributes,content:character.content}));return resolve();}_this7.insert(character.content,true);return resolve();},_this7.typePace);});}/**\n   * QUEUEABLE\n   */},{key:\"empty\",value:function empty(){var _this8=this;return new Promise(function(resolve){_this8.setContents(\"\");return resolve();});}/**\n   * QUEUEABLE\n   */},{key:\"delete\",value:function _delete(){var _this9=this;var keepGoingUntilAllIsGone=arguments.length>0&&arguments[0]!==undefined?arguments[0]:false;return new Promise(function(resolve,reject){_this9.wait(function(){var contents=_this9.getNoderized();//-- Remove last character.\ncontents.splice(-1,1);//-- Convert each node object into string representation,\n//-- grouping them before reprinting.\ncontents=groupNodeStringContents(contents);_this9.setContents(contents.join(\"\"));/**\n         * If it's specified, keep deleting until all characters are gone. This is\n         * the only time when a SINGLE queue action (`delete()`) deals with multiple\n         * characters at once. I don't like it, but need to implement like this right now.\n         */if(keepGoingUntilAllIsGone&&contents.length>0){_this9.delete(true);}return resolve();},_this9.deletePace);});}/**\n   * QUEUEABLE\n   */},{key:\"setOptions\",value:function setOptions(options){var _this10=this;return new Promise(function(resolve){_this10.opts=merge({},_this10.opts,options);return resolve();});}}]);return Instance;}();export{Instance as default};"
+        },
+        {
+          "id": "./src/Queue.js",
+          "identifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/Queue.js",
+          "name": "./src/Queue.js",
+          "index": 11,
+          "index2": 9,
+          "size": 1832,
+          "cacheable": true,
+          "built": true,
+          "optional": false,
+          "prefetched": false,
+          "chunks": [
+            "TypeIt"
+          ],
+          "issuer": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/Instance.js",
+          "issuerId": "./src/Instance.js",
+          "issuerName": "./src/Instance.js",
+          "issuerPath": [
+            {
+              "id": "./src/TypeIt.js",
+              "identifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/TypeIt.js",
+              "name": "./src/TypeIt.js",
+              "profile": {
+                "factory": 32,
+                "building": 366
+              }
+            },
+            {
+              "id": "./src/Instance.js",
+              "identifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/Instance.js",
+              "name": "./src/Instance.js",
+              "profile": {
+                "factory": 38,
+                "building": 177,
+                "dependencies": 1
+              }
+            }
+          ],
+          "profile": {
+            "factory": 31,
+            "building": 64,
+            "dependencies": 0
+          },
+          "failed": false,
+          "errors": 0,
+          "warnings": 0,
+          "assets": [],
+          "reasons": [
+            {
+              "moduleId": "./src/Instance.js",
+              "moduleIdentifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/Instance.js",
+              "module": "./src/Instance.js",
+              "moduleName": "./src/Instance.js",
+              "type": "harmony side effect evaluation",
+              "userRequest": "./Queue",
+              "loc": "1:1601-1628"
+            },
+            {
+              "moduleId": "./src/Instance.js",
+              "moduleIdentifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/Instance.js",
+              "module": "./src/Instance.js",
+              "moduleName": "./src/Instance.js",
+              "type": "harmony import specifier",
+              "userRequest": "./Queue",
+              "loc": "1:2166-2171"
+            }
+          ],
+          "providedExports": [
+            "default"
+          ],
+          "optimizationBailout": [],
+          "depth": 2,
+          "source": "function _toConsumableArray(arr){return _arrayWithoutHoles(arr)||_iterableToArray(arr)||_nonIterableSpread();}function _nonIterableSpread(){throw new TypeError(\"Invalid attempt to spread non-iterable instance\");}function _iterableToArray(iter){if(Symbol.iterator in Object(iter)||Object.prototype.toString.call(iter)===\"[object Arguments]\")return Array.from(iter);}function _arrayWithoutHoles(arr){if(Array.isArray(arr)){for(var i=0,arr2=new Array(arr.length);i<arr.length;i++){arr2[i]=arr[i];}return arr2;}}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError(\"Cannot call a class as a function\");}}function _defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if(\"value\"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}function _createClass(Constructor,protoProps,staticProps){if(protoProps)_defineProperties(Constructor.prototype,protoProps);if(staticProps)_defineProperties(Constructor,staticProps);return Constructor;}var _default=/*#__PURE__*/function(){function _default(){var items=arguments.length>0&&arguments[0]!==undefined?arguments[0]:[];_classCallCheck(this,_default);this.executed=[];this.waiting=items;}_createClass(_default,[{key:\"add\",value:function add(step){var toBeginning=arguments.length>1&&arguments[1]!==undefined?arguments[1]:false;this.waiting[toBeginning?\"unshift\":\"push\"](step);return this;}},{key:\"delete\",value:function _delete(index){this.waiting.splice(index,1);return this;}},{key:\"reset\",value:function reset(){this.waiting=_toConsumableArray(this.executed).concat(_toConsumableArray(this.waiting));this.executed=[];return this;}}]);return _default;}();export{_default as default};"
+        },
+        {
+          "id": "./src/TypeIt.js",
+          "identifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/TypeIt.js",
+          "name": "./src/TypeIt.js",
+          "index": 0,
+          "index2": 13,
+          "size": 4463,
+          "cacheable": true,
+          "built": true,
+          "optional": false,
+          "prefetched": false,
+          "chunks": [
+            "TypeIt"
+          ],
+          "issuer": null,
+          "issuerId": null,
+          "issuerName": null,
+          "issuerPath": null,
+          "profile": {
+            "factory": 32,
+            "building": 366
+          },
+          "failed": false,
+          "errors": 0,
+          "warnings": 0,
+          "assets": [],
+          "reasons": [
+            {
+              "moduleId": null,
+              "moduleIdentifier": null,
+              "module": null,
+              "moduleName": null,
+              "type": "single entry",
+              "userRequest": "./src/TypeIt.js",
+              "loc": "TypeIt"
+            }
+          ],
+          "providedExports": [
+            "default"
+          ],
+          "optimizationBailout": [],
+          "depth": 0,
+          "source": "function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError(\"Cannot call a class as a function\");}}function _defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if(\"value\"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}function _createClass(Constructor,protoProps,staticProps){if(protoProps)_defineProperties(Constructor.prototype,protoProps);if(staticProps)_defineProperties(Constructor,staticProps);return Constructor;}import Instance from\"./Instance\";import allHaveStatus from\"./helpers/allHaveStatus\";import{generateHash}from\"./utilities\";import toArrayOfNodes from\"./helpers/toArrayOfNodes\";var TypeIt=/*#__PURE__*/function(){function TypeIt(element,options){_classCallCheck(this,TypeIt);this.instances=toArrayOfNodes(element).map(function(el){return new Instance({element:el,id:generateHash(),options:options,queue:[]});});}_createClass(TypeIt,[{key:\"each\",value:function each(func){var _this=this;this.instances.forEach(function(instance){func.call(_this,instance);});}/**\n   * Push a specific action directly into the queue of each instance.\n   * If an instance has already completed, trigger the queeu again.\n   *\n   * @param {string} function\n   * @param {*} argument\n   * @\n   */},{key:\"queueUp\",value:function queueUp(action){var _this2=this;var argument=arguments.length>1&&arguments[1]!==undefined?arguments[1]:null;var numberOfTimesToCopy=arguments.length>2&&arguments[2]!==undefined?arguments[2]:1;this.each(function(instance){var isIndependentFunction=typeof action!==\"string\";/**\n       * If action is a string, bind it to instance.\n       * Otherwise, leave it on its own.\n       */var toFire=isIndependentFunction?action:instance[action];var toPassAsArguments=isIndependentFunction?_this2:argument;for(var i=0;i<numberOfTimesToCopy;i++){instance.queue.add([toFire,toPassAsArguments]);}});}},{key:\"is\",value:function is(status){return allHaveStatus(this.instances,status,true);}},{key:\"freeze\",value:function freeze(){this.each(function(instance){instance.status.frozen=true;});}},{key:\"unfreeze\",value:function unfreeze(){this.each(function(instance){if(!instance.status.frozen)return;instance.status.frozen=false;instance.fire();});}/**\n   * If used after typing has started, will append strings to the end of the existing queue. If used when typing is paused, will restart it.\n   *\n   * @param  {string} string The string to be typed.\n   * @return {object} TypeIt instance\n   */},{key:\"type\",value:function type(){var string=arguments.length>0&&arguments[0]!==undefined?arguments[0]:\"\";this.each(function(instance){return instance.queueString(string);});return this;}/**\n   * If null is passed, will delete whatever's currently in the element.\n   *\n   * @param  { number } numCharacters Number of characters to delete.\n   * @return { TypeIt }\n   */},{key:\"delete\",value:function _delete(){var numberOfCharactersToDelete=arguments.length>0&&arguments[0]!==undefined?arguments[0]:null;this.queueUp(\"delete\",numberOfCharactersToDelete===null,//-- Maybe delete all.\nnumberOfCharactersToDelete===null?1:numberOfCharactersToDelete);return this;}},{key:\"pause\",value:function pause(){var ms=arguments.length>0&&arguments[0]!==undefined?arguments[0]:null;this.queueUp(\"pause\",ms);return this;}},{key:\"break\",value:function _break(){this.queueUp(\"type\",\"<br>\");return this;}},{key:\"options\",value:function options(_options){this.queueUp(\"setOptions\",_options);return this;}},{key:\"hook\",value:function hook(func){this.queueUp(func);return this;}},{key:\"destroy\",value:function destroy(){var removeCursor=arguments.length>0&&arguments[0]!==undefined?arguments[0]:true;this.each(function(instance){instance.timeouts.forEach(function(timeout){clearTimeout(timeout);});instance.timeouts=[];if(removeCursor&&instance.opts.cursor){instance.$eWrapper.removeChild(instance.$eWrapper.querySelector(\".ti-cursor\"));}instance.status.destroyed=true;});}},{key:\"empty\",value:function empty(){this.queueUp(\"empty\");return this;}/**\n   * Reset each instance like it's brand new.\n   */},{key:\"reset\",value:function reset(){this.instances=this.instances.map(function(instance){return instance.reset();});return this;}},{key:\"go\",value:function go(){this.each(function(instance){instance.init();});return this;}}]);return TypeIt;}();export{TypeIt as default};"
+        },
+        {
+          "id": "./src/defaults.js",
+          "identifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/defaults.js",
+          "name": "./src/defaults.js",
+          "index": 2,
+          "index2": 0,
+          "size": 330,
+          "cacheable": true,
+          "built": true,
+          "optional": false,
+          "prefetched": false,
+          "chunks": [
+            "TypeIt"
+          ],
+          "issuer": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/Instance.js",
+          "issuerId": "./src/Instance.js",
+          "issuerName": "./src/Instance.js",
+          "issuerPath": [
+            {
+              "id": "./src/TypeIt.js",
+              "identifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/TypeIt.js",
+              "name": "./src/TypeIt.js",
+              "profile": {
+                "factory": 32,
+                "building": 366
+              }
+            },
+            {
+              "id": "./src/Instance.js",
+              "identifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/Instance.js",
+              "name": "./src/Instance.js",
+              "profile": {
+                "factory": 38,
+                "building": 177,
+                "dependencies": 1
+              }
+            }
+          ],
+          "profile": {
+            "factory": 31,
+            "building": 64,
+            "dependencies": 0
+          },
+          "failed": false,
+          "errors": 0,
+          "warnings": 0,
+          "assets": [],
+          "reasons": [
+            {
+              "moduleId": "./src/Instance.js",
+              "moduleIdentifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/Instance.js",
+              "module": "./src/Instance.js",
+              "moduleName": "./src/Instance.js",
+              "type": "harmony side effect evaluation",
+              "userRequest": "./defaults.js",
+              "loc": "1:1139-1175"
+            },
+            {
+              "moduleId": "./src/Instance.js",
+              "moduleIdentifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/Instance.js",
+              "module": "./src/Instance.js",
+              "moduleName": "./src/Instance.js",
+              "type": "harmony import specifier",
+              "userRequest": "./defaults.js",
+              "loc": "1:2198-2206"
+            }
+          ],
+          "providedExports": [
+            "default"
+          ],
+          "optimizationBailout": [],
+          "depth": 2,
+          "source": "export default{strings:[],speed:100,cursor:true,cursorChar:\"|\",cursorSpeed:1000,deleteSpeed:null,lifeLike:true,breakLines:true,startDelay:250,startDelete:false,nextStringDelay:750,loop:false,loopDelay:null,html:true,waitUntilVisible:false,beforeString:false,afterString:false,beforeStep:false,afterStep:false,afterComplete:false};"
+        },
+        {
+          "id": "./src/helpers/allHaveStatus.js",
+          "identifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/helpers/allHaveStatus.js",
+          "name": "./src/helpers/allHaveStatus.js",
+          "index": 12,
+          "index2": 11,
+          "size": 198,
+          "cacheable": true,
+          "built": true,
+          "optional": false,
+          "prefetched": false,
+          "chunks": [
+            "TypeIt"
+          ],
+          "issuer": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/TypeIt.js",
+          "issuerId": "./src/TypeIt.js",
+          "issuerName": "./src/TypeIt.js",
+          "issuerPath": [
+            {
+              "id": "./src/TypeIt.js",
+              "identifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/TypeIt.js",
+              "name": "./src/TypeIt.js",
+              "profile": {
+                "factory": 32,
+                "building": 366
+              }
+            }
+          ],
+          "profile": {
+            "factory": 38,
+            "building": 177,
+            "dependencies": 1
+          },
+          "failed": false,
+          "errors": 0,
+          "warnings": 0,
+          "assets": [],
+          "reasons": [
+            {
+              "moduleId": "./src/TypeIt.js",
+              "moduleIdentifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/TypeIt.js",
+              "module": "./src/TypeIt.js",
+              "moduleName": "./src/TypeIt.js",
+              "type": "harmony side effect evaluation",
+              "userRequest": "./helpers/allHaveStatus",
+              "loc": "1:664-715"
+            },
+            {
+              "moduleId": "./src/TypeIt.js",
+              "moduleIdentifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/TypeIt.js",
+              "module": "./src/TypeIt.js",
+              "moduleName": "./src/TypeIt.js",
+              "type": "harmony import specifier",
+              "userRequest": "./helpers/allHaveStatus",
+              "loc": "11:262-275"
+            }
+          ],
+          "providedExports": [
+            "default"
+          ],
+          "optimizationBailout": [],
+          "depth": 1,
+          "source": "export default function(things,property,value){if(!things.length)return false;var result=things.filter(function(thing){return thing.status[property]===value;});return result.length===things.length;}"
+        },
+        {
+          "id": "./src/helpers/clearPreviousMarkup.js",
+          "identifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/helpers/clearPreviousMarkup.js",
+          "name": "./src/helpers/clearPreviousMarkup.js",
+          "index": 9,
+          "index2": 7,
+          "size": 197,
+          "cacheable": true,
+          "built": true,
+          "optional": false,
+          "prefetched": false,
+          "chunks": [
+            "TypeIt"
+          ],
+          "issuer": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/Instance.js",
+          "issuerId": "./src/Instance.js",
+          "issuerName": "./src/Instance.js",
+          "issuerPath": [
+            {
+              "id": "./src/TypeIt.js",
+              "identifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/TypeIt.js",
+              "name": "./src/TypeIt.js",
+              "profile": {
+                "factory": 32,
+                "building": 366
+              }
+            },
+            {
+              "id": "./src/Instance.js",
+              "identifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/Instance.js",
+              "name": "./src/Instance.js",
+              "profile": {
+                "factory": 38,
+                "building": 177,
+                "dependencies": 1
+              }
+            }
+          ],
+          "profile": {
+            "factory": 31,
+            "building": 64,
+            "dependencies": 0
+          },
+          "failed": false,
+          "errors": 0,
+          "warnings": 0,
+          "assets": [],
+          "reasons": [
+            {
+              "moduleId": "./src/Instance.js",
+              "moduleIdentifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/Instance.js",
+              "module": "./src/Instance.js",
+              "moduleName": "./src/Instance.js",
+              "type": "harmony side effect evaluation",
+              "userRequest": "./helpers/clearPreviousMarkup",
+              "loc": "1:1467-1530"
+            },
+            {
+              "moduleId": "./src/Instance.js",
+              "moduleIdentifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/Instance.js",
+              "module": "./src/Instance.js",
+              "moduleName": "./src/Instance.js",
+              "type": "harmony import specifier",
+              "userRequest": "./helpers/clearPreviousMarkup",
+              "loc": "1:2376-2395"
+            }
+          ],
+          "providedExports": [
+            "default"
+          ],
+          "optimizationBailout": [],
+          "depth": 2,
+          "source": "export default(function(element){[].slice.call(element.childNodes).forEach(function(node){if(node.classList===undefined)return;if(node.classList.contains(\"ti-wrapper\")){element.innerHTML=\"\";}});});"
+        },
+        {
+          "id": "./src/helpers/createNodeString.js",
+          "identifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/helpers/createNodeString.js",
+          "name": "./src/helpers/createNodeString.js",
+          "index": 8,
+          "index2": 6,
+          "size": 404,
+          "cacheable": true,
+          "built": true,
+          "optional": false,
+          "prefetched": false,
+          "chunks": [
+            "TypeIt"
+          ],
+          "issuer": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/Instance.js",
+          "issuerId": "./src/Instance.js",
+          "issuerName": "./src/Instance.js",
+          "issuerPath": [
+            {
+              "id": "./src/TypeIt.js",
+              "identifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/TypeIt.js",
+              "name": "./src/TypeIt.js",
+              "profile": {
+                "factory": 32,
+                "building": 366
+              }
+            },
+            {
+              "id": "./src/Instance.js",
+              "identifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/Instance.js",
+              "name": "./src/Instance.js",
+              "profile": {
+                "factory": 38,
+                "building": 177,
+                "dependencies": 1
+              }
+            }
+          ],
+          "profile": {
+            "factory": 31,
+            "building": 64,
+            "dependencies": 0
+          },
+          "failed": false,
+          "errors": 0,
+          "warnings": 0,
+          "assets": [],
+          "reasons": [
+            {
+              "moduleId": "./src/Instance.js",
+              "moduleIdentifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/Instance.js",
+              "module": "./src/Instance.js",
+              "moduleName": "./src/Instance.js",
+              "type": "harmony side effect evaluation",
+              "userRequest": "./helpers/createNodeString",
+              "loc": "1:1410-1467"
+            },
+            {
+              "moduleId": "./src/Instance.js",
+              "moduleIdentifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/Instance.js",
+              "module": "./src/Instance.js",
+              "moduleName": "./src/Instance.js",
+              "type": "harmony import specifier",
+              "userRequest": "./helpers/createNodeString",
+              "loc": "55:71-87"
+            },
+            {
+              "moduleId": "./src/helpers/groupNodeStringContents.js",
+              "moduleIdentifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/helpers/groupNodeStringContents.js",
+              "module": "./src/helpers/groupNodeStringContents.js",
+              "moduleName": "./src/helpers/groupNodeStringContents.js",
+              "type": "harmony side effect evaluation",
+              "userRequest": "./createNodeString",
+              "loc": "1:307-356"
+            },
+            {
+              "moduleId": "./src/helpers/groupNodeStringContents.js",
+              "moduleIdentifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/helpers/groupNodeStringContents.js",
+              "module": "./src/helpers/groupNodeStringContents.js",
+              "moduleName": "./src/helpers/groupNodeStringContents.js",
+              "type": "harmony import specifier",
+              "userRequest": "./createNodeString",
+              "loc": "9:435-451"
+            }
+          ],
+          "providedExports": [
+            "default"
+          ],
+          "optimizationBailout": [],
+          "depth": 2,
+          "source": "export default function(_ref){var tag=_ref.tag,_ref$attributes=_ref.attributes,attributes=_ref$attributes===void 0?[]:_ref$attributes,_ref$content=_ref.content,content=_ref$content===void 0?\"\":_ref$content;var node=document.createElement(tag);if(attributes!==undefined){attributes.forEach(function(att){node.setAttribute(att.name,att.value);});}if(content){node.innerHTML=content;}return node.outerHTML;}"
+        },
+        {
+          "id": "./src/helpers/groupNodeStringContents.js",
+          "identifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/helpers/groupNodeStringContents.js",
+          "name": "./src/helpers/groupNodeStringContents.js",
+          "index": 10,
+          "index2": 8,
+          "size": 1232,
+          "cacheable": true,
+          "built": true,
+          "optional": false,
+          "prefetched": false,
+          "chunks": [
+            "TypeIt"
+          ],
+          "issuer": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/Instance.js",
+          "issuerId": "./src/Instance.js",
+          "issuerName": "./src/Instance.js",
+          "issuerPath": [
+            {
+              "id": "./src/TypeIt.js",
+              "identifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/TypeIt.js",
+              "name": "./src/TypeIt.js",
+              "profile": {
+                "factory": 32,
+                "building": 366
+              }
+            },
+            {
+              "id": "./src/Instance.js",
+              "identifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/Instance.js",
+              "name": "./src/Instance.js",
+              "profile": {
+                "factory": 38,
+                "building": 177,
+                "dependencies": 1
+              }
+            }
+          ],
+          "profile": {
+            "factory": 31,
+            "building": 64,
+            "dependencies": 0
+          },
+          "failed": false,
+          "errors": 0,
+          "warnings": 0,
+          "assets": [],
+          "reasons": [
+            {
+              "moduleId": "./src/Instance.js",
+              "moduleIdentifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/Instance.js",
+              "module": "./src/Instance.js",
+              "moduleName": "./src/Instance.js",
+              "type": "harmony side effect evaluation",
+              "userRequest": "./helpers/groupNodeStringContents",
+              "loc": "1:1530-1601"
+            },
+            {
+              "moduleId": "./src/Instance.js",
+              "moduleIdentifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/Instance.js",
+              "module": "./src/Instance.js",
+              "moduleName": "./src/Instance.js",
+              "type": "harmony import specifier",
+              "userRequest": "./helpers/groupNodeStringContents",
+              "loc": "62:9-32"
+            }
+          ],
+          "providedExports": [
+            "default"
+          ],
+          "optimizationBailout": [],
+          "depth": 2,
+          "source": "function _typeof(obj){if(typeof Symbol===\"function\"&&typeof Symbol.iterator===\"symbol\"){_typeof=function _typeof(obj){return typeof obj;};}else{_typeof=function _typeof(obj){return obj&&typeof Symbol===\"function\"&&obj.constructor===Symbol&&obj!==Symbol.prototype?\"symbol\":typeof obj;};}return _typeof(obj);}import createNodeString from\"./createNodeString\";/**\n * Group a collection of contents by HTML tags,\n * so that it can be correctly printed.\n *\n * If this were NOT to exist, each character supposed to be\n * inside an HTML tag would be individually wrapped by that tag.\n *\n * @param array contents\n */export default function(contents){contents=contents.map(function(character,index){if(_typeof(character)===\"object\"&&character.isFirstCharacter){var pointer=index;var tagContent=[character.content];var hasLastCharacter=false;while(!hasLastCharacter){pointer++;var nextItem=contents[pointer];if(nextItem!==undefined){tagContent.push(nextItem.content);}if(nextItem===undefined||nextItem.isLastCharacter){hasLastCharacter=true;}}return createNodeString({tag:character.tag,attributes:character.attributes,content:tagContent.join(\"\")});}return character;});return contents.filter(function(item){return _typeof(item)!==\"object\";});}"
+        },
+        {
+          "id": "./src/helpers/isInput.js",
+          "identifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/helpers/isInput.js",
+          "name": "./src/helpers/isInput.js",
+          "index": 5,
+          "index2": 3,
+          "size": 95,
+          "cacheable": true,
+          "built": true,
+          "optional": false,
+          "prefetched": false,
+          "chunks": [
+            "TypeIt"
+          ],
+          "issuer": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/Instance.js",
+          "issuerId": "./src/Instance.js",
+          "issuerName": "./src/Instance.js",
+          "issuerPath": [
+            {
+              "id": "./src/TypeIt.js",
+              "identifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/TypeIt.js",
+              "name": "./src/TypeIt.js",
+              "profile": {
+                "factory": 32,
+                "building": 366
+              }
+            },
+            {
+              "id": "./src/Instance.js",
+              "identifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/Instance.js",
+              "name": "./src/Instance.js",
+              "profile": {
+                "factory": 38,
+                "building": 177,
+                "dependencies": 1
+              }
+            }
+          ],
+          "profile": {
+            "factory": 31,
+            "building": 64,
+            "dependencies": 0
+          },
+          "failed": false,
+          "errors": 0,
+          "warnings": 0,
+          "assets": [],
+          "reasons": [
+            {
+              "moduleId": "./src/Instance.js",
+              "moduleIdentifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/Instance.js",
+              "module": "./src/Instance.js",
+              "moduleName": "./src/Instance.js",
+              "type": "harmony side effect evaluation",
+              "userRequest": "./helpers/isInput",
+              "loc": "1:1291-1330"
+            },
+            {
+              "moduleId": "./src/Instance.js",
+              "moduleIdentifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/Instance.js",
+              "module": "./src/Instance.js",
+              "moduleName": "./src/Instance.js",
+              "type": "harmony import specifier",
+              "userRequest": "./helpers/isInput",
+              "loc": "1:2134-2141"
+            }
+          ],
+          "providedExports": [
+            "default"
+          ],
+          "optimizationBailout": [],
+          "depth": 2,
+          "source": "export default(function(el){return[\"textarea\",\"input\"].indexOf(el.tagName.toLowerCase())>-1;});"
+        },
+        {
+          "id": "./src/helpers/merge.js",
+          "identifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/helpers/merge.js",
+          "name": "./src/helpers/merge.js",
+          "index": 4,
+          "index2": 2,
+          "size": 302,
+          "cacheable": true,
+          "built": true,
+          "optional": false,
+          "prefetched": false,
+          "chunks": [
+            "TypeIt"
+          ],
+          "issuer": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/Instance.js",
+          "issuerId": "./src/Instance.js",
+          "issuerName": "./src/Instance.js",
+          "issuerPath": [
+            {
+              "id": "./src/TypeIt.js",
+              "identifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/TypeIt.js",
+              "name": "./src/TypeIt.js",
+              "profile": {
+                "factory": 32,
+                "building": 366
+              }
+            },
+            {
+              "id": "./src/Instance.js",
+              "identifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/Instance.js",
+              "name": "./src/Instance.js",
+              "profile": {
+                "factory": 38,
+                "building": 177,
+                "dependencies": 1
+              }
+            }
+          ],
+          "profile": {
+            "factory": 31,
+            "building": 64,
+            "dependencies": 0
+          },
+          "failed": false,
+          "errors": 0,
+          "warnings": 0,
+          "assets": [],
+          "reasons": [
+            {
+              "moduleId": "./src/Instance.js",
+              "moduleIdentifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/Instance.js",
+              "module": "./src/Instance.js",
+              "moduleName": "./src/Instance.js",
+              "type": "harmony side effect evaluation",
+              "userRequest": "./helpers/merge",
+              "loc": "1:1256-1291"
+            },
+            {
+              "moduleId": "./src/Instance.js",
+              "moduleIdentifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/Instance.js",
+              "module": "./src/Instance.js",
+              "moduleName": "./src/Instance.js",
+              "type": "harmony import specifier",
+              "userRequest": "./helpers/merge",
+              "loc": "1:2189-2194"
+            },
+            {
+              "moduleId": "./src/Instance.js",
+              "moduleIdentifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/Instance.js",
+              "module": "./src/Instance.js",
+              "moduleName": "./src/Instance.js",
+              "type": "harmony import specifier",
+              "userRequest": "./helpers/merge",
+              "loc": "68:127-132"
+            }
+          ],
+          "providedExports": [
+            "default"
+          ],
+          "optimizationBailout": [],
+          "depth": 2,
+          "source": "export default function(target,varArgs){var to=Object(target);for(var index=1;index<arguments.length;index++){var nextSource=arguments[index];if(nextSource!=null){for(var nextKey in nextSource){if(Object.prototype.hasOwnProperty.call(nextSource,nextKey)){to[nextKey]=nextSource[nextKey];}}}}return to;}"
+        },
+        {
+          "id": "./src/helpers/noderize.js",
+          "identifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/helpers/noderize.js",
+          "name": "./src/helpers/noderize.js",
+          "index": 7,
+          "index2": 5,
+          "size": 2561,
+          "cacheable": true,
+          "built": true,
+          "optional": false,
+          "prefetched": false,
+          "chunks": [
+            "TypeIt"
+          ],
+          "issuer": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/Instance.js",
+          "issuerId": "./src/Instance.js",
+          "issuerName": "./src/Instance.js",
+          "issuerPath": [
+            {
+              "id": "./src/TypeIt.js",
+              "identifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/TypeIt.js",
+              "name": "./src/TypeIt.js",
+              "profile": {
+                "factory": 32,
+                "building": 366
+              }
+            },
+            {
+              "id": "./src/Instance.js",
+              "identifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/Instance.js",
+              "name": "./src/Instance.js",
+              "profile": {
+                "factory": 38,
+                "building": 177,
+                "dependencies": 1
+              }
+            }
+          ],
+          "profile": {
+            "factory": 31,
+            "building": 64,
+            "dependencies": 0
+          },
+          "failed": false,
+          "errors": 0,
+          "warnings": 0,
+          "assets": [],
+          "reasons": [
+            {
+              "moduleId": "./src/Instance.js",
+              "moduleIdentifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/Instance.js",
+              "module": "./src/Instance.js",
+              "moduleName": "./src/Instance.js",
+              "type": "harmony side effect evaluation",
+              "userRequest": "./helpers/noderize",
+              "loc": "1:1369-1410"
+            },
+            {
+              "moduleId": "./src/Instance.js",
+              "moduleIdentifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/Instance.js",
+              "module": "./src/Instance.js",
+              "moduleName": "./src/Instance.js",
+              "type": "harmony import specifier",
+              "userRequest": "./helpers/noderize",
+              "loc": "33:115-123"
+            }
+          ],
+          "providedExports": [
+            "placeholderize",
+            "removePlaceholderRemnants",
+            "default"
+          ],
+          "optimizationBailout": [],
+          "depth": 2,
+          "source": "function _typeof(obj){if(typeof Symbol===\"function\"&&typeof Symbol.iterator===\"symbol\"){_typeof=function _typeof(obj){return typeof obj;};}else{_typeof=function _typeof(obj){return obj&&typeof Symbol===\"function\"&&obj.constructor===Symbol&&obj!==Symbol.prototype?\"symbol\":typeof obj;};}return _typeof(obj);}var PLACEHOLDER_PATTERN=\"{%}\";/**\n * Replace nodes with string placeholders.\n *\n * @param string string\n */export function placeholderize(string){var parser=new DOMParser();var doc=parser.parseFromString(string,\"text/html\");var nodes=[].slice.call(doc.body.querySelectorAll(\"*\"));//-- Remove empty tags.\nnodes=nodes.filter(function(item){//-- This thing is empty.\nif(item.outerHTML.indexOf(\"></\")>-1){string=string.replace(item.outerHTML,\"\");return false;}return true;});//-- Replace node strings with placeholders.\nnodes.forEach(function(item){var chopped=item.outerHTML.slice(0,-1);string=string.replace(new RegExp(\"\".concat(chopped,\"/?>\"),\"i\"),PLACEHOLDER_PATTERN);});return{string:string,nodes:nodes};}/**\n * Remove remants \"%}\" of placeholders that remain\n * after noderizing an array.\n *\n * @param array items\n */export function removePlaceholderRemnants(items){var isPruning=true;while(isPruning){var hasLastCharacters=items.some(function(item,index){var isLastCharacterObject=_typeof(item)===\"object\"&&item.isLastCharacter;if(isLastCharacterObject&&items.slice(index+1,index+3).join(\"\")===\"%}\"){items.splice(index+1,2);return true;}return false;});if(!hasLastCharacters){isPruning=false;}}return items;}export default function(rawString){var _placeholderize=placeholderize(rawString),string=_placeholderize.string,nodes=_placeholderize.nodes;var stringArray=string.split(\"\");var nodifiedArray=[];stringArray.forEach(function(item,index){//-- Just a regular character.\nif(stringArray.slice(index,index+3).join(\"\")!==PLACEHOLDER_PATTERN){nodifiedArray.push(item);return;}//-- Replace placeholder w/ node objects.\nvar firstCharacterIndex=index;var node=nodes.shift();var nodeContents=node.innerHTML.split(\"\");var nodeAttributes=[].slice.call(node.attributes).map(function(att){return{name:att.name,value:att.nodeValue};});if(nodeContents.length){nodeContents.forEach(function(character,i){nodifiedArray.push({tag:node.tagName,attributes:nodeAttributes,content:character,isFirstCharacter:firstCharacterIndex===index,isLastCharacter:i+1===nodeContents.length});firstCharacterIndex++;});}else{nodifiedArray.push({tag:node.tagName,attributes:nodeAttributes,content:null});}});nodifiedArray=removePlaceholderRemnants(nodifiedArray);return nodifiedArray;}"
+        },
+        {
+          "id": "./src/helpers/toArray.js",
+          "identifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/helpers/toArray.js",
+          "name": "./src/helpers/toArray.js",
+          "index": 6,
+          "index2": 4,
+          "size": 197,
+          "cacheable": true,
+          "built": true,
+          "optional": false,
+          "prefetched": false,
+          "chunks": [
+            "TypeIt"
+          ],
+          "issuer": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/Instance.js",
+          "issuerId": "./src/Instance.js",
+          "issuerName": "./src/Instance.js",
+          "issuerPath": [
+            {
+              "id": "./src/TypeIt.js",
+              "identifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/TypeIt.js",
+              "name": "./src/TypeIt.js",
+              "profile": {
+                "factory": 32,
+                "building": 366
+              }
+            },
+            {
+              "id": "./src/Instance.js",
+              "identifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/Instance.js",
+              "name": "./src/Instance.js",
+              "profile": {
+                "factory": 38,
+                "building": 177,
+                "dependencies": 1
+              }
+            }
+          ],
+          "profile": {
+            "factory": 31,
+            "building": 64,
+            "dependencies": 0
+          },
+          "failed": false,
+          "errors": 0,
+          "warnings": 0,
+          "assets": [],
+          "reasons": [
+            {
+              "moduleId": "./src/Instance.js",
+              "moduleIdentifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/Instance.js",
+              "module": "./src/Instance.js",
+              "moduleName": "./src/Instance.js",
+              "type": "harmony side effect evaluation",
+              "userRequest": "./helpers/toArray",
+              "loc": "1:1330-1369"
+            },
+            {
+              "moduleId": "./src/Instance.js",
+              "moduleIdentifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/Instance.js",
+              "module": "./src/Instance.js",
+              "moduleName": "./src/Instance.js",
+              "type": "harmony import specifier",
+              "userRequest": "./helpers/toArray",
+              "loc": "1:2249-2256"
+            },
+            {
+              "moduleId": "./src/Instance.js",
+              "moduleIdentifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/Instance.js",
+              "module": "./src/Instance.js",
+              "moduleName": "./src/Instance.js",
+              "type": "harmony import specifier",
+              "userRequest": "./helpers/toArray",
+              "loc": "46:619-626"
+            }
+          ],
+          "providedExports": [
+            "default"
+          ],
+          "optimizationBailout": [],
+          "depth": 2,
+          "source": "/**\n * Splits a string into characters, or an array by break tags.\n * @param {string} string\n */export default(function(string){return Array.isArray(string)?string.slice(0):string.split(\"<br>\");});"
+        },
+        {
+          "id": "./src/helpers/toArrayOfNodes.js",
+          "identifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/helpers/toArrayOfNodes.js",
+          "name": "./src/helpers/toArrayOfNodes.js",
+          "index": 13,
+          "index2": 12,
+          "size": 180,
+          "cacheable": true,
+          "built": true,
+          "optional": false,
+          "prefetched": false,
+          "chunks": [
+            "TypeIt"
+          ],
+          "issuer": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/TypeIt.js",
+          "issuerId": "./src/TypeIt.js",
+          "issuerName": "./src/TypeIt.js",
+          "issuerPath": [
+            {
+              "id": "./src/TypeIt.js",
+              "identifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/TypeIt.js",
+              "name": "./src/TypeIt.js",
+              "profile": {
+                "factory": 32,
+                "building": 366
+              }
+            }
+          ],
+          "profile": {
+            "factory": 38,
+            "building": 177,
+            "dependencies": 1
+          },
+          "failed": false,
+          "errors": 0,
+          "warnings": 0,
+          "assets": [],
+          "reasons": [
+            {
+              "moduleId": "./src/TypeIt.js",
+              "moduleIdentifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/TypeIt.js",
+              "module": "./src/TypeIt.js",
+              "moduleName": "./src/TypeIt.js",
+              "type": "harmony side effect evaluation",
+              "userRequest": "./helpers/toArrayOfNodes",
+              "loc": "1:753-806"
+            },
+            {
+              "moduleId": "./src/TypeIt.js",
+              "moduleIdentifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/TypeIt.js",
+              "module": "./src/TypeIt.js",
+              "moduleName": "./src/TypeIt.js",
+              "type": "harmony import specifier",
+              "userRequest": "./helpers/toArrayOfNodes",
+              "loc": "1:918-932"
+            }
+          ],
+          "providedExports": [
+            "default"
+          ],
+          "optimizationBailout": [],
+          "depth": 1,
+          "source": "export default function(thing){if(typeof thing===\"string\"){thing=document.querySelectorAll(thing);}else if(!(thing instanceof NodeList)){thing=[thing];}return[].slice.call(thing);}"
+        },
+        {
+          "id": "./src/utilities.js",
+          "identifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/utilities.js",
+          "name": "./src/utilities.js",
+          "index": 3,
+          "index2": 1,
+          "size": 1006,
+          "cacheable": true,
+          "built": true,
+          "optional": false,
+          "prefetched": false,
+          "chunks": [
+            "TypeIt"
+          ],
+          "issuer": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/TypeIt.js",
+          "issuerId": "./src/TypeIt.js",
+          "issuerName": "./src/TypeIt.js",
+          "issuerPath": [
+            {
+              "id": "./src/TypeIt.js",
+              "identifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/TypeIt.js",
+              "name": "./src/TypeIt.js",
+              "profile": {
+                "factory": 32,
+                "building": 366
+              }
+            }
+          ],
+          "profile": {
+            "factory": 38,
+            "building": 177,
+            "dependencies": 1
+          },
+          "failed": false,
+          "errors": 0,
+          "warnings": 0,
+          "assets": [],
+          "reasons": [
+            {
+              "moduleId": "./src/Instance.js",
+              "moduleIdentifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/Instance.js",
+              "module": "./src/Instance.js",
+              "moduleName": "./src/Instance.js",
+              "type": "harmony side effect evaluation",
+              "userRequest": "./utilities",
+              "loc": "1:1175-1256"
+            },
+            {
+              "moduleId": "./src/Instance.js",
+              "moduleIdentifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/Instance.js",
+              "module": "./src/Instance.js",
+              "moduleName": "./src/Instance.js",
+              "type": "harmony import specifier",
+              "userRequest": "./utilities",
+              "loc": "1:2234-2248"
+            },
+            {
+              "moduleId": "./src/Instance.js",
+              "moduleIdentifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/Instance.js",
+              "module": "./src/Instance.js",
+              "moduleName": "./src/Instance.js",
+              "type": "harmony import specifier",
+              "userRequest": "./utilities",
+              "loc": "1:2762-2771"
+            },
+            {
+              "moduleId": "./src/Instance.js",
+              "moduleIdentifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/Instance.js",
+              "module": "./src/Instance.js",
+              "moduleName": "./src/Instance.js",
+              "type": "harmony import specifier",
+              "userRequest": "./utilities",
+              "loc": "1:2873-2882"
+            },
+            {
+              "moduleId": "./src/Instance.js",
+              "moduleIdentifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/Instance.js",
+              "module": "./src/Instance.js",
+              "moduleName": "./src/Instance.js",
+              "type": "harmony import specifier",
+              "userRequest": "./utilities",
+              "loc": "15:428-444"
+            },
+            {
+              "moduleId": "./src/Instance.js",
+              "moduleIdentifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/Instance.js",
+              "module": "./src/Instance.js",
+              "moduleName": "./src/Instance.js",
+              "type": "harmony import specifier",
+              "userRequest": "./utilities",
+              "loc": "44:486-502"
+            },
+            {
+              "moduleId": "./src/Instance.js",
+              "moduleIdentifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/Instance.js",
+              "module": "./src/Instance.js",
+              "moduleName": "./src/Instance.js",
+              "type": "harmony import specifier",
+              "userRequest": "./utilities",
+              "loc": "46:1036-1049"
+            },
+            {
+              "moduleId": "./src/Instance.js",
+              "moduleIdentifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/Instance.js",
+              "module": "./src/Instance.js",
+              "moduleName": "./src/Instance.js",
+              "type": "harmony import specifier",
+              "userRequest": "./utilities",
+              "loc": "46:1116-1129"
+            },
+            {
+              "moduleId": "./src/TypeIt.js",
+              "moduleIdentifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/TypeIt.js",
+              "module": "./src/TypeIt.js",
+              "moduleName": "./src/TypeIt.js",
+              "type": "harmony side effect evaluation",
+              "userRequest": "./utilities",
+              "loc": "1:715-753"
+            },
+            {
+              "moduleId": "./src/TypeIt.js",
+              "moduleIdentifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/TypeIt.js",
+              "module": "./src/TypeIt.js",
+              "moduleName": "./src/TypeIt.js",
+              "type": "harmony import specifier",
+              "userRequest": "./utilities",
+              "loc": "1:994-1006"
+            }
+          ],
+          "providedExports": [
+            "isVisible",
+            "randomInRange",
+            "appendStyleBlock",
+            "generateHash",
+            "removeComments",
+            "startsWith"
+          ],
+          "optimizationBailout": [],
+          "depth": 1,
+          "source": "export function isVisible(element){var coordinates=element.getBoundingClientRect();//-- Element extends past bottom or right.\nif(coordinates.right>window.innerWidth||coordinates.bottom>window.innerHeight){return false;}//-- Element extends past top or left.\nif(coordinates.top<0||coordinates.left<0){return false;}return true;}export function randomInRange(value,range){return Math.abs(Math.random()*(value+range-(value-range))+(value-range));}export function appendStyleBlock(styles){var id=arguments.length>1&&arguments[1]!==undefined?arguments[1]:\"\";var styleBlock=document.createElement(\"style\");styleBlock.id=id;styleBlock.appendChild(document.createTextNode(styles));document.head.appendChild(styleBlock);}export function generateHash(){return Math.random().toString(36).substring(2,15);}export function removeComments(arrayOfStrings){return arrayOfStrings.map(function(string){return string.replace(/<\\!--.*?-->/g,\"\");});}export function startsWith(string,search){return string.indexOf(search)===0;}"
+        }
+      ],
+      "filteredModules": 0,
+      "origins": [
+        {
+          "module": "",
+          "moduleIdentifier": "",
+          "moduleName": "",
+          "loc": "TypeIt",
+          "request": "./src/TypeIt.js",
+          "reasons": []
+        }
+      ]
+    }
+  ],
+  "modules": [
+    {
+      "id": "./src/Instance.js",
+      "identifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/Instance.js",
+      "name": "./src/Instance.js",
+      "index": 1,
+      "index2": 10,
+      "size": 13720,
+      "cacheable": true,
+      "built": true,
+      "optional": false,
+      "prefetched": false,
+      "chunks": [
+        "TypeIt"
+      ],
+      "issuer": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/TypeIt.js",
+      "issuerId": "./src/TypeIt.js",
+      "issuerName": "./src/TypeIt.js",
+      "issuerPath": [
+        {
+          "id": "./src/TypeIt.js",
+          "identifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/TypeIt.js",
+          "name": "./src/TypeIt.js",
+          "profile": {
+            "factory": 32,
+            "building": 366
+          }
+        }
+      ],
+      "profile": {
+        "factory": 38,
+        "building": 177,
+        "dependencies": 1
+      },
+      "failed": false,
+      "errors": 0,
+      "warnings": 0,
+      "assets": [],
+      "reasons": [
+        {
+          "moduleId": "./src/TypeIt.js",
+          "moduleIdentifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/TypeIt.js",
+          "module": "./src/TypeIt.js",
+          "moduleName": "./src/TypeIt.js",
+          "type": "harmony side effect evaluation",
+          "userRequest": "./Instance",
+          "loc": "1:631-664"
+        },
+        {
+          "moduleId": "./src/TypeIt.js",
+          "moduleIdentifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/TypeIt.js",
+          "module": "./src/TypeIt.js",
+          "moduleName": "./src/TypeIt.js",
+          "type": "harmony import specifier",
+          "userRequest": "./Instance",
+          "loc": "1:970-978"
+        }
+      ],
+      "providedExports": [
+        "default"
+      ],
+      "optimizationBailout": [],
+      "depth": 1,
+      "source": "function _toConsumableArray(arr){return _arrayWithoutHoles(arr)||_iterableToArray(arr)||_nonIterableSpread();}function _nonIterableSpread(){throw new TypeError(\"Invalid attempt to spread non-iterable instance\");}function _iterableToArray(iter){if(Symbol.iterator in Object(iter)||Object.prototype.toString.call(iter)===\"[object Arguments]\")return Array.from(iter);}function _arrayWithoutHoles(arr){if(Array.isArray(arr)){for(var i=0,arr2=new Array(arr.length);i<arr.length;i++){arr2[i]=arr[i];}return arr2;}}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError(\"Cannot call a class as a function\");}}function _defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if(\"value\"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}function _createClass(Constructor,protoProps,staticProps){if(protoProps)_defineProperties(Constructor.prototype,protoProps);if(staticProps)_defineProperties(Constructor,staticProps);return Constructor;}import defaults from\"./defaults.js\";import{isVisible,randomInRange,removeComments,appendStyleBlock}from\"./utilities\";import merge from\"./helpers/merge\";import isInput from\"./helpers/isInput\";import toArray from\"./helpers/toArray\";import noderize from\"./helpers/noderize\";import createNodeString from\"./helpers/createNodeString\";import clearPreviousMarkup from\"./helpers/clearPreviousMarkup\";import groupNodeStringContents from\"./helpers/groupNodeStringContents\";import Queue from\"./Queue\";var baseInlineStyles=\"display:inline;position:relative;font:inherit;color:inherit;line-height:inherit;\";var Instance=/*#__PURE__*/function(){function Instance(){var _ref=arguments.length>0&&arguments[0]!==undefined?arguments[0]:{},element=_ref.element,id=_ref.id,options=_ref.options,_ref$queue=_ref.queue,queue=_ref$queue===void 0?[]:_ref$queue;_classCallCheck(this,Instance);this.status={started:false,complete:false,frozen:false,destroyed:false};this.timeouts=[];this.id=id;this.$e=element;this.isInput=isInput(element);this.queue=new Queue(queue);this.opts=merge({},defaults,options);this.opts.strings=removeComments(toArray(this.opts.strings));this.opts.html=this.isInput?false:this.opts.html;this.queue.add([this.pause,this.opts.startDelay]);clearPreviousMarkup(element);this.prepareDelay(\"nextStringDelay\");this.prepareDelay(\"loopDelay\");var existingMarkup=this.$e.innerHTML;this.prepDOM();this.handleHardCoded(existingMarkup);if(this.opts.strings.length){this.generateQueue();}}_createClass(Instance,[{key:\"init\",value:function init(){var _this=this;if(this.status.started)return;this.cursor();if(!this.opts.waitUntilVisible||isVisible(this.$e)){this.status.started=true;return this.fire();}var checkForStart=function checkForStart(){if(isVisible(_this.$e)&&!_this.status.started){_this.fire();window.removeEventListener(\"scroll\",checkForStart);}};window.addEventListener(\"scroll\",checkForStart);}},{key:\"fire\",value:function fire(){var _this2=this;var queue=this.queue.waiting.slice();var promiseChain=Promise.resolve();var _loop=function _loop(i){var key=queue[i];var callbackArgs=[key,_this2.queue,_this2];promiseChain=promiseChain.then(function(){return new Promise(function(resolve,reject){if(_this2.status.frozen){return reject();}_this2.setPace();if(key[2]&&key[2].isFirst&&_this2.opts.beforeString){var _this2$opts;(_this2$opts=_this2.opts).beforeString.apply(_this2$opts,callbackArgs);}if(_this2.opts.beforeStep){var _this2$opts2;(_this2$opts2=_this2.opts).beforeStep.apply(_this2$opts2,callbackArgs);}//-- Fire this step!\nkey[0].call(_this2,key[1],key[2]).then(function(){var justExecuted=_this2.queue.waiting.shift();//-- If this is a phantom item, as soon as it's executed,\n//-- remove it from the queue and pretend it never existed.\nif(key[2]&&key[2].isPhantom){return resolve();}if(key[2]&&key[2].isLast&&_this2.opts.afterString){var _this2$opts3;(_this2$opts3=_this2.opts).afterString.apply(_this2$opts3,callbackArgs);}if(_this2.opts.afterStep){var _this2$opts4;(_this2$opts4=_this2.opts).afterStep.apply(_this2$opts4,callbackArgs);}//-- Remove this item from the global queue. Needed for pausing.\n_this2.queue.executed.push(justExecuted);return resolve();});});});};for(var i=0;i<queue.length;i++){_loop(i);}promiseChain.then(function(){if(_this2.opts.loop){//-- Split the delay!\nvar delay=_this2.opts.loopDelay?_this2.opts.loopDelay:_this2.opts.nextStringDelay;_this2.wait(function(){_this2.loopify(delay);_this2.fire();},delay.after);}_this2.status.completed=true;if(_this2.opts.afterComplete){_this2.opts.afterComplete(_this2);}return;}).catch(function(){});}/**\n   * 1. Reset queue.\n   * 2. Remove initial pause.\n   * 3. Add phantom deletions.\n   */},{key:\"loopify\",value:function loopify(delay){var _this3=this;//-- Reset queue.\n//-- Remove initial pause, so we can replace with `loop` pause.\n//-- Add delay pause FIRST, since we're adding to beginning of queue.\nthis.queue.reset().delete(0).add([this.pause,delay.before],true);this.getNoderized().forEach(function(item){_this3.queue.add([_this3.delete,null,{isPhantom:true}],true);});}/**\n   * Performs DOM-related work to prepare for typing.\n   */},{key:\"prepDOM\",value:function prepDOM(){if(this.isInput)return;this.$e.innerHTML=\"\\n      <span style=\\\"\".concat(baseInlineStyles,\"\\\" class=\\\"ti-wrapper\\\">\\n        <span style=\\\"\").concat(baseInlineStyles,\"\\\" class=\\\"ti-container\\\"></span>\\n      </span>\\n      \");this.$e.setAttribute(\"data-typeit-id\",this.id);this.$eContainer=this.$e.querySelector(\".ti-container\");this.$eWrapper=this.$e.querySelector(\".ti-wrapper\");appendStyleBlock(\"\\n        .\".concat(this.$eContainer.className,\":before {\\n          content: '.';\\n          display: inline-block;\\n          width: 0;\\n          visibility: hidden;\\n        }\\n      \"));}/**\n   * Reset the instance to new status.\n   */},{key:\"reset\",value:function reset(){this.queue.reset();return new Instance({element:this.$e,id:this.id,options:this.opts,queue:this.queue.waiting});}/**\n   * Set to content according to `html` option.\n   * @param {string | null} content\n   * @todo Test this!\n   */},{key:\"setContents\",value:function setContents(){var content=arguments.length>0&&arguments[0]!==undefined?arguments[0]:\"\";if(this.isInput){this.$e.value=content;}else{this.$eContainer[this.opts.html?\"innerHTML\":\"innerText\"]=content;}}/**\n   * Get the raw content in the element, unnoderized.\n   */},{key:\"getRaw\",value:function getRaw(){if(this.isInput){return this.$e.value;}return this.opts.html?this.$eContainer.innerHTML:this.$eContainer.innerText;}},{key:\"getNoderized\",value:function getNoderized(){return this.maybeNoderize(this.getRaw());}},{key:\"prepareDelay\",value:function prepareDelay(delayType){var delay=this.opts[delayType];if(!delay)return;var isArray=Array.isArray(delay);var halfDelay=!isArray?delay/2:null;this.opts[delayType]={before:isArray?delay[0]:halfDelay,after:isArray?delay[1]:halfDelay,total:isArray?delay[0]+delay[1]:delay};}},{key:\"generateQueue\",value:function generateQueue(){var _this4=this;var initialStep=arguments.length>0&&arguments[0]!==undefined?arguments[0]:null;if(initialStep){this.queue.add(initialStep);}this.opts.strings.forEach(function(string,index){_this4.queueString(string);var queueLength=_this4.queue.waiting.length;//-- This is the last string. Get outta here.\nif(index+1===_this4.opts.strings.length)return;if(_this4.opts.breakLines){_this4.queue.add([_this4.type,\"<br>\"]);_this4.addSplitPause(queueLength);return;}_this4.queueDeletions(string);_this4.addSplitPause(queueLength,string.length);});}/**\n   * Delete each character from a string.\n   *\n   * @todo Why am I accepting a string or number?\n   */},{key:\"queueDeletions\",value:function queueDeletions(){var stringOrNumber=arguments.length>0&&arguments[0]!==undefined?arguments[0]:null;var numberOfCharsToDelete=typeof stringOrNumber===\"string\"?this.maybeNoderize(stringOrNumber).length:stringOrNumber;for(var i=0;i<numberOfCharsToDelete;i++){this.queue.add([this.delete]);}}/**\n   * Based on HTML options, noderize the string,\n   * always ensuring its returned as split pieces.\n   *\n   * @param {array} stuff\n   */},{key:\"maybeNoderize\",value:function maybeNoderize(stuff){if(!this.opts.html){return stuff.split(\"\");}return noderize(stuff);}/**\n   * Add steps to the queue for each character in a given string.\n   */},{key:\"queueString\",value:function queueString(string){var _this5=this;//-- Get array of string with nodes where applicable.\nstring=this.maybeNoderize(string);var strLength=string.length;//-- Push each array item to the queue.\nstring.forEach(function(item,index){var queueItem=[_this5.type,item];//-- Tag as first character of string for callback usage.\nif(index===0){queueItem.push({isFirst:true});}if(index+1===strLength){queueItem.push({isLast:true});}_this5.queue.add(queueItem);});}/**\n   * Insert a split pause around a range of queue items.\n   *\n   * @param  {Number} startPosition The array position at which to start wrapping.\n   * @param  {Number} numberOfActionsToWrap The number of actions in the queue to wrap.\n   * @return {void}\n   */},{key:\"addSplitPause\",value:function addSplitPause(startPosition){var numberOfActionsToWrap=arguments.length>1&&arguments[1]!==undefined?arguments[1]:1;this.queue.waiting.splice(startPosition,0,[this.pause,this.opts.nextStringDelay.before]);this.queue.waiting.splice(startPosition+numberOfActionsToWrap+1,0,[this.pause,this.opts.nextStringDelay.after]);}},{key:\"cursor\",value:function cursor(){if(this.isInput)return;var visibilityStyle=\"visibility: hidden;\";if(this.opts.cursor){appendStyleBlock(\"\\n        @keyframes blink-\".concat(this.id,\" {\\n          0% {opacity: 0}\\n          49% {opacity: 0}\\n          50% {opacity: 1}\\n        }\\n\\n        [data-typeit-id='\").concat(this.id,\"'] .ti-cursor {\\n          animation: blink-\").concat(this.id,\" \").concat(this.opts.cursorSpeed/1000,\"s infinite;\\n        }\\n      \"),this.id);visibilityStyle=\"\";}this.$eWrapper.insertAdjacentHTML(\"beforeend\",\"<span style=\\\"\".concat(baseInlineStyles).concat(visibilityStyle,\"left: -.25ch;\\\" class=\\\"ti-cursor\\\">\").concat(this.opts.cursorChar,\"</span>\"));}/**\n   * Inserts string to element container.\n   */},{key:\"insert\",value:function insert(content){var toChildNode=arguments.length>1&&arguments[1]!==undefined?arguments[1]:false;if(this.isInput){this.$e.value=\"\".concat(this.$e.value).concat(content);return;}var el=toChildNode?this.$eContainer.lastChild:this.$eContainer;el.insertAdjacentHTML(\"beforeend\",content);this.setContents(this.getRaw().split(\"\").join(\"\"));}},{key:\"handleHardCoded\",value:function handleHardCoded(existing){if(!existing.length)return false;if(this.opts.startDelete){this.insert(existing);this.queue.add([this.delete,true]);this.addSplitPause(1);return;}this.opts.strings=_toConsumableArray(toArray(existing.trim())).concat(_toConsumableArray(this.opts.strings));}},{key:\"wait\",value:function wait(callback,delay){this.timeouts.push(setTimeout(callback,delay));}},{key:\"setPace\",value:function setPace(){var typeSpeed=this.opts.speed;var deleteSpeed=this.opts.deleteSpeed!==null?this.opts.deleteSpeed:this.opts.speed/3;var typeRange=typeSpeed/2;var deleteRange=deleteSpeed/2;this.typePace=this.opts.lifeLike?randomInRange(typeSpeed,typeRange):typeSpeed;this.deletePace=this.opts.lifeLike?randomInRange(deleteSpeed,deleteRange):deleteSpeed;}/**\n   * QUEUEABLE\n   */},{key:\"pause\",value:function pause(){var _this6=this;var time=arguments.length>0&&arguments[0]!==undefined?arguments[0]:false;return new Promise(function(resolve,reject){_this6.wait(function(){return resolve();},time?time:_this6.opts.nextStringDelay.total);});}/**\n   * QUEUEABLE - Type a SINGLE character.\n   * @param {*} character\n   */},{key:\"type\",value:function type(character){var _this7=this;return new Promise(function(resolve,reject){_this7.wait(function(){//-- We hit a standard string.\nif(typeof character===\"string\"){_this7.insert(character);return resolve();}//-- We hit a node; create tag itself only if it's:\n//-- 1) the first character\n//-- 2) a self-closing tag (content === null)\nif(character.isFirstCharacter||character.content===null){_this7.insert(createNodeString({tag:character.tag,attributes:character.attributes,content:character.content}));return resolve();}_this7.insert(character.content,true);return resolve();},_this7.typePace);});}/**\n   * QUEUEABLE\n   */},{key:\"empty\",value:function empty(){var _this8=this;return new Promise(function(resolve){_this8.setContents(\"\");return resolve();});}/**\n   * QUEUEABLE\n   */},{key:\"delete\",value:function _delete(){var _this9=this;var keepGoingUntilAllIsGone=arguments.length>0&&arguments[0]!==undefined?arguments[0]:false;return new Promise(function(resolve,reject){_this9.wait(function(){var contents=_this9.getNoderized();//-- Remove last character.\ncontents.splice(-1,1);//-- Convert each node object into string representation,\n//-- grouping them before reprinting.\ncontents=groupNodeStringContents(contents);_this9.setContents(contents.join(\"\"));/**\n         * If it's specified, keep deleting until all characters are gone. This is\n         * the only time when a SINGLE queue action (`delete()`) deals with multiple\n         * characters at once. I don't like it, but need to implement like this right now.\n         */if(keepGoingUntilAllIsGone&&contents.length>0){_this9.delete(true);}return resolve();},_this9.deletePace);});}/**\n   * QUEUEABLE\n   */},{key:\"setOptions\",value:function setOptions(options){var _this10=this;return new Promise(function(resolve){_this10.opts=merge({},_this10.opts,options);return resolve();});}}]);return Instance;}();export{Instance as default};"
+    },
+    {
+      "id": "./src/Queue.js",
+      "identifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/Queue.js",
+      "name": "./src/Queue.js",
+      "index": 11,
+      "index2": 9,
+      "size": 1832,
+      "cacheable": true,
+      "built": true,
+      "optional": false,
+      "prefetched": false,
+      "chunks": [
+        "TypeIt"
+      ],
+      "issuer": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/Instance.js",
+      "issuerId": "./src/Instance.js",
+      "issuerName": "./src/Instance.js",
+      "issuerPath": [
+        {
+          "id": "./src/TypeIt.js",
+          "identifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/TypeIt.js",
+          "name": "./src/TypeIt.js",
+          "profile": {
+            "factory": 32,
+            "building": 366
+          }
+        },
+        {
+          "id": "./src/Instance.js",
+          "identifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/Instance.js",
+          "name": "./src/Instance.js",
+          "profile": {
+            "factory": 38,
+            "building": 177,
+            "dependencies": 1
+          }
+        }
+      ],
+      "profile": {
+        "factory": 31,
+        "building": 64,
+        "dependencies": 0
+      },
+      "failed": false,
+      "errors": 0,
+      "warnings": 0,
+      "assets": [],
+      "reasons": [
+        {
+          "moduleId": "./src/Instance.js",
+          "moduleIdentifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/Instance.js",
+          "module": "./src/Instance.js",
+          "moduleName": "./src/Instance.js",
+          "type": "harmony side effect evaluation",
+          "userRequest": "./Queue",
+          "loc": "1:1601-1628"
+        },
+        {
+          "moduleId": "./src/Instance.js",
+          "moduleIdentifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/Instance.js",
+          "module": "./src/Instance.js",
+          "moduleName": "./src/Instance.js",
+          "type": "harmony import specifier",
+          "userRequest": "./Queue",
+          "loc": "1:2166-2171"
+        }
+      ],
+      "providedExports": [
+        "default"
+      ],
+      "optimizationBailout": [],
+      "depth": 2,
+      "source": "function _toConsumableArray(arr){return _arrayWithoutHoles(arr)||_iterableToArray(arr)||_nonIterableSpread();}function _nonIterableSpread(){throw new TypeError(\"Invalid attempt to spread non-iterable instance\");}function _iterableToArray(iter){if(Symbol.iterator in Object(iter)||Object.prototype.toString.call(iter)===\"[object Arguments]\")return Array.from(iter);}function _arrayWithoutHoles(arr){if(Array.isArray(arr)){for(var i=0,arr2=new Array(arr.length);i<arr.length;i++){arr2[i]=arr[i];}return arr2;}}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError(\"Cannot call a class as a function\");}}function _defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if(\"value\"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}function _createClass(Constructor,protoProps,staticProps){if(protoProps)_defineProperties(Constructor.prototype,protoProps);if(staticProps)_defineProperties(Constructor,staticProps);return Constructor;}var _default=/*#__PURE__*/function(){function _default(){var items=arguments.length>0&&arguments[0]!==undefined?arguments[0]:[];_classCallCheck(this,_default);this.executed=[];this.waiting=items;}_createClass(_default,[{key:\"add\",value:function add(step){var toBeginning=arguments.length>1&&arguments[1]!==undefined?arguments[1]:false;this.waiting[toBeginning?\"unshift\":\"push\"](step);return this;}},{key:\"delete\",value:function _delete(index){this.waiting.splice(index,1);return this;}},{key:\"reset\",value:function reset(){this.waiting=_toConsumableArray(this.executed).concat(_toConsumableArray(this.waiting));this.executed=[];return this;}}]);return _default;}();export{_default as default};"
+    },
+    {
+      "id": "./src/TypeIt.js",
+      "identifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/TypeIt.js",
+      "name": "./src/TypeIt.js",
+      "index": 0,
+      "index2": 13,
+      "size": 4463,
+      "cacheable": true,
+      "built": true,
+      "optional": false,
+      "prefetched": false,
+      "chunks": [
+        "TypeIt"
+      ],
+      "issuer": null,
+      "issuerId": null,
+      "issuerName": null,
+      "issuerPath": null,
+      "profile": {
+        "factory": 32,
+        "building": 366
+      },
+      "failed": false,
+      "errors": 0,
+      "warnings": 0,
+      "assets": [],
+      "reasons": [
+        {
+          "moduleId": null,
+          "moduleIdentifier": null,
+          "module": null,
+          "moduleName": null,
+          "type": "single entry",
+          "userRequest": "./src/TypeIt.js",
+          "loc": "TypeIt"
+        }
+      ],
+      "providedExports": [
+        "default"
+      ],
+      "optimizationBailout": [],
+      "depth": 0,
+      "source": "function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError(\"Cannot call a class as a function\");}}function _defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if(\"value\"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}function _createClass(Constructor,protoProps,staticProps){if(protoProps)_defineProperties(Constructor.prototype,protoProps);if(staticProps)_defineProperties(Constructor,staticProps);return Constructor;}import Instance from\"./Instance\";import allHaveStatus from\"./helpers/allHaveStatus\";import{generateHash}from\"./utilities\";import toArrayOfNodes from\"./helpers/toArrayOfNodes\";var TypeIt=/*#__PURE__*/function(){function TypeIt(element,options){_classCallCheck(this,TypeIt);this.instances=toArrayOfNodes(element).map(function(el){return new Instance({element:el,id:generateHash(),options:options,queue:[]});});}_createClass(TypeIt,[{key:\"each\",value:function each(func){var _this=this;this.instances.forEach(function(instance){func.call(_this,instance);});}/**\n   * Push a specific action directly into the queue of each instance.\n   * If an instance has already completed, trigger the queeu again.\n   *\n   * @param {string} function\n   * @param {*} argument\n   * @\n   */},{key:\"queueUp\",value:function queueUp(action){var _this2=this;var argument=arguments.length>1&&arguments[1]!==undefined?arguments[1]:null;var numberOfTimesToCopy=arguments.length>2&&arguments[2]!==undefined?arguments[2]:1;this.each(function(instance){var isIndependentFunction=typeof action!==\"string\";/**\n       * If action is a string, bind it to instance.\n       * Otherwise, leave it on its own.\n       */var toFire=isIndependentFunction?action:instance[action];var toPassAsArguments=isIndependentFunction?_this2:argument;for(var i=0;i<numberOfTimesToCopy;i++){instance.queue.add([toFire,toPassAsArguments]);}});}},{key:\"is\",value:function is(status){return allHaveStatus(this.instances,status,true);}},{key:\"freeze\",value:function freeze(){this.each(function(instance){instance.status.frozen=true;});}},{key:\"unfreeze\",value:function unfreeze(){this.each(function(instance){if(!instance.status.frozen)return;instance.status.frozen=false;instance.fire();});}/**\n   * If used after typing has started, will append strings to the end of the existing queue. If used when typing is paused, will restart it.\n   *\n   * @param  {string} string The string to be typed.\n   * @return {object} TypeIt instance\n   */},{key:\"type\",value:function type(){var string=arguments.length>0&&arguments[0]!==undefined?arguments[0]:\"\";this.each(function(instance){return instance.queueString(string);});return this;}/**\n   * If null is passed, will delete whatever's currently in the element.\n   *\n   * @param  { number } numCharacters Number of characters to delete.\n   * @return { TypeIt }\n   */},{key:\"delete\",value:function _delete(){var numberOfCharactersToDelete=arguments.length>0&&arguments[0]!==undefined?arguments[0]:null;this.queueUp(\"delete\",numberOfCharactersToDelete===null,//-- Maybe delete all.\nnumberOfCharactersToDelete===null?1:numberOfCharactersToDelete);return this;}},{key:\"pause\",value:function pause(){var ms=arguments.length>0&&arguments[0]!==undefined?arguments[0]:null;this.queueUp(\"pause\",ms);return this;}},{key:\"break\",value:function _break(){this.queueUp(\"type\",\"<br>\");return this;}},{key:\"options\",value:function options(_options){this.queueUp(\"setOptions\",_options);return this;}},{key:\"hook\",value:function hook(func){this.queueUp(func);return this;}},{key:\"destroy\",value:function destroy(){var removeCursor=arguments.length>0&&arguments[0]!==undefined?arguments[0]:true;this.each(function(instance){instance.timeouts.forEach(function(timeout){clearTimeout(timeout);});instance.timeouts=[];if(removeCursor&&instance.opts.cursor){instance.$eWrapper.removeChild(instance.$eWrapper.querySelector(\".ti-cursor\"));}instance.status.destroyed=true;});}},{key:\"empty\",value:function empty(){this.queueUp(\"empty\");return this;}/**\n   * Reset each instance like it's brand new.\n   */},{key:\"reset\",value:function reset(){this.instances=this.instances.map(function(instance){return instance.reset();});return this;}},{key:\"go\",value:function go(){this.each(function(instance){instance.init();});return this;}}]);return TypeIt;}();export{TypeIt as default};"
+    },
+    {
+      "id": "./src/defaults.js",
+      "identifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/defaults.js",
+      "name": "./src/defaults.js",
+      "index": 2,
+      "index2": 0,
+      "size": 330,
+      "cacheable": true,
+      "built": true,
+      "optional": false,
+      "prefetched": false,
+      "chunks": [
+        "TypeIt"
+      ],
+      "issuer": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/Instance.js",
+      "issuerId": "./src/Instance.js",
+      "issuerName": "./src/Instance.js",
+      "issuerPath": [
+        {
+          "id": "./src/TypeIt.js",
+          "identifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/TypeIt.js",
+          "name": "./src/TypeIt.js",
+          "profile": {
+            "factory": 32,
+            "building": 366
+          }
+        },
+        {
+          "id": "./src/Instance.js",
+          "identifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/Instance.js",
+          "name": "./src/Instance.js",
+          "profile": {
+            "factory": 38,
+            "building": 177,
+            "dependencies": 1
+          }
+        }
+      ],
+      "profile": {
+        "factory": 31,
+        "building": 64,
+        "dependencies": 0
+      },
+      "failed": false,
+      "errors": 0,
+      "warnings": 0,
+      "assets": [],
+      "reasons": [
+        {
+          "moduleId": "./src/Instance.js",
+          "moduleIdentifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/Instance.js",
+          "module": "./src/Instance.js",
+          "moduleName": "./src/Instance.js",
+          "type": "harmony side effect evaluation",
+          "userRequest": "./defaults.js",
+          "loc": "1:1139-1175"
+        },
+        {
+          "moduleId": "./src/Instance.js",
+          "moduleIdentifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/Instance.js",
+          "module": "./src/Instance.js",
+          "moduleName": "./src/Instance.js",
+          "type": "harmony import specifier",
+          "userRequest": "./defaults.js",
+          "loc": "1:2198-2206"
+        }
+      ],
+      "providedExports": [
+        "default"
+      ],
+      "optimizationBailout": [],
+      "depth": 2,
+      "source": "export default{strings:[],speed:100,cursor:true,cursorChar:\"|\",cursorSpeed:1000,deleteSpeed:null,lifeLike:true,breakLines:true,startDelay:250,startDelete:false,nextStringDelay:750,loop:false,loopDelay:null,html:true,waitUntilVisible:false,beforeString:false,afterString:false,beforeStep:false,afterStep:false,afterComplete:false};"
+    },
+    {
+      "id": "./src/helpers/allHaveStatus.js",
+      "identifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/helpers/allHaveStatus.js",
+      "name": "./src/helpers/allHaveStatus.js",
+      "index": 12,
+      "index2": 11,
+      "size": 198,
+      "cacheable": true,
+      "built": true,
+      "optional": false,
+      "prefetched": false,
+      "chunks": [
+        "TypeIt"
+      ],
+      "issuer": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/TypeIt.js",
+      "issuerId": "./src/TypeIt.js",
+      "issuerName": "./src/TypeIt.js",
+      "issuerPath": [
+        {
+          "id": "./src/TypeIt.js",
+          "identifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/TypeIt.js",
+          "name": "./src/TypeIt.js",
+          "profile": {
+            "factory": 32,
+            "building": 366
+          }
+        }
+      ],
+      "profile": {
+        "factory": 38,
+        "building": 177,
+        "dependencies": 1
+      },
+      "failed": false,
+      "errors": 0,
+      "warnings": 0,
+      "assets": [],
+      "reasons": [
+        {
+          "moduleId": "./src/TypeIt.js",
+          "moduleIdentifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/TypeIt.js",
+          "module": "./src/TypeIt.js",
+          "moduleName": "./src/TypeIt.js",
+          "type": "harmony side effect evaluation",
+          "userRequest": "./helpers/allHaveStatus",
+          "loc": "1:664-715"
+        },
+        {
+          "moduleId": "./src/TypeIt.js",
+          "moduleIdentifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/TypeIt.js",
+          "module": "./src/TypeIt.js",
+          "moduleName": "./src/TypeIt.js",
+          "type": "harmony import specifier",
+          "userRequest": "./helpers/allHaveStatus",
+          "loc": "11:262-275"
+        }
+      ],
+      "providedExports": [
+        "default"
+      ],
+      "optimizationBailout": [],
+      "depth": 1,
+      "source": "export default function(things,property,value){if(!things.length)return false;var result=things.filter(function(thing){return thing.status[property]===value;});return result.length===things.length;}"
+    },
+    {
+      "id": "./src/helpers/clearPreviousMarkup.js",
+      "identifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/helpers/clearPreviousMarkup.js",
+      "name": "./src/helpers/clearPreviousMarkup.js",
+      "index": 9,
+      "index2": 7,
+      "size": 197,
+      "cacheable": true,
+      "built": true,
+      "optional": false,
+      "prefetched": false,
+      "chunks": [
+        "TypeIt"
+      ],
+      "issuer": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/Instance.js",
+      "issuerId": "./src/Instance.js",
+      "issuerName": "./src/Instance.js",
+      "issuerPath": [
+        {
+          "id": "./src/TypeIt.js",
+          "identifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/TypeIt.js",
+          "name": "./src/TypeIt.js",
+          "profile": {
+            "factory": 32,
+            "building": 366
+          }
+        },
+        {
+          "id": "./src/Instance.js",
+          "identifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/Instance.js",
+          "name": "./src/Instance.js",
+          "profile": {
+            "factory": 38,
+            "building": 177,
+            "dependencies": 1
+          }
+        }
+      ],
+      "profile": {
+        "factory": 31,
+        "building": 64,
+        "dependencies": 0
+      },
+      "failed": false,
+      "errors": 0,
+      "warnings": 0,
+      "assets": [],
+      "reasons": [
+        {
+          "moduleId": "./src/Instance.js",
+          "moduleIdentifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/Instance.js",
+          "module": "./src/Instance.js",
+          "moduleName": "./src/Instance.js",
+          "type": "harmony side effect evaluation",
+          "userRequest": "./helpers/clearPreviousMarkup",
+          "loc": "1:1467-1530"
+        },
+        {
+          "moduleId": "./src/Instance.js",
+          "moduleIdentifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/Instance.js",
+          "module": "./src/Instance.js",
+          "moduleName": "./src/Instance.js",
+          "type": "harmony import specifier",
+          "userRequest": "./helpers/clearPreviousMarkup",
+          "loc": "1:2376-2395"
+        }
+      ],
+      "providedExports": [
+        "default"
+      ],
+      "optimizationBailout": [],
+      "depth": 2,
+      "source": "export default(function(element){[].slice.call(element.childNodes).forEach(function(node){if(node.classList===undefined)return;if(node.classList.contains(\"ti-wrapper\")){element.innerHTML=\"\";}});});"
+    },
+    {
+      "id": "./src/helpers/createNodeString.js",
+      "identifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/helpers/createNodeString.js",
+      "name": "./src/helpers/createNodeString.js",
+      "index": 8,
+      "index2": 6,
+      "size": 404,
+      "cacheable": true,
+      "built": true,
+      "optional": false,
+      "prefetched": false,
+      "chunks": [
+        "TypeIt"
+      ],
+      "issuer": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/Instance.js",
+      "issuerId": "./src/Instance.js",
+      "issuerName": "./src/Instance.js",
+      "issuerPath": [
+        {
+          "id": "./src/TypeIt.js",
+          "identifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/TypeIt.js",
+          "name": "./src/TypeIt.js",
+          "profile": {
+            "factory": 32,
+            "building": 366
+          }
+        },
+        {
+          "id": "./src/Instance.js",
+          "identifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/Instance.js",
+          "name": "./src/Instance.js",
+          "profile": {
+            "factory": 38,
+            "building": 177,
+            "dependencies": 1
+          }
+        }
+      ],
+      "profile": {
+        "factory": 31,
+        "building": 64,
+        "dependencies": 0
+      },
+      "failed": false,
+      "errors": 0,
+      "warnings": 0,
+      "assets": [],
+      "reasons": [
+        {
+          "moduleId": "./src/Instance.js",
+          "moduleIdentifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/Instance.js",
+          "module": "./src/Instance.js",
+          "moduleName": "./src/Instance.js",
+          "type": "harmony side effect evaluation",
+          "userRequest": "./helpers/createNodeString",
+          "loc": "1:1410-1467"
+        },
+        {
+          "moduleId": "./src/Instance.js",
+          "moduleIdentifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/Instance.js",
+          "module": "./src/Instance.js",
+          "moduleName": "./src/Instance.js",
+          "type": "harmony import specifier",
+          "userRequest": "./helpers/createNodeString",
+          "loc": "55:71-87"
+        },
+        {
+          "moduleId": "./src/helpers/groupNodeStringContents.js",
+          "moduleIdentifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/helpers/groupNodeStringContents.js",
+          "module": "./src/helpers/groupNodeStringContents.js",
+          "moduleName": "./src/helpers/groupNodeStringContents.js",
+          "type": "harmony side effect evaluation",
+          "userRequest": "./createNodeString",
+          "loc": "1:307-356"
+        },
+        {
+          "moduleId": "./src/helpers/groupNodeStringContents.js",
+          "moduleIdentifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/helpers/groupNodeStringContents.js",
+          "module": "./src/helpers/groupNodeStringContents.js",
+          "moduleName": "./src/helpers/groupNodeStringContents.js",
+          "type": "harmony import specifier",
+          "userRequest": "./createNodeString",
+          "loc": "9:435-451"
+        }
+      ],
+      "providedExports": [
+        "default"
+      ],
+      "optimizationBailout": [],
+      "depth": 2,
+      "source": "export default function(_ref){var tag=_ref.tag,_ref$attributes=_ref.attributes,attributes=_ref$attributes===void 0?[]:_ref$attributes,_ref$content=_ref.content,content=_ref$content===void 0?\"\":_ref$content;var node=document.createElement(tag);if(attributes!==undefined){attributes.forEach(function(att){node.setAttribute(att.name,att.value);});}if(content){node.innerHTML=content;}return node.outerHTML;}"
+    },
+    {
+      "id": "./src/helpers/groupNodeStringContents.js",
+      "identifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/helpers/groupNodeStringContents.js",
+      "name": "./src/helpers/groupNodeStringContents.js",
+      "index": 10,
+      "index2": 8,
+      "size": 1232,
+      "cacheable": true,
+      "built": true,
+      "optional": false,
+      "prefetched": false,
+      "chunks": [
+        "TypeIt"
+      ],
+      "issuer": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/Instance.js",
+      "issuerId": "./src/Instance.js",
+      "issuerName": "./src/Instance.js",
+      "issuerPath": [
+        {
+          "id": "./src/TypeIt.js",
+          "identifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/TypeIt.js",
+          "name": "./src/TypeIt.js",
+          "profile": {
+            "factory": 32,
+            "building": 366
+          }
+        },
+        {
+          "id": "./src/Instance.js",
+          "identifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/Instance.js",
+          "name": "./src/Instance.js",
+          "profile": {
+            "factory": 38,
+            "building": 177,
+            "dependencies": 1
+          }
+        }
+      ],
+      "profile": {
+        "factory": 31,
+        "building": 64,
+        "dependencies": 0
+      },
+      "failed": false,
+      "errors": 0,
+      "warnings": 0,
+      "assets": [],
+      "reasons": [
+        {
+          "moduleId": "./src/Instance.js",
+          "moduleIdentifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/Instance.js",
+          "module": "./src/Instance.js",
+          "moduleName": "./src/Instance.js",
+          "type": "harmony side effect evaluation",
+          "userRequest": "./helpers/groupNodeStringContents",
+          "loc": "1:1530-1601"
+        },
+        {
+          "moduleId": "./src/Instance.js",
+          "moduleIdentifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/Instance.js",
+          "module": "./src/Instance.js",
+          "moduleName": "./src/Instance.js",
+          "type": "harmony import specifier",
+          "userRequest": "./helpers/groupNodeStringContents",
+          "loc": "62:9-32"
+        }
+      ],
+      "providedExports": [
+        "default"
+      ],
+      "optimizationBailout": [],
+      "depth": 2,
+      "source": "function _typeof(obj){if(typeof Symbol===\"function\"&&typeof Symbol.iterator===\"symbol\"){_typeof=function _typeof(obj){return typeof obj;};}else{_typeof=function _typeof(obj){return obj&&typeof Symbol===\"function\"&&obj.constructor===Symbol&&obj!==Symbol.prototype?\"symbol\":typeof obj;};}return _typeof(obj);}import createNodeString from\"./createNodeString\";/**\n * Group a collection of contents by HTML tags,\n * so that it can be correctly printed.\n *\n * If this were NOT to exist, each character supposed to be\n * inside an HTML tag would be individually wrapped by that tag.\n *\n * @param array contents\n */export default function(contents){contents=contents.map(function(character,index){if(_typeof(character)===\"object\"&&character.isFirstCharacter){var pointer=index;var tagContent=[character.content];var hasLastCharacter=false;while(!hasLastCharacter){pointer++;var nextItem=contents[pointer];if(nextItem!==undefined){tagContent.push(nextItem.content);}if(nextItem===undefined||nextItem.isLastCharacter){hasLastCharacter=true;}}return createNodeString({tag:character.tag,attributes:character.attributes,content:tagContent.join(\"\")});}return character;});return contents.filter(function(item){return _typeof(item)!==\"object\";});}"
+    },
+    {
+      "id": "./src/helpers/isInput.js",
+      "identifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/helpers/isInput.js",
+      "name": "./src/helpers/isInput.js",
+      "index": 5,
+      "index2": 3,
+      "size": 95,
+      "cacheable": true,
+      "built": true,
+      "optional": false,
+      "prefetched": false,
+      "chunks": [
+        "TypeIt"
+      ],
+      "issuer": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/Instance.js",
+      "issuerId": "./src/Instance.js",
+      "issuerName": "./src/Instance.js",
+      "issuerPath": [
+        {
+          "id": "./src/TypeIt.js",
+          "identifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/TypeIt.js",
+          "name": "./src/TypeIt.js",
+          "profile": {
+            "factory": 32,
+            "building": 366
+          }
+        },
+        {
+          "id": "./src/Instance.js",
+          "identifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/Instance.js",
+          "name": "./src/Instance.js",
+          "profile": {
+            "factory": 38,
+            "building": 177,
+            "dependencies": 1
+          }
+        }
+      ],
+      "profile": {
+        "factory": 31,
+        "building": 64,
+        "dependencies": 0
+      },
+      "failed": false,
+      "errors": 0,
+      "warnings": 0,
+      "assets": [],
+      "reasons": [
+        {
+          "moduleId": "./src/Instance.js",
+          "moduleIdentifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/Instance.js",
+          "module": "./src/Instance.js",
+          "moduleName": "./src/Instance.js",
+          "type": "harmony side effect evaluation",
+          "userRequest": "./helpers/isInput",
+          "loc": "1:1291-1330"
+        },
+        {
+          "moduleId": "./src/Instance.js",
+          "moduleIdentifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/Instance.js",
+          "module": "./src/Instance.js",
+          "moduleName": "./src/Instance.js",
+          "type": "harmony import specifier",
+          "userRequest": "./helpers/isInput",
+          "loc": "1:2134-2141"
+        }
+      ],
+      "providedExports": [
+        "default"
+      ],
+      "optimizationBailout": [],
+      "depth": 2,
+      "source": "export default(function(el){return[\"textarea\",\"input\"].indexOf(el.tagName.toLowerCase())>-1;});"
+    },
+    {
+      "id": "./src/helpers/merge.js",
+      "identifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/helpers/merge.js",
+      "name": "./src/helpers/merge.js",
+      "index": 4,
+      "index2": 2,
+      "size": 302,
+      "cacheable": true,
+      "built": true,
+      "optional": false,
+      "prefetched": false,
+      "chunks": [
+        "TypeIt"
+      ],
+      "issuer": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/Instance.js",
+      "issuerId": "./src/Instance.js",
+      "issuerName": "./src/Instance.js",
+      "issuerPath": [
+        {
+          "id": "./src/TypeIt.js",
+          "identifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/TypeIt.js",
+          "name": "./src/TypeIt.js",
+          "profile": {
+            "factory": 32,
+            "building": 366
+          }
+        },
+        {
+          "id": "./src/Instance.js",
+          "identifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/Instance.js",
+          "name": "./src/Instance.js",
+          "profile": {
+            "factory": 38,
+            "building": 177,
+            "dependencies": 1
+          }
+        }
+      ],
+      "profile": {
+        "factory": 31,
+        "building": 64,
+        "dependencies": 0
+      },
+      "failed": false,
+      "errors": 0,
+      "warnings": 0,
+      "assets": [],
+      "reasons": [
+        {
+          "moduleId": "./src/Instance.js",
+          "moduleIdentifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/Instance.js",
+          "module": "./src/Instance.js",
+          "moduleName": "./src/Instance.js",
+          "type": "harmony side effect evaluation",
+          "userRequest": "./helpers/merge",
+          "loc": "1:1256-1291"
+        },
+        {
+          "moduleId": "./src/Instance.js",
+          "moduleIdentifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/Instance.js",
+          "module": "./src/Instance.js",
+          "moduleName": "./src/Instance.js",
+          "type": "harmony import specifier",
+          "userRequest": "./helpers/merge",
+          "loc": "1:2189-2194"
+        },
+        {
+          "moduleId": "./src/Instance.js",
+          "moduleIdentifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/Instance.js",
+          "module": "./src/Instance.js",
+          "moduleName": "./src/Instance.js",
+          "type": "harmony import specifier",
+          "userRequest": "./helpers/merge",
+          "loc": "68:127-132"
+        }
+      ],
+      "providedExports": [
+        "default"
+      ],
+      "optimizationBailout": [],
+      "depth": 2,
+      "source": "export default function(target,varArgs){var to=Object(target);for(var index=1;index<arguments.length;index++){var nextSource=arguments[index];if(nextSource!=null){for(var nextKey in nextSource){if(Object.prototype.hasOwnProperty.call(nextSource,nextKey)){to[nextKey]=nextSource[nextKey];}}}}return to;}"
+    },
+    {
+      "id": "./src/helpers/noderize.js",
+      "identifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/helpers/noderize.js",
+      "name": "./src/helpers/noderize.js",
+      "index": 7,
+      "index2": 5,
+      "size": 2561,
+      "cacheable": true,
+      "built": true,
+      "optional": false,
+      "prefetched": false,
+      "chunks": [
+        "TypeIt"
+      ],
+      "issuer": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/Instance.js",
+      "issuerId": "./src/Instance.js",
+      "issuerName": "./src/Instance.js",
+      "issuerPath": [
+        {
+          "id": "./src/TypeIt.js",
+          "identifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/TypeIt.js",
+          "name": "./src/TypeIt.js",
+          "profile": {
+            "factory": 32,
+            "building": 366
+          }
+        },
+        {
+          "id": "./src/Instance.js",
+          "identifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/Instance.js",
+          "name": "./src/Instance.js",
+          "profile": {
+            "factory": 38,
+            "building": 177,
+            "dependencies": 1
+          }
+        }
+      ],
+      "profile": {
+        "factory": 31,
+        "building": 64,
+        "dependencies": 0
+      },
+      "failed": false,
+      "errors": 0,
+      "warnings": 0,
+      "assets": [],
+      "reasons": [
+        {
+          "moduleId": "./src/Instance.js",
+          "moduleIdentifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/Instance.js",
+          "module": "./src/Instance.js",
+          "moduleName": "./src/Instance.js",
+          "type": "harmony side effect evaluation",
+          "userRequest": "./helpers/noderize",
+          "loc": "1:1369-1410"
+        },
+        {
+          "moduleId": "./src/Instance.js",
+          "moduleIdentifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/Instance.js",
+          "module": "./src/Instance.js",
+          "moduleName": "./src/Instance.js",
+          "type": "harmony import specifier",
+          "userRequest": "./helpers/noderize",
+          "loc": "33:115-123"
+        }
+      ],
+      "providedExports": [
+        "placeholderize",
+        "removePlaceholderRemnants",
+        "default"
+      ],
+      "optimizationBailout": [],
+      "depth": 2,
+      "source": "function _typeof(obj){if(typeof Symbol===\"function\"&&typeof Symbol.iterator===\"symbol\"){_typeof=function _typeof(obj){return typeof obj;};}else{_typeof=function _typeof(obj){return obj&&typeof Symbol===\"function\"&&obj.constructor===Symbol&&obj!==Symbol.prototype?\"symbol\":typeof obj;};}return _typeof(obj);}var PLACEHOLDER_PATTERN=\"{%}\";/**\n * Replace nodes with string placeholders.\n *\n * @param string string\n */export function placeholderize(string){var parser=new DOMParser();var doc=parser.parseFromString(string,\"text/html\");var nodes=[].slice.call(doc.body.querySelectorAll(\"*\"));//-- Remove empty tags.\nnodes=nodes.filter(function(item){//-- This thing is empty.\nif(item.outerHTML.indexOf(\"></\")>-1){string=string.replace(item.outerHTML,\"\");return false;}return true;});//-- Replace node strings with placeholders.\nnodes.forEach(function(item){var chopped=item.outerHTML.slice(0,-1);string=string.replace(new RegExp(\"\".concat(chopped,\"/?>\"),\"i\"),PLACEHOLDER_PATTERN);});return{string:string,nodes:nodes};}/**\n * Remove remants \"%}\" of placeholders that remain\n * after noderizing an array.\n *\n * @param array items\n */export function removePlaceholderRemnants(items){var isPruning=true;while(isPruning){var hasLastCharacters=items.some(function(item,index){var isLastCharacterObject=_typeof(item)===\"object\"&&item.isLastCharacter;if(isLastCharacterObject&&items.slice(index+1,index+3).join(\"\")===\"%}\"){items.splice(index+1,2);return true;}return false;});if(!hasLastCharacters){isPruning=false;}}return items;}export default function(rawString){var _placeholderize=placeholderize(rawString),string=_placeholderize.string,nodes=_placeholderize.nodes;var stringArray=string.split(\"\");var nodifiedArray=[];stringArray.forEach(function(item,index){//-- Just a regular character.\nif(stringArray.slice(index,index+3).join(\"\")!==PLACEHOLDER_PATTERN){nodifiedArray.push(item);return;}//-- Replace placeholder w/ node objects.\nvar firstCharacterIndex=index;var node=nodes.shift();var nodeContents=node.innerHTML.split(\"\");var nodeAttributes=[].slice.call(node.attributes).map(function(att){return{name:att.name,value:att.nodeValue};});if(nodeContents.length){nodeContents.forEach(function(character,i){nodifiedArray.push({tag:node.tagName,attributes:nodeAttributes,content:character,isFirstCharacter:firstCharacterIndex===index,isLastCharacter:i+1===nodeContents.length});firstCharacterIndex++;});}else{nodifiedArray.push({tag:node.tagName,attributes:nodeAttributes,content:null});}});nodifiedArray=removePlaceholderRemnants(nodifiedArray);return nodifiedArray;}"
+    },
+    {
+      "id": "./src/helpers/toArray.js",
+      "identifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/helpers/toArray.js",
+      "name": "./src/helpers/toArray.js",
+      "index": 6,
+      "index2": 4,
+      "size": 197,
+      "cacheable": true,
+      "built": true,
+      "optional": false,
+      "prefetched": false,
+      "chunks": [
+        "TypeIt"
+      ],
+      "issuer": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/Instance.js",
+      "issuerId": "./src/Instance.js",
+      "issuerName": "./src/Instance.js",
+      "issuerPath": [
+        {
+          "id": "./src/TypeIt.js",
+          "identifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/TypeIt.js",
+          "name": "./src/TypeIt.js",
+          "profile": {
+            "factory": 32,
+            "building": 366
+          }
+        },
+        {
+          "id": "./src/Instance.js",
+          "identifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/Instance.js",
+          "name": "./src/Instance.js",
+          "profile": {
+            "factory": 38,
+            "building": 177,
+            "dependencies": 1
+          }
+        }
+      ],
+      "profile": {
+        "factory": 31,
+        "building": 64,
+        "dependencies": 0
+      },
+      "failed": false,
+      "errors": 0,
+      "warnings": 0,
+      "assets": [],
+      "reasons": [
+        {
+          "moduleId": "./src/Instance.js",
+          "moduleIdentifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/Instance.js",
+          "module": "./src/Instance.js",
+          "moduleName": "./src/Instance.js",
+          "type": "harmony side effect evaluation",
+          "userRequest": "./helpers/toArray",
+          "loc": "1:1330-1369"
+        },
+        {
+          "moduleId": "./src/Instance.js",
+          "moduleIdentifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/Instance.js",
+          "module": "./src/Instance.js",
+          "moduleName": "./src/Instance.js",
+          "type": "harmony import specifier",
+          "userRequest": "./helpers/toArray",
+          "loc": "1:2249-2256"
+        },
+        {
+          "moduleId": "./src/Instance.js",
+          "moduleIdentifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/Instance.js",
+          "module": "./src/Instance.js",
+          "moduleName": "./src/Instance.js",
+          "type": "harmony import specifier",
+          "userRequest": "./helpers/toArray",
+          "loc": "46:619-626"
+        }
+      ],
+      "providedExports": [
+        "default"
+      ],
+      "optimizationBailout": [],
+      "depth": 2,
+      "source": "/**\n * Splits a string into characters, or an array by break tags.\n * @param {string} string\n */export default(function(string){return Array.isArray(string)?string.slice(0):string.split(\"<br>\");});"
+    },
+    {
+      "id": "./src/helpers/toArrayOfNodes.js",
+      "identifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/helpers/toArrayOfNodes.js",
+      "name": "./src/helpers/toArrayOfNodes.js",
+      "index": 13,
+      "index2": 12,
+      "size": 180,
+      "cacheable": true,
+      "built": true,
+      "optional": false,
+      "prefetched": false,
+      "chunks": [
+        "TypeIt"
+      ],
+      "issuer": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/TypeIt.js",
+      "issuerId": "./src/TypeIt.js",
+      "issuerName": "./src/TypeIt.js",
+      "issuerPath": [
+        {
+          "id": "./src/TypeIt.js",
+          "identifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/TypeIt.js",
+          "name": "./src/TypeIt.js",
+          "profile": {
+            "factory": 32,
+            "building": 366
+          }
+        }
+      ],
+      "profile": {
+        "factory": 38,
+        "building": 177,
+        "dependencies": 1
+      },
+      "failed": false,
+      "errors": 0,
+      "warnings": 0,
+      "assets": [],
+      "reasons": [
+        {
+          "moduleId": "./src/TypeIt.js",
+          "moduleIdentifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/TypeIt.js",
+          "module": "./src/TypeIt.js",
+          "moduleName": "./src/TypeIt.js",
+          "type": "harmony side effect evaluation",
+          "userRequest": "./helpers/toArrayOfNodes",
+          "loc": "1:753-806"
+        },
+        {
+          "moduleId": "./src/TypeIt.js",
+          "moduleIdentifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/TypeIt.js",
+          "module": "./src/TypeIt.js",
+          "moduleName": "./src/TypeIt.js",
+          "type": "harmony import specifier",
+          "userRequest": "./helpers/toArrayOfNodes",
+          "loc": "1:918-932"
+        }
+      ],
+      "providedExports": [
+        "default"
+      ],
+      "optimizationBailout": [],
+      "depth": 1,
+      "source": "export default function(thing){if(typeof thing===\"string\"){thing=document.querySelectorAll(thing);}else if(!(thing instanceof NodeList)){thing=[thing];}return[].slice.call(thing);}"
+    },
+    {
+      "id": "./src/utilities.js",
+      "identifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/utilities.js",
+      "name": "./src/utilities.js",
+      "index": 3,
+      "index2": 1,
+      "size": 1006,
+      "cacheable": true,
+      "built": true,
+      "optional": false,
+      "prefetched": false,
+      "chunks": [
+        "TypeIt"
+      ],
+      "issuer": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/TypeIt.js",
+      "issuerId": "./src/TypeIt.js",
+      "issuerName": "./src/TypeIt.js",
+      "issuerPath": [
+        {
+          "id": "./src/TypeIt.js",
+          "identifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/TypeIt.js",
+          "name": "./src/TypeIt.js",
+          "profile": {
+            "factory": 32,
+            "building": 366
+          }
+        }
+      ],
+      "profile": {
+        "factory": 38,
+        "building": 177,
+        "dependencies": 1
+      },
+      "failed": false,
+      "errors": 0,
+      "warnings": 0,
+      "assets": [],
+      "reasons": [
+        {
+          "moduleId": "./src/Instance.js",
+          "moduleIdentifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/Instance.js",
+          "module": "./src/Instance.js",
+          "moduleName": "./src/Instance.js",
+          "type": "harmony side effect evaluation",
+          "userRequest": "./utilities",
+          "loc": "1:1175-1256"
+        },
+        {
+          "moduleId": "./src/Instance.js",
+          "moduleIdentifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/Instance.js",
+          "module": "./src/Instance.js",
+          "moduleName": "./src/Instance.js",
+          "type": "harmony import specifier",
+          "userRequest": "./utilities",
+          "loc": "1:2234-2248"
+        },
+        {
+          "moduleId": "./src/Instance.js",
+          "moduleIdentifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/Instance.js",
+          "module": "./src/Instance.js",
+          "moduleName": "./src/Instance.js",
+          "type": "harmony import specifier",
+          "userRequest": "./utilities",
+          "loc": "1:2762-2771"
+        },
+        {
+          "moduleId": "./src/Instance.js",
+          "moduleIdentifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/Instance.js",
+          "module": "./src/Instance.js",
+          "moduleName": "./src/Instance.js",
+          "type": "harmony import specifier",
+          "userRequest": "./utilities",
+          "loc": "1:2873-2882"
+        },
+        {
+          "moduleId": "./src/Instance.js",
+          "moduleIdentifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/Instance.js",
+          "module": "./src/Instance.js",
+          "moduleName": "./src/Instance.js",
+          "type": "harmony import specifier",
+          "userRequest": "./utilities",
+          "loc": "15:428-444"
+        },
+        {
+          "moduleId": "./src/Instance.js",
+          "moduleIdentifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/Instance.js",
+          "module": "./src/Instance.js",
+          "moduleName": "./src/Instance.js",
+          "type": "harmony import specifier",
+          "userRequest": "./utilities",
+          "loc": "44:486-502"
+        },
+        {
+          "moduleId": "./src/Instance.js",
+          "moduleIdentifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/Instance.js",
+          "module": "./src/Instance.js",
+          "moduleName": "./src/Instance.js",
+          "type": "harmony import specifier",
+          "userRequest": "./utilities",
+          "loc": "46:1036-1049"
+        },
+        {
+          "moduleId": "./src/Instance.js",
+          "moduleIdentifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/Instance.js",
+          "module": "./src/Instance.js",
+          "moduleName": "./src/Instance.js",
+          "type": "harmony import specifier",
+          "userRequest": "./utilities",
+          "loc": "46:1116-1129"
+        },
+        {
+          "moduleId": "./src/TypeIt.js",
+          "moduleIdentifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/TypeIt.js",
+          "module": "./src/TypeIt.js",
+          "moduleName": "./src/TypeIt.js",
+          "type": "harmony side effect evaluation",
+          "userRequest": "./utilities",
+          "loc": "1:715-753"
+        },
+        {
+          "moduleId": "./src/TypeIt.js",
+          "moduleIdentifier": "/Users/alex.macarthur/apps/typeit/node_modules/babel-loader/lib/index.js??ref--4!/Users/alex.macarthur/apps/typeit/src/TypeIt.js",
+          "module": "./src/TypeIt.js",
+          "moduleName": "./src/TypeIt.js",
+          "type": "harmony import specifier",
+          "userRequest": "./utilities",
+          "loc": "1:994-1006"
+        }
+      ],
+      "providedExports": [
+        "isVisible",
+        "randomInRange",
+        "appendStyleBlock",
+        "generateHash",
+        "removeComments",
+        "startsWith"
+      ],
+      "optimizationBailout": [],
+      "depth": 1,
+      "source": "export function isVisible(element){var coordinates=element.getBoundingClientRect();//-- Element extends past bottom or right.\nif(coordinates.right>window.innerWidth||coordinates.bottom>window.innerHeight){return false;}//-- Element extends past top or left.\nif(coordinates.top<0||coordinates.left<0){return false;}return true;}export function randomInRange(value,range){return Math.abs(Math.random()*(value+range-(value-range))+(value-range));}export function appendStyleBlock(styles){var id=arguments.length>1&&arguments[1]!==undefined?arguments[1]:\"\";var styleBlock=document.createElement(\"style\");styleBlock.id=id;styleBlock.appendChild(document.createTextNode(styles));document.head.appendChild(styleBlock);}export function generateHash(){return Math.random().toString(36).substring(2,15);}export function removeComments(arrayOfStrings){return arrayOfStrings.map(function(string){return string.replace(/<\\!--.*?-->/g,\"\");});}export function startsWith(string,search){return string.indexOf(search)===0;}"
+    }
+  ],
+  "filteredModules": 0,
+  "children": []
+}
+Webpack Bundle Analyzer is started at http://127.0.0.1:8888
+Use Ctrl+C to close it
