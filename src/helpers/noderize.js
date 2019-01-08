@@ -10,10 +10,7 @@ export function placeholderize(string) {
   let doc = parser.parseFromString(string, "text/html");
   let nodes = [].slice.call(doc.body.querySelectorAll("*"));
 
-  // console.log()
-
   nodes.forEach(item => {
-    // console.log(item.outerHTML);
     let chopped = item.outerHTML.slice(0, -1);
     string = string.replace(
       new RegExp(`${chopped}\/?>`, "i"),
@@ -30,46 +27,67 @@ export function placeholderize(string) {
 export default function(rawString) {
   let { string, nodes } = placeholderize(rawString);
   let stringArray = string.split("");
+  let nodifiedArray = [];
 
-  //-- Replace placeholders w/ nodes.
   stringArray.forEach((item, index) => {
-    //-- Check for a placeholder.
-    if (stringArray.slice(index, index + 3).join("") === PLACEHOLDER_PATTERN) {
-      //-- Remove placeholder.
-      stringArray.splice(index, 3);
+    //-- Just a regular character.
+    if (stringArray.slice(index, index + 3).join("") !== PLACEHOLDER_PATTERN) {
+      nodifiedArray.push(item);
+      return;
+    }
 
-      //-- For each character inside this node, insert an object.
-      let node = nodes.shift();
-      let nodeContents = node.innerHTML.split("");
-      let nodeAttributes = [].slice.call(node.attributes).map(att => {
-        return {
-          name: att.name,
-          value: att.nodeValue
-        };
-      });
-      let firstCharacterIndex = index;
+    //-- Replace placeholder w/ node objects.
+    let firstCharacterIndex = index;
+    let node = nodes.shift();
+    let nodeContents = node.innerHTML.split("");
+    let nodeAttributes = [].slice.call(node.attributes).map(att => {
+      return {
+        name: att.name,
+        value: att.nodeValue
+      };
+    });
 
-      if (!nodeContents.length) {
-        stringArray.splice(firstCharacterIndex, 0, {
+    if (nodeContents.length) {
+      nodeContents.forEach((character, i) => {
+        nodifiedArray.push({
           tag: node.tagName,
           attributes: nodeAttributes,
-          content: null
+          content: character,
+          isFirstCharacter: firstCharacterIndex === index,
+          isLastCharacter: i + 1 === nodeContents.length
         });
-      } else {
-        nodeContents.forEach((character, i) => {
-          stringArray.splice(firstCharacterIndex, 0, {
-            tag: node.tagName,
-            attributes: nodeAttributes,
-            content: character,
-            isFirstCharacter: firstCharacterIndex === index,
-            isLastCharacter: i + 1 === nodeContents.length
-          });
 
-          firstCharacterIndex++;
-        });
-      }
+        firstCharacterIndex++;
+      });
+    } else {
+      nodifiedArray.push({
+        tag: node.tagName,
+        attributes: nodeAttributes,
+        content: null
+      });
     }
   });
 
-  return stringArray;
+  let isPruning = true;
+
+  while (isPruning) {
+    let hasLastCharacters = nodifiedArray.some((item, index) => {
+      let isLastCharacterObject =
+        typeof item === "object" && item.isLastCharacter;
+
+      if (
+        isLastCharacterObject &&
+        nodifiedArray.slice(index + 1, index + 3).join("") === "%}"
+      ) {
+        nodifiedArray.splice(index + 1, 2);
+        return true;
+      }
+    });
+
+    if (!hasLastCharacters) {
+      isPruning = false;
+    }
+  }
+
+  return nodifiedArray;
 }

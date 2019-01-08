@@ -323,6 +323,8 @@ export default class Instance {
     //-- Get array of string with nodes where applicable.
     string = this.maybeNoderize(string);
 
+    // console.log(string);
+
     let strLength = string.length;
 
     //-- Push each array item to the queue.
@@ -518,15 +520,13 @@ export default class Instance {
       this.wait(() => {
         let contents = this.getNoderized();
 
-        // console.log(contents);
-        // not getting replaced back in!
-
         //-- Remove last character.
         contents.splice(-1, 1);
 
         //-- Convert each node object into string representation.
         //-- Sort into tags!
         contents = contents.map((character, index) => {
+          //-- @todo TEST!!!
           if (typeof character === "object" && character.isFirstCharacter) {
             let tagContent = [];
             let allRemainingContent = contents.slice(index);
@@ -543,11 +543,13 @@ export default class Instance {
               }
             }
 
-            return createNodeString({
+            let nodeString = createNodeString({
               tag: character.tag,
               attributes: character.attributes,
               content: tagContent.join("")
             });
+
+            return nodeString;
           }
 
           return character;
