@@ -10,8 +10,21 @@ export function placeholderize(string) {
   let doc = parser.parseFromString(string, "text/html");
   let nodes = [].slice.call(doc.body.querySelectorAll("*"));
 
+  //-- Remove empty tags.
+  nodes = nodes.filter(item => {
+    //-- This thing is empty.
+    if (item.outerHTML.indexOf("></") > -1) {
+      string = string.replace(item.outerHTML, "");
+      return false;
+    }
+
+    return true;
+  });
+
+  //-- Replace node strings with placeholders.
   nodes.forEach(item => {
     let chopped = item.outerHTML.slice(0, -1);
+
     string = string.replace(
       new RegExp(`${chopped}\/?>`, "i"),
       PLACEHOLDER_PATTERN
@@ -59,6 +72,7 @@ export function removePlaceholderRemnants(items) {
 
 export default function(rawString) {
   let { string, nodes } = placeholderize(rawString);
+
   let stringArray = string.split("");
   let nodifiedArray = [];
 

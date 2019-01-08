@@ -618,6 +618,31 @@ Array [
 ]
 `;
 
+exports[`placeholderize() Removes empty tags that live with filled tags. 1`] = `
+Object {
+  "nodes": Array [
+    <em>
+      italics!
+    </em>,
+  ],
+  "string": " {%}",
+}
+`;
+
+exports[`placeholderize() Removes empty tags with text surrounding them. 1`] = `
+Object {
+  "nodes": Array [],
+  "string": "text!  text!",
+}
+`;
+
+exports[`placeholderize() Removes empty tags. 1`] = `
+Object {
+  "nodes": Array [],
+  "string": "",
+}
+`;
+
 exports[`placeholderize() Sets placeholder for a self-closing tag with no closing slash. 1`] = `
 Object {
   "nodes": Array [

@@ -71,12 +71,13 @@
 		<script>
 
       window.instance = new TypeIt('#example1', {
-        speed: 25
+        speed: 50,
+        loop: true
       })
-      .type('<em>italics</em><strong></strong>')
+      .type('<strong></strong><em>content</em>')
       .pause(100)
-      .delete(6)
-      .type('et.')
+      // .delete(6)
+      // .type('et.')
       .go();
 
 		</script>

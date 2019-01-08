@@ -75,6 +75,24 @@ describe("placeholderize()", () => {
 
     expect(result).toMatchSnapshot();
   });
+
+  test("Removes empty tags.", () => {
+    let result = placeholderize("<span></span>");
+
+    expect(result).toMatchSnapshot();
+  });
+
+  test("Removes empty tags with text surrounding them.", () => {
+    let result = placeholderize("text! <span></span> text!");
+
+    expect(result).toMatchSnapshot();
+  });
+
+  test("Removes empty tags that live with filled tags.", () => {
+    let result = placeholderize("<span></span> <em>italics!</em>");
+
+    expect(result).toMatchSnapshot();
+  });
 });
 
 describe("removePlaceholderRemnants()", () => {
