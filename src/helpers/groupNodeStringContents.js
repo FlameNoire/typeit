@@ -11,7 +11,10 @@ import createNodeString from "./createNodeString";
  */
 export default function(contents) {
   contents = contents.map((character, index) => {
-    if (typeof character === "object" && character.isFirstCharacter) {
+    if (
+      typeof character === "object" &&
+      (character.isFirstCharacter || character.content === null)
+    ) {
       let pointer = index;
       let tagContent = [character.content];
       let hasLastCharacter = false;

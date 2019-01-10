@@ -158,6 +158,20 @@ test("Correctly groups tags with text on both ends.", () => {
   ]);
 });
 
+test("Correctly groups strings with self-closing tags.", () => {
+  let contents = [
+    "x",
+    {
+      tag: "BR",
+      attributes: [],
+      content: null
+    },
+    "y"
+  ];
+
+  expect(groupNodeStringContents(contents)).toEqual(["x", "<br>", "y"]);
+});
+
 test("Correctly groups multiple tags with contents in between.", () => {
   let contents = [
     {
