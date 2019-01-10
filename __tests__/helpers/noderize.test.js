@@ -173,4 +173,22 @@ describe("removePlaceholderRemnants()", () => {
 
     expect(removePlaceholderRemnants(payload)).toEqual(["a", "b", "c"]);
   });
+
+  test("It does not modify arrays with no node objects.", () => {
+    let payload = [
+      "a",
+      {
+        tag: "BR",
+        attributes: [],
+        content: null
+      },
+      "%",
+      "}"
+    ];
+
+    expect(removePlaceholderRemnants(payload)).toEqual([
+      "a",
+      { tag: "BR", attributes: [], content: null }
+    ]);
+  });
 });

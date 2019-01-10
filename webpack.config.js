@@ -1,6 +1,5 @@
 const webpack = require("webpack");
 const pkg = require("./package.json");
-const isProd = process.env.NODE_ENV === "production";
 
 const banner = `
   ${pkg.name} - ${pkg.description}
@@ -11,7 +10,7 @@ const banner = `
 `;
 
 module.exports = {
-  mode: isProd ? "production" : "development",
+  mode: process.env.NODE_ENV,
   entry: {
     TypeIt: "./src/TypeIt.js"
   },

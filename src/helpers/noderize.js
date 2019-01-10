@@ -48,11 +48,12 @@ export function removePlaceholderRemnants(items) {
 
   while (isPruning) {
     let hasLastCharacters = items.some((item, index) => {
-      let isLastCharacterObject =
-        typeof item === "object" && item.isLastCharacter;
+      let isLastNodeObject =
+        typeof item === "object" &&
+        (item.isLastCharacter || item.content === null);
 
       if (
-        isLastCharacterObject &&
+        isLastNodeObject &&
         items.slice(index + 1, index + 3).join("") === "%}"
       ) {
         items.splice(index + 1, 2);
