@@ -534,7 +534,9 @@ export default class Instance {
          * characters at once. I don't like it, but need to implement like this right now.
          */
         if (keepGoingUntilAllIsGone && contents.length > 0) {
-          this.delete(true);
+          return this.delete(true).then(() => {
+            return resolve();
+          });
         }
 
         return resolve();
